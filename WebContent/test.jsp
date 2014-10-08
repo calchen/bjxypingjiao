@@ -44,7 +44,6 @@
           autoclose : true,
           todayHighlight : true
         });
-
         $('.input-small').timepicker({
           minuteStep : 1,
           showSeconds : true,
