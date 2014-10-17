@@ -1,4 +1,4 @@
-package com.chenky.action;
+package com.chenky.struts;
 
 import java.util.Map;
 
@@ -52,10 +52,12 @@ public class SessionCheckInterceptor implements Interceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		// TODO Auto-generated method stub
+		// 获取session
 		Map<String, Object> session = invocation.getInvocationContext()
 				.getSession();
-		if (!session.containsKey(sessionAttribute)) {
+				
+		if (session.containsKey(sessionAttribute)) {
+			//若已登录就直接跳转到访问页面
 			String resultCode = invocation.invoke();
 			return resultCode;
 		}else {

@@ -8,17 +8,17 @@
 <html lang="zh-CN">
 <!--<![endif]-->
 <head>
-<%@ include file="head.jsp"%>
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-<script src="js/bootstrap-datetimepicker.js"></script>
-<script src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<%@ include file="../head.jsp"%>
+<link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+<script src="${pageContext.request.contextPath}/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
 </head>
 <body>
 	<div class="container">
-		<%@ include file="top.jsp"%>
+		<%@ include file="../top.jsp"%>
 		<div class="row">
-			<%@ include file="left.jsp"%>
+			<%@ include file="../left.jsp"%>
 			<div class="span9">
 				<h1>系统设置</h1>
 				<form id="edit-profile" class="form-horizontal">
