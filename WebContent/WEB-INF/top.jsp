@@ -22,10 +22,10 @@
                     </ul>
                     <ul class="nav pull-right">
                         <li>
-                        	<a href="login.jsp">登录</a>
+                        	<a href="login">登录</a>
                         </li>
                         <li>
-                        	<a href="index.jsp">注销</a>
+                        	<a href="logout">注销</a>
                         </li>
                     </ul>
                 </div>

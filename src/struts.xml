@@ -4,13 +4,54 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
     <constant name="struts.devMode" value="true" />
     <constant name="struts.local" value="zh-CN" />
     <constant name="struts.i18n.encoding" value="utf-8"/>
     
     <package name="bjxypingjiao" extends="struts-default">
-
+		<interceptors>
+			<interceptor name="LoginCheck" class="com.chenky.action.SessionCheckInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="LoginCheck">
+					<param name="sessionAttribute">login_user</param>
+					<param name="reloginResult">login</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack"/>
+		
+		<default-action-ref name="index"></default-action-ref>
+		
+		<global-results>
+			<result name="login">/WEB-INF/login.jsp</result>
+		</global-results>
+		
+		<action name="index">
+			<result name="success">/WEB-INF/index.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="login">
+			<result>/WEB-INF/login.jsp</result>
+		</action>
+		<action name="pingjiao">
+			<result>/WEB-INF/pingjiao.jsp</result>
+		</action>
+		<action name="result">
+			<result>/WEB-INF/result.jsp</result>
+		</action>
+		<action name="messages">
+			<result>/WEB-INF/messages.jsp</result>
+		</action>
+		<action name="profile">
+			<result>/WEB-INF/profile.jsp</result>
+		</action>
+		<action name="password">
+			<result>/WEB-INF/password.jsp</result>
+		</action>
+		<action name="help">
+			<result>/WEB-INF/help.jsp</result>
+		</action>
     </package>
    
 </struts>
