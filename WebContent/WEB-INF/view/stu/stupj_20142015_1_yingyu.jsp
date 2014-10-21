@@ -8,7 +8,7 @@
 <html lang="zh-CN">
 <!--<![endif]-->
 <head>
-<%@ include file="head.jsp"%>
+<%@ include file="../head.jsp"%>
 <style type="text/css">
 select {
 	width: 110px;
@@ -17,9 +17,9 @@ select {
 </head>
 <body>
 	<div class="container">
-		<%@ include file="top.jsp"%>
+		<%@ include file="../top.jsp"%>
 		<div class="row">
-			<%@ include file="left.jsp"%>
+			<%@ include file="../left.jsp"%>
 			<div class="span9">
 				<h1>网上评教</h1>
 				<h2>英语</h2>

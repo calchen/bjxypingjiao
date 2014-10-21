@@ -6,8 +6,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
 /**
- * 
- * <br />
+ * 检查session中sessionAttribute是否存在,若存在就继续执行，若不存在就跳转到Result <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
@@ -16,38 +15,14 @@ public class SessionCheckInterceptor implements Interceptor {
 
 	// session属性
 	private String sessionAttribute;
-	private String reloginResult;
-
-	/**
-	 * 设置sessionAttribute
-	 * 
-	 * @param sessionAttribute
-	 *            sessionAttribute
-	 */
-	public void setSessionAttribute(String sessionAttribute) {
-		this.sessionAttribute = sessionAttribute;
-	}
-
-	/**
-	 * 设置reloginResult
-	 * 
-	 * @param reloginResult
-	 *            reloginResult
-	 */
-	public void setReloginResult(String reloginResult) {
-		this.reloginResult = reloginResult;
-	}
+	private String result;
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -55,15 +30,32 @@ public class SessionCheckInterceptor implements Interceptor {
 		// 获取session
 		Map<String, Object> session = invocation.getInvocationContext()
 				.getSession();
-				
+
 		if (session.containsKey(sessionAttribute)) {
-			//若已登录就直接跳转到访问页面
+			// 若已登录就直接跳转到访问页面
 			String resultCode = invocation.invoke();
 			return resultCode;
-		}else {
-			return reloginResult;
+		} else {
+			return result;
 		}
-		
+
 	}
 
+	/** 
+	 * 设置sessionAttribute 
+	 * @param sessionAttribute sessionAttribute 
+	 */
+	public void setSessionAttribute(String sessionAttribute) {
+		this.sessionAttribute = sessionAttribute;
+	}
+
+	/** 
+	 * 设置result 
+	 * @param result result 
+	 */
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	
 }

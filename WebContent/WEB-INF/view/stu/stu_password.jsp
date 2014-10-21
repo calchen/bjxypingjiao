@@ -8,7 +8,7 @@
 <html lang="zh-CN">
 <!--<![endif]-->
 <head>
-<%@ include file="head.jsp"%>
+<%@ include file="../head.jsp"%>
 <!-- 
 <link href="css/strength-meter.css" rel="stylesheet"/>
 <script src="js/strength-meter.js"></script>
@@ -16,30 +16,30 @@
 </head>
 <body>
 	<div class="container">
-		<%@ include file="top.jsp"%>
+		<%@ include file="../top.jsp"%>
 		<div class="row">
-			<%@ include file="left.jsp"%>
+			<%@ include file="../left.jsp"%>
 			<div class="span9">
 				<h1>修改密码</h1>
-				<form id="edit-profile" class="form-horizontal">
+				<form action="stu_password_setting" method="post" class="form-horizontal">
 					<fieldset>
 						<legend>修改密码</legend>
 						<div class="control-group">
 							<label class="control-label" for="input01">旧密码</label>
 							<div class="controls">
-								<input type="password" class="input-xlarge" id="input01" />
+								<input type="password" class="input-xlarge" name="studentInfo.password"/>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="input01">新密码</label>
 							<div class="controls">
-								<input type="password" class=" input-xlarge"/>
+								<input type="password" class="input-xlarge" name="newPassword"/>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="input01">再次确认密码</label>
 							<div class="controls">
-								<input type="password" class="input-xlarge" id="input01" />
+								<input type="password" class="input-xlarge"/>
 							</div>
 						</div>
 						<div class="form-actions">
@@ -51,5 +51,6 @@
 			</div>
 		</div>
 	</div>
+	<%@include file="../foot.jsp"%>
 </body>
 </html>

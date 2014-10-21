@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="stu" extends="bjxypingjiao">
+		<action name="stu_profile" class="com.chenky.struts.stu.ProfileAction">
+			<result>/WEB-INF/view/stu/stu_profile.jsp</result>
+		</action>
+		<action name="stu_profile_setting" class="com.chenky.struts.stu.ProfileAction"
+			method="setting">
+			<result>/WEB-INF/view/stu/stu_profile.jsp</result>
+		</action>
+		<action name="stu_password" class="com.chenky.struts.stu.PasswordAction">
+			<result>/WEB-INF/view/stu/stu_password.jsp</result>
+		</action>
+		<action name="stu_password_setting" class="com.chenky.struts.stu.PasswordAction"
+			method="setting">
+			<result>/WEB-INF/view/stu/stu_password.jsp</result>
+		</action>
+
+
+
+		<action name="stu_*">
+			<result>/WEB-INF/view/stu/stu_{1}.jsp</result>
+		</action>
+		<action name="stupj_*_*_*_setting" class="com.chenky.struts.stu.StupjAction"
+			method="setting">
+			<result>/WEB-INF/view/stu/stupj_{1}_{2}_{3}.jsp</result>
+		</action>
+		<action name="stupj_*_*_*" class="com.chenky.struts.stu.StupjAction">
+			<result>/WEB-INF/view/stu/stupj_{1}_{2}_{3}.jsp</result>
+		</action>
+	</package>
+
+</struts>

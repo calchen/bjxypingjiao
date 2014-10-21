@@ -4,54 +4,62 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true" />
-    <constant name="struts.local" value="zh-CN" />
-    <constant name="struts.i18n.encoding" value="utf-8"/>
-    
-    <package name="bjxypingjiao" extends="struts-default">
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.local" value="zh-CN" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+
+	<package name="bjxypingjiao" extends="struts-default">
 		<interceptors>
-			<interceptor name="LoginCheck" class="com.chenky.action.SessionCheckInterceptor" />
+			<interceptor name="LoginCheck"
+				class="com.chenky.struts.SessionCheckInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="LoginCheck">
 					<param name="sessionAttribute">login_user</param>
-					<param name="reloginResult">login</param>
+					<param name="result">login</param>
 				</interceptor-ref>
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		<default-interceptor-ref name="loginStack"/>
-		
-		<default-action-ref name="index"></default-action-ref>
-		
+		<default-interceptor-ref name="loginStack" />
+
+		<default-action-ref name=""></default-action-ref>
+
 		<global-results>
-			<result name="login">/WEB-INF/login.jsp</result>
+			<result name="login">/WEB-INF/view/login.jsp</result>
 		</global-results>
-		
-		<action name="index">
-			<result name="success">/WEB-INF/index.jsp</result>
+
+		<action name="">
+			<result name="success">/WEB-INF/view/index.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-		<action name="login">
-			<result>/WEB-INF/login.jsp</result>
+		<action name="index">
+			<result name="success">/WEB-INF/view/index.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-		<action name="pingjiao">
-			<result>/WEB-INF/pingjiao.jsp</result>
+		<action name="login" class="com.chenky.struts.LoginAction">
+			<result name="success" type="redirect">index</result>
+			<result name="error">/WEB-INF/view/login.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-		<action name="result">
-			<result>/WEB-INF/result.jsp</result>
+		<action name="logout" class="com.chenky.struts.LogoutAction">
+			<result name="success" type="redirect">index</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="messages">
-			<result>/WEB-INF/messages.jsp</result>
-		</action>
-		<action name="profile">
-			<result>/WEB-INF/profile.jsp</result>
-		</action>
-		<action name="password">
-			<result>/WEB-INF/password.jsp</result>
+			<result>/WEB-INF/view/messages.jsp</result>
 		</action>
 		<action name="help">
-			<result>/WEB-INF/help.jsp</result>
+			<result>/WEB-INF/view/help.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-    </package>
-   
+		
+		<action name="tch_*">
+			<result>/WEB-INF/view/tch/tch_{1}.jsp</result>
+		</action>
+		<action name="tchpj_*_*_*">
+			<result>/WEB-INF/view/tch/tchpj_{1}_{2}_{3}.jsp</result>
+		</action>
+	</package>
+	<include file="com/chenky/struts/admin/struts-admin.xml"></include>
+	<include file="com/chenky/struts/stu/struts-stu.xml"></include>
 </struts>

@@ -7,31 +7,32 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="zh-CN"><!--<![endif]-->
   <head>
-    <%@ include file="head.jsp" %>
+    <%@ include file="../head.jsp" %>
   </head>
   <body>
     <div class="container">
-      <%@ include  file="top.jsp"%>
+      <%@ include  file="../top.jsp"%>
       <div class="row">
-        <%@ include  file="left.jsp"%>
+        <%@ include  file="../left.jsp"%>
         <div class="span9">
           <h1>网上评教</h1>
           <ul class="files zebra-list">
             <li>
-              <i class="icon-check"></i> <a class="title" href="pingjiao20131tiyu">体育</a> 
+              <i class="icon-check"></i> <a class="title" href="stupj_20142015_1_tiyu">体育</a> 
               <span class="meta">评教日期 <em>12月11日</em>至<em>12月25日</em></span>
             </li>
             <li>
-              <i class="icon-check"></i> <a class="title" href="pingjiao20131wulishiyan">物理实验</a> 
+              <i class="icon-check"></i> <a class="title" href="stupj_20142015_1_wulishiyan">物理实验</a> 
               <span class="meta">评教日期 <em>12月11日</em>至<em>12月25日</em></span>
             </li>
             <li>
-              <i class="icon-check"></i> <a class="title" href="pingjiao20131yingyu">英语</a> 
+              <i class="icon-check"></i> <a class="title" href="stupj_20142015_1_wulishiyan">英语</a> 
               <span class="meta">评教日期 <em>12月11日</em>至<em>12月25日</em></span>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    <%@include file="../foot.jsp"%>
   </body>
 </html>

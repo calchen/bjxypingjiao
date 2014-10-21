@@ -18,9 +18,9 @@ import com.opensymphony.xwork2.ActionContext;
 public class SessionListener implements HttpSessionListener {
 
 	@Override
-	public void sessionCreated(HttpSessionEvent arg0) {
+	public void sessionCreated(HttpSessionEvent sessionEvent) {
 		// TODO Auto-generated method stub
-
+		onlineUserInit(sessionEvent);
 	}
 
 	@Override
@@ -43,5 +43,22 @@ public class SessionListener implements HttpSessionListener {
 		}
 		onlineUser--;
 		servletContext.setAttribute("onlineUser", onlineUser);
+	}
+	
+	/**
+	 * 会话创建的时初始化application中的在线人数
+	 * @param sessionEvent
+	 */
+	private void onlineUserInit(HttpSessionEvent sessionEvent) {
+		ServletContext servletContext = sessionEvent.getSession()
+				.getServletContext();
+		Integer onlineUser = (Integer) servletContext
+				.getAttribute("onlineUser");
+
+		if (onlineUser == null || onlineUser <= 0) {
+			onlineUser = new Integer(0);
+			servletContext.setAttribute("onlineUser", onlineUser);
+		}
+		
 	}
 }

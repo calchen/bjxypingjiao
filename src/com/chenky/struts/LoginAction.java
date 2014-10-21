@@ -40,15 +40,18 @@ public class LoginAction extends ActionSupport {
 		}
 		
 		if(id.equals("admin")) {
-			session.put("login_user", "管理员");
+			session.put("login_user", "admin");
+			session.put("login_user_name", "管理员");
 			session.put("user_level", 4);
 		}
 		if(id.equals("stu")) {
-			session.put("login_user", "学生");
+			session.put("login_user", "stu");
+			session.put("login_user_name", "学生");
 			session.put("user_level", 1);
 		}
 		if(id.equals("tch")) {
-			session.put("login_user", "老师");
+			session.put("login_user", "tch");
+			session.put("login_user_name", "老师");
 			session.put("user_level", 2);
 		}
 		Map<String, Object> application =ActionContext.getContext().getApplication();

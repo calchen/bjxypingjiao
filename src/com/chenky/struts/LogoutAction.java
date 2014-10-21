@@ -27,6 +27,7 @@ public class LogoutAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		
 		session.remove("login_user");
+		session.remove("login_user_name");
 		session.remove("user_level");
 		Map<String, Object> applicationMap =ActionContext.getContext().getApplication();
 		Integer onlineUser = (Integer) applicationMap.get("onlineUser");

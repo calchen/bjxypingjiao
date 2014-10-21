@@ -1,2 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" import="java.util.*"%>
-<%@ include file="left_stu.jsp"%>
+
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<s:if test="#session['user_level']==2">
+  <%@ include file="tch/left_tch.jsp"%>
+</s:if>
+<s:elseif test="#session['user_level']==4">
+  <%@ include file="admin/left_admin.jsp"%>
+</s:elseif>
+<s:elseif test="#session['user_level']==1||#session['user_level']==null">
+  <%@ include file="stu/left_stu.jsp"%>
+</s:elseif>

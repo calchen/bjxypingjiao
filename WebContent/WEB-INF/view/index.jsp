@@ -30,12 +30,14 @@
 					<div class="well summary">
 						<ul>
 							<li>
-								<span class="count">3</span> 用户在线
+								<span class="count">${application.onlineUser}</span> 用户在线
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
+			
 		</div>
+		<%@include file="foot.jsp"%>
 	</body>
 </html>
