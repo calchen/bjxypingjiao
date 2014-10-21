@@ -5,34 +5,63 @@
 <!--[if IE 8 ]><html lang="zh-CN" class="ie8 ielt9"><![endif]-->
 <!--[if IE 9 ]><html lang="zh-CN" class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="zh-CN"><!--<![endif]-->
-  <head>
-    <%@ include file="../head.jsp" %>
-  </head>
-  <body>
-    <div class="container">
-      <%@ include  file="../top.jsp"%>
+<html lang="zh-CN">
+<!--<![endif]-->
+<head>
+  <%@ include file="../head.jsp" %>
+</head>
+<body>
+  <div class="container">
+    <%@ include file="../top.jsp" %>
       <div class="row">
-        <%@ include  file="../left.jsp"%>
-        <div class="span9">
-          <h1>网上评教</h1>
-          <ul class="files zebra-list">
-            <li>
-              <i class="icon-check"></i> <a class="title" href="stupj_20142015_1_tiyu">体育</a> 
-              <span class="meta">评教日期 <em>12月11日</em>至<em>12月25日</em></span>
-            </li>
-            <li>
-              <i class="icon-check"></i> <a class="title" href="stupj_20142015_1_wulishiyan">物理实验</a> 
-              <span class="meta">评教日期 <em>12月11日</em>至<em>12月25日</em></span>
-            </li>
-            <li>
-              <i class="icon-check"></i> <a class="title" href="stupj_20142015_1_wulishiyan">英语</a> 
-              <span class="meta">评教日期 <em>12月11日</em>至<em>12月25日</em></span>
-            </li>
-          </ul>
-        </div>
+        <%@ include file="../left.jsp" %>
+          <div class="span9">
+            <h1>网上评教</h1>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>学年</th>
+                  <th>学期</th>
+                  <th>课程</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <rr>
+                  <td>2014-2015学年</td>
+                  <td>第一学期</td>
+                  <td>体育</td>
+                  <td>
+                    <a class="toggle-link" href="stupj_20142015_1_tiyu">
+                      <i class="icon-check"></i>评教
+                    </a>
+                  </td>
+                </tr>              
+                <tr>
+                  <td>2014-2015学年</td>
+                  <td>第一学期</td>
+                  <td>英语</td>
+                  <td>
+                    <a class="toggle-link" href="stupj_20142015_1_wulishiyan">
+                      <i class="icon-check"></i>评教
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2014-2015学年</td>
+                  <td>第一学期</td>
+                  <td>物理实验</td>
+                  <td>
+                    <a class="toggle-link" href="stupj_20142015_1_wulishiyan">
+                      <i class="icon-check"></i>评教
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
       </div>
-    </div>
-    <%@include file="../foot.jsp"%>
-  </body>
+  </div>
+  <%@include file="../foot.jsp"%>
+</body>
 </html>

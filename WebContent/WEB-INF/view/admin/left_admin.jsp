@@ -39,46 +39,46 @@
           </a>
         </li>
       </s:else>
+      <li class="nav-header">设置</li>
       <s:if test="#session['uri']=='admin_setting.jsp'">
         <li class="active">
           <a href="admin_setting">
-            <i class="icon-white icon-check"></i>系统设置
+            <i class="icon-white icon-edit"></i>系统设置
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
           <a href="admin_setting">
-            <i class="icon-check"></i>系统设置
+            <i class="icon-edit"></i>系统设置
           </a>
         </li>
       </s:else>
-      <li class="nav-header">数据上传</li>
       <s:if test="#session['uri']=='admin_importstudata.jsp'">
         <li class="active">
           <a href="admin_importstudata">
-            <i class="icon-white icon-file"></i>学生数据
+            <i class="icon-white icon-th-list"></i>课程设置
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
           <a href="admin_importstudata">
-            <i class="icon-file"></i>学生数据
+            <i class="icon-th-list"></i>课程设置
           </a>
         </li>
       </s:else>
       <s:if test="#session['uri']==''">
         <li class="active">
           <a href="admin_importtchdata">
-            <i class="icon-white icon-file"></i>教师数据
+            <i class="icon-white icon-upload"></i>数据上传
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
           <a href="admin_importtchdata">
-            <i class="icon-file"></i>教师数据
+            <i class="icon-upload"></i>数据上传
           </a>
         </li>
       </s:else>
@@ -100,28 +100,28 @@
       <s:if test="#session['uri']==''">
         <li class="active">
           <a href="admin_statuscurrent">
-            <i class="icon-white icon-calendar"></i>评教情况
+            <i class="icon-white icon-calendar"></i>评教查看
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
           <a href="admin_statuscurrent">
-            <i class="icon-calendar"></i>评教情况
+            <i class="icon-calendar"></i>评教查看
           </a>
         </li>
       </s:else>
       <s:if test="#session['uri']==''">
         <li class="active">
           <a href="admin_statusresult">
-            <i class="icon-white icon-calendar"></i>评教记录
+            <i class="icon-white icon-download"></i>数据下载
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
           <a href="admin_statusresult">
-            <i class="icon-calendar"></i>评教记录
+            <i class="icon-download"></i>数据下载
           </a>
         </li>
       </s:else>

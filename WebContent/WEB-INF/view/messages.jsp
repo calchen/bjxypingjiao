@@ -19,29 +19,28 @@
 					<ul class="messages">
 						<li class="well">
 							<p class="message">
-								test。。。。。。。。。。。。。
+								程序猿很忙，这个功能再等等哈~
 							</p>
-							<span class="meta">Written <em>2 weeks ago</em> by <em>Jill</em></span>
-						</li>
-						<li class="well">
-							<p class="message">
-								Donec id consequat odio. Etiam felis tellus, pretium tincidunt malesuada quis, vestibulum a leo. Cras tortor enim, elementum nec pretium non, vestibulum sit amet massa. Vivamus non velit quis purus luctus pretium et ut quam. Aenean eu urna nulla, quis iaculis nunc. Nam consectetur erat nec turpis dapibus ac sodales dolor pulvinar. Fusce eu consectetur risus. In ut erat sit amet nunc tempor mattis sit amet id diam.
-							</p>
-							<span class="meta">Written <em>1 week ago</em> by <em>John</em></span>
+							<span class="meta"><em>n天前</em>由<em>程序猿</em>发送</span>
 						</li>
 					</ul>
-					<a class="toggle-link" href="#message-reply"><i class="icon-plus"></i> Reply</a>
+					<a class="toggle-link" href="#message-reply"><i class="icon-plus"></i> 发送</a>
 					<form id="message-reply" class="form-horizontal hidden">
 						<fieldset>
-							<legend>Reply</legend>
 							<div class="control-group">
-								<label class="control-label" for="textarea">Message</label>
+								<label class="control-label" for="textarea">收信人</label>
 								<div class="controls">
-									<textarea class="input-xlarge" id="textarea" rows="4"></textarea>
+									<input type="text" class="input-xlarge" placeholder="学工号" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="textarea">内容</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id="textarea" rows="4" placeholder="都说了很忙了！你还点开？" ></textarea>
 								</div>
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">Create</button> <button class="btn">Cancel</button>
+								<button type="submit" class="btn btn-primary">发送</button> <button class="btn">取消</button>
 							</div>
 						</fieldset>
 					</form>

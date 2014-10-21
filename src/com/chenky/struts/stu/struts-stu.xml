@@ -19,12 +19,10 @@
 			method="setting">
 			<result>/WEB-INF/view/stu/stu_password.jsp</result>
 		</action>
-
-
-
-		<action name="stu_*">
-			<result>/WEB-INF/view/stu/stu_{1}.jsp</result>
+		<action name="stu_pingjiao" class="com.chenky.struts.stu.PjAction">
+			<result>/WEB-INF/view/stu/stu_pingjiao.jsp</result>
 		</action>
+		
 		<action name="stupj_*_*_*_setting" class="com.chenky.struts.stu.StupjAction"
 			method="setting">
 			<result>/WEB-INF/view/stu/stupj_{1}_{2}_{3}.jsp</result>

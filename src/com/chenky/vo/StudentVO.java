@@ -1,5 +1,8 @@
 package com.chenky.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 学生信息 <br />
  * 
@@ -39,6 +42,11 @@ public class StudentVO {
 	 * 邮箱
 	 */
 	private String email;
+
+	/**
+	 * 课程列表
+	 */
+	private List<CourseVO> courses = new ArrayList<CourseVO>();
 
 	/**
 	 * 默认构造
@@ -256,17 +264,23 @@ public class StudentVO {
 		this.email = email;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * 获取courses
+	 * 
+	 * @return courses
 	 */
-	@Override
-	public String toString() {
-		return "StudentVO [id=" + id + ", password=" + password + ", name="
-				+ name + ", professionalName=" + professionalName
-				+ ", executiveClass=" + executiveClass + ", idCardNumber="
-				+ idCardNumber + ", telNumber=" + telNumber + ", email="
-				+ email + "]";
+	public List<CourseVO> getCourses() {
+		return courses;
 	}
 
-	
+	/**
+	 * 设置courses
+	 * 
+	 * @param courses
+	 *            courses
+	 */
+	public void setCourses(List<CourseVO> courses) {
+		this.courses = courses;
+	}
+
 }

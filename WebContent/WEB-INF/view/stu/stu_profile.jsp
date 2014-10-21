@@ -59,8 +59,14 @@
               <div class="control-group">
                 <label class="control-label" for="input01">身份证号</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" id="input01" value="${studentInfo['idCardNumber']}"readonly="readonly"/>
-                  <p class="help-block">身份证号可用于重置密码</p>
+                  <s:if test="studentInfo['idCardNumber']==null">
+                    <input type="text" class="input-xlarge" id="input01" value="${studentInfo['idCardNumber']}"readonly="readonly"/>
+                    <p class="help-block">身份证号可用于重置密码</p>
+                  </s:if>
+                  <s:else>
+                    <input type="text" class="input-xlarge" id="input01" placeholder="请谨慎输入，输入后不可修改" name="studentInfo.idCardNumber"/>
+                    <p class="help-block">身份证号可用于重置密码</p>
+                  </s:else>
                 </div>
               </div>    
               <div class="form-actions">

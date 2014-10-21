@@ -37,10 +37,10 @@ public class PingjiaoResultVO {
 	/**
 	 * 评教结果
 	 */
-	private List<String> result;
+	private List<String> result =new ArrayList<String>();
 
 	public PingjiaoResultVO() {
-		this.result = new ArrayList<String>();
+		
 	}
 
 	public PingjiaoResultVO(String grade, String semester, String course,

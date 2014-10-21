@@ -26,7 +26,8 @@ public class ProfileAction extends ActionSupport {
 		studentInfo = new StudentVO("20112308039", "qwe", "陈恺垣", "计算机科学与技术",
 				"11计科2", "320102199302085016", "15651699051",
 				"674447097@qq.com");
-		studentInfo.setIdCardNumber(studentInfo.getIdCardNumber().substring(0, 14)+"****");
+		//studentInfo.setIdCardNumber(studentInfo.getIdCardNumber().substring(0, 14)+"****");
+		studentInfo.setIdCardNumber("");
 		return super.execute();
 	}
 

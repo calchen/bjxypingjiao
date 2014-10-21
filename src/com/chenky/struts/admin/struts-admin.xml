@@ -6,6 +6,10 @@
 <struts>
 	<package name="admin" extends="bjxypingjiao">
 		
+		<action name="admin_publishmessage" >
+			<result name="success" type="redirect">index</result>
+		</action>
+		
 		<action name="admin_*" class="com.chenky.struts.admin.{1}Action" >
 			<result>/WEB-INF/view/admin/admin_{1}.jsp</result>
 		</action>

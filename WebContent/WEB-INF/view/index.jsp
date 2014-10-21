@@ -23,7 +23,7 @@
 							欢迎使用滨江学院评教系统
 						</h2>
 						<p>
-							登录后获取更多信息
+							${publicmessage }
 						</p>
 						
 					</div>
@@ -34,6 +34,22 @@
 							</li>
 						</ul>
 					</div>
+					<s:if test="#session['login_user_level']==4">
+					<a class="toggle-link" href="#message-reply"><i class="icon-plus"></i> 发送信息公告</a>
+					<form id="message-reply" class="form-horizontal hidden" action="admin_publishmessage" method="post">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label" for="textarea">内容</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id="textarea" rows="4" ></textarea>
+								</div>
+							</div>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">发送</button> <button class="btn">取消</button>
+							</div>
+						</fieldset>
+					</form>
+					</s:if>
 				</div>
 			</div>
 			

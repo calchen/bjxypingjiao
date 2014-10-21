@@ -12,11 +12,14 @@
 		<interceptors>
 			<interceptor name="LoginCheck"
 				class="com.chenky.struts.SessionCheckInterceptor" />
+			<interceptor name="levelCheck"
+				class="com.chenky.struts.LevelCheckInterceptor"></interceptor>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="LoginCheck">
 					<param name="sessionAttribute">login_user</param>
 					<param name="result">login</param>
 				</interceptor-ref>
+				<interceptor-ref name="levelCheck"/>
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -26,8 +29,9 @@
 
 		<global-results>
 			<result name="login">/WEB-INF/view/login.jsp</result>
+			<result name="index">/WEB-INF/view/index.jsp</result>
 		</global-results>
-
+		
 		<action name="">
 			<result name="success">/WEB-INF/view/index.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -52,7 +56,7 @@
 			<result>/WEB-INF/view/help.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-		
+
 		<action name="tch_*">
 			<result>/WEB-INF/view/tch/tch_{1}.jsp</result>
 		</action>
@@ -60,6 +64,7 @@
 			<result>/WEB-INF/view/tch/tchpj_{1}_{2}_{3}.jsp</result>
 		</action>
 	</package>
+
 	<include file="com/chenky/struts/admin/struts-admin.xml"></include>
 	<include file="com/chenky/struts/stu/struts-stu.xml"></include>
 </struts>
