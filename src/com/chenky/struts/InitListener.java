@@ -6,6 +6,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.chenky.service.SystemConfigService;
+
 /**
  * 用于系统初始化
  * <br />
@@ -25,7 +27,8 @@ public class InitListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		// TODO Auto-generated method stub
 		ServletContext servletContext = servletContextEvent.getServletContext();
-		servletContext.setAttribute("publicmessage", "评教已经开始，请大家认真评教。");
+		SystemConfigService scs = new SystemConfigService();
+		servletContext.setAttribute("publicmessage", scs.getPublicMessage());
 
 	}
 

@@ -7,31 +7,34 @@ package com.chenky.vo;
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class GradeVO {
-	private int gradeID;
-	private String gradeValue;
+	private String value;
 
-	public GradeVO(int gradeID, String gradeValue) {
+	public GradeVO() {
 		super();
-		this.gradeID = gradeID;
-		this.gradeValue = gradeValue;
+	}
+
+	public GradeVO(String value) {
+		super();
+		this.value = value;
 	}
 
 	/**
-	 * 获取gradeID
+	 * 获取value
 	 * 
-	 * @return gradeID
+	 * @return value
 	 */
-	public int getGradeID() {
-		return gradeID;
+	public String getValue() {
+		return value;
 	}
 
 	/**
-	 * 获取gradeValue
+	 * 设置value
 	 * 
-	 * @return gradeValue
+	 * @param value
+	 *            value
 	 */
-	public String getGradeValue() {
-		return gradeValue;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 }

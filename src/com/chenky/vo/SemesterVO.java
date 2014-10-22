@@ -7,31 +7,34 @@ package com.chenky.vo;
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class SemesterVO {
-	private int semesterID;
-	private String semesterValue;
+	private String value;
 
-	public SemesterVO(int semesterID, String semesterValue) {
+	public SemesterVO() {
 		super();
-		this.semesterID = semesterID;
-		this.semesterValue = semesterValue;
+	}
+
+	public SemesterVO(String value) {
+		super();
+		this.value = value;
 	}
 
 	/**
-	 * 获取semesterID
+	 * 获取value
 	 * 
-	 * @return semesterID
+	 * @return value
 	 */
-	public int getSemesterID() {
-		return semesterID;
+	public String getValue() {
+		return value;
 	}
 
 	/**
-	 * 获取semesterValue
+	 * 设置value
 	 * 
-	 * @return semesterValue
+	 * @param value
+	 *            value
 	 */
-	public String getSemesterValue() {
-		return semesterValue;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 }

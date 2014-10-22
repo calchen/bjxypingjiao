@@ -37,8 +37,7 @@ public class DAO {
 	static {
 		try {
 			pp = new Properties();
-			fis = DAO.class.getClassLoader().getResourceAsStream(
-					"dbinfo.properties");
+			fis = DAO.class.getResourceAsStream("/dbInfo.properties");
 			pp.load(fis);
 			driverName = pp.getProperty("dbdriver");
 			dbURL = pp.getProperty("dburl");
@@ -102,8 +101,7 @@ public class DAO {
 	}
 
 	/**
-	 * 统一的update/delete/insert语句，使用PreparedStatement。
-	 * 如果出现错误会抛出RuntimeException。
+	 * 统一的update/delete/insert语句，使用PreparedStatement。 如果出现错误会抛出RuntimeException。
 	 * 
 	 * @param sql
 	 *            SQL语句

@@ -20,7 +20,7 @@ public class PingjiaoResultVO {
 	private String semester;
 
 	/**
-	 * 课程
+	 * 课程名
 	 */
 	private String course;
 

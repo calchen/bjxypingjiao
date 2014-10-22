@@ -21,47 +21,47 @@
         <%@ include file="../left.jsp" %>
           <div class="span9">
             <h1>系统设置</h1>
-            <form id="edit-profile" class="form-horizontal" method="post">
+            <form action="admin_settingup" method="post" id="edit-profile" class="form-horizontal">
               <fieldset>
                 <legend>学期设置</legend>
                 <div class="control-group">
                   <label class="control-label" for="input01">当前学期</label>
                   <div class="controls">
-                    <input type="text" class="input-xlarge" id="input01" readonly="readonly"
-                      value="${currentGrade.gradeValue}${currentSemester.semesterValue}"
+                    <input type="text" id="input01" readonly="readonly"
+                      value="${grade.value}${semester.value}"
                     />
                   </div>
                   <br />
                   <label class="control-label" for="input01">修改学年</label>
                   <div class="controls">
-                    <s:select list="gradeList" listKey="gradeID" listValue="gradeValue" 
-                      value="currentGrade.gradeID" />
+                    <s:select class="input-xlarge" list="gradeList" listKey="value" listValue="value" 
+                      value="grade.value" name="grade.value" />
                   </div>
                   <br />
                   <label class="control-label" for="input01">修改学期</label>
                   <div class="controls">
-                    <s:select list="semesterList" listKey="semesterID" listValue="semesterValue" 
-                      value="currentSemester.semesterID" />
+                    <s:select list="semesterList" listKey="value" listValue="value" 
+                      value="semester.value" name="semester.value"/>
                   </div>
                 </div>
                 <legend>评教设置</legend>
                 <div class="control-group">
                   <label class="control-label" for="input01">当前状态</label>
                   <div class="controls">
-                    <input type="text" class="input-xlarge" id="input01" readonly="readonly"
+                    <input type="text" readonly="readonly"
                       value="评教结束" />
                   </div>
                   <br />
                   <label class="control-label" for="input01">修改状态</label>
                   <div class="controls">
-                    <s:set value="#{'prepare':'评教准备','going':'评教进行','end':'评教结束'}" var="status"/>
-                    <s:select list="status" value="pjStatus"/>
+                    <s:set value="#{'prepare':'评教准备','going':'评教进行','end':'评教结束'}" var="stat"/>
+                    <s:select list="stat" value="status" name="status"/>
                   </div>
                   <br />
                   <label class="control-label" for="input01">开始日期</label>
                   <div class="controls">
                     <div class="input-append date form_datetime">
-                      <input type="text">
+                      <input type="text" value="${start}"  name="start" >
                       <span class="add-on">
                         <i class="icon-th">
                         </i>
@@ -72,7 +72,7 @@
                   <label class="control-label" for="input01">结束日期</label>
                   <div class="controls">
                     <div class="input-append date form_datetime">
-                      <input type="text">
+                      <input type="text" value="${end}" name="end" >
                       <span class="add-on">
                         <i class="icon-th">
                         </i>

@@ -46,13 +46,13 @@
               <div class="control-group">
                 <label class="control-label" for="input01">电话</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" value="${studentInfo['telNumber']}" name="studentInfo.telNumber"/>
+                  <input type="text" id="phone" class="input-xlarge" value="${studentInfo['telNumber']}" name="studentInfo.telNumber"/>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="input01">邮箱</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" value="${studentInfo['email']}" name="studentInfo.email"/>
+                  <input type="text" id="email" class="input-xlarge" value="${studentInfo['email']}" name="studentInfo.email"/>
                   <p class="help-block">邮箱可用于重置密码</p>
                 </div>
               </div>      
@@ -60,17 +60,19 @@
                 <label class="control-label" for="input01">身份证号</label>
                 <div class="controls">
                   <s:if test="studentInfo['idCardNumber']==null">
-                    <input type="text" class="input-xlarge" id="input01" value="${studentInfo['idCardNumber']}"readonly="readonly"/>
+                    <input type="text" class="input-xlarge"
+                      value="${studentInfo['idCardNumber']}"readonly="readonly"/>
                     <p class="help-block">身份证号可用于重置密码</p>
                   </s:if>
                   <s:else>
-                    <input type="text" class="input-xlarge" id="input01" placeholder="请谨慎输入，输入后不可修改" name="studentInfo.idCardNumber"/>
+                    <input type="text" class="input-xlarge" id="id"
+                      placeholder="请谨慎输入，输入后不可修改" name="studentInfo.idCardNumber" />
                     <p class="help-block">身份证号可用于重置密码</p>
                   </s:else>
                 </div>
               </div>    
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary">保存</button> <button class="btn">取消</button>
+                <button type="submit" class="btn btn-primary" id="check">保存</button> <button class="btn">取消</button>
               </div>
             </fieldset>
           </form>
@@ -78,5 +80,39 @@
       </div>
     </div>
     <%@include file="../foot.jsp"%>
+    <script type="text/javascript">
+      window.onload = function(){
+        var btn = document.getElementById("check");
+        var email = document.getElementById("email");
+        var phone = document.getElementById("phone");
+        var id = document.getElementById("id");
+        function isEmail(strEmail) { 
+        	var reg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        	if(strEmail==''){
+            	;
+            }else if(!reg.test(strEmail))
+            	alert("邮箱不正确！");
+        }
+        function isPhone(strPhone) { 
+        	var reg = /^1\d{10}$/;
+        	if(strPhone==''){
+            	;
+            }else if(!reg.test(strPhone))
+            	alert("电话不正确！");
+        }
+        function isId(strId) { 
+            var reg = /^\d{18}|\d{15}$/;
+            if(strId==''){
+            	;
+            }else if(!reg.test(strId))
+            	alert("身份证号不正确！");
+        }
+        btn.onclick = function(){
+            isEmail(email.value);
+            isPhone(phone.value);
+            isId(id.value);
+        }
+    }
+</script>
   </body>
 </html>

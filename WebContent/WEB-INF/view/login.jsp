@@ -14,14 +14,19 @@
 	<div id="login-page" class="container">
 		<h1>滨江学院评教系统</h1>
 		<form id="login-form" class="well" action="login" method="post">
-			<input type="text" class="span2" placeholder="学工号" name="id"/><br /> 
-			<input type="password" class="span2" placeholder="密码"  name="password"/>
-			<br /> <i>学生账户默认密码为身份证后6位，x请小写</i>
-			<i>老师账户用户名密码均为工资号，字母请小写</i>
+			<input type="text" class="span3" placeholder="用户名" name="id"
+			  id="id" data-toggle="popover" data-trigger="hover" data-placement="bottom"
+			  data-content="学号、工资号中字母请小写"/>
+			<br /> 
+			<input type="password" class="span3" placeholder="密码" name="password" 
+			id="password" data-toggle="popover" data-trigger="hover" data-placement="bottom"
+			  data-content="初始密码为身份证号后6位（x请小写）或者与用户名相同"/>
+
 			<label class="checkbox"> 
-			  <!-- <input type="checkbox" name="nextCheck" />下次自动登录 -->
+			  <input type="checkbox" name="nextCheck" disabled="disabled"/>下次自动登录
 			</label>
-			<button type="submit" class="btn btn-primary">登录</button>
+			
+			<button class="btn btn-primary" >登录</button>
 			<button class="btn" data-toggle="modal" data-target="#forgotpassword">忘记密码</button>
 			<a href="index">返回</a>
 		</form>
@@ -46,5 +51,11 @@
 		</div>
 	</div>
 	<%@include file="foot.jsp"%>
+	<script type="text/javascript">
+	$(function (){ 
+	  $('#password').popover();
+	  $('#id').popover();
+	});
+	</script>
 </body>
 </html>

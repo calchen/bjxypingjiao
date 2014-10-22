@@ -7,6 +7,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.local" value="zh-CN" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.multipart.maxSize" value="10485760"/>
 
 	<package name="bjxypingjiao" extends="struts-default">
 		<interceptors>
@@ -57,12 +58,6 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="tch_*">
-			<result>/WEB-INF/view/tch/tch_{1}.jsp</result>
-		</action>
-		<action name="tchpj_*_*_*">
-			<result>/WEB-INF/view/tch/tchpj_{1}_{2}_{3}.jsp</result>
-		</action>
 	</package>
 
 	<include file="com/chenky/struts/admin/struts-admin.xml"></include>

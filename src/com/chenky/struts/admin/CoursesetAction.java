@@ -1,13 +1,10 @@
 package com.chenky.struts.admin;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+import com.chenky.vo.CourseVO;
 import com.chenky.vo.GradeVO;
-import com.chenky.vo.PingjiaoStatusVo;
 import com.chenky.vo.SemesterVO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -18,37 +15,32 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
-public class SettingAction extends ActionSupport {
+public class CoursesetAction extends ActionSupport {
 
+	/**
+	 * 课程列表
+	 */
+	private List<CourseVO> courses = new ArrayList<CourseVO>();
 	/**
 	 * 学年列表
 	 */
-	private List<GradeVO> gradeList = new ArrayList<GradeVO>();
+	private List<GradeVO> gradeList = new ArrayList<GradeVO>();;
 	/**
 	 * 学期列表
 	 */
 	private List<SemesterVO> semesterList = new ArrayList<SemesterVO>();
 	/**
-	 * 学年
+	 * 新增课程
 	 */
-	private GradeVO grade = new GradeVO();
+	private CourseVO newCourse = new CourseVO();
 	/**
-	 * 学期
+	 * 当前学年
 	 */
-	private SemesterVO semester = new SemesterVO();
+	private GradeVO grade;
 	/**
-	 * 评教状态
+	 * 当前学期
 	 */
-	private String status = "end";
-
-	/**
-	 * 开始时间
-	 */
-	private String start;
-	/**
-	 * 结束时间
-	 */
-	private String end;
+	private SemesterVO semester;
 
 	/*
 	 * (non-Javadoc)
@@ -58,32 +50,78 @@ public class SettingAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		gradeList.add(new GradeVO("2013-2014"));
-		gradeList.add(new GradeVO("2014-2015"));
-		gradeList.add(new GradeVO("2015-2016"));
-		grade.setValue("2014-2015");
-		semesterList.add(new SemesterVO("第1学期"));
-		semesterList.add(new SemesterVO("第2学期"));
-		semester.setValue("第1学期");
-		start = "2014-10-20 08:00";
-		end = "2014-15-20 08:00";
-		return SUCCESS;
-	}
+		courses.add(new CourseVO("2014-2015", "1", "体育"));
+		courses.add(new CourseVO("2014-2015", "1", "CE1"));
+		courses.add(new CourseVO("2014-2015", "1", "CE3"));
+		courses.add(new CourseVO("2014-2015", "1", "物理实验"));
 
-	public String setting() throws Exception {
 		gradeList.add(new GradeVO("2013-2014"));
 		gradeList.add(new GradeVO("2014-2015"));
 		gradeList.add(new GradeVO("2015-2016"));
+		grade = new GradeVO("2014-2015");
 
 		semesterList.add(new SemesterVO("第1学期"));
 		semesterList.add(new SemesterVO("第2学期"));
 		semester = new SemesterVO("第1学期");
 
-		Calendar startcal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		startcal.setTime(sdf.parse(start));
-
 		return SUCCESS;
+	}
+
+	public String addcourse() throws Exception {
+		courses.add(new CourseVO("2014-2015", "1", "体育"));
+		courses.add(new CourseVO("2014-2015", "1", "CE1"));
+		courses.add(new CourseVO("2014-2015", "1", "CE3"));
+		courses.add(new CourseVO("2014-2015", "1", "物理实验"));
+
+		gradeList.add(new GradeVO("2013-2014"));
+		gradeList.add(new GradeVO("2014-2015"));
+		gradeList.add(new GradeVO("2015-2016"));
+		grade = new GradeVO("2014-2015");
+
+		semesterList.add(new SemesterVO("第1学期"));
+		semesterList.add(new SemesterVO("第2学期"));
+		semester = new SemesterVO("第1学期");
+
+		courses.add(newCourse);
+		return SUCCESS;
+	}
+
+	/**
+	 * 获取courses
+	 * 
+	 * @return courses
+	 */
+	public List<CourseVO> getCourses() {
+		return courses;
+	}
+
+	/**
+	 * 设置courses
+	 * 
+	 * @param courses
+	 *            courses
+	 */
+	public void setCourses(List<CourseVO> courses) {
+		this.courses = courses;
+	}
+
+	/**
+	 * 获取newCourse
+	 * 
+	 * @return newCourse
+	 */
+	public CourseVO getNewCourse() {
+		return newCourse;
+	}
+
+	/**
+	 * 设置newCourse
+	 * 
+	 * @param newCourse
+	 *            newCourse
+	 */
+	public void setNewCourse(CourseVO newCourse) {
+		this.newCourse = newCourse;
 	}
 
 	/**
@@ -160,63 +198,6 @@ public class SettingAction extends ActionSupport {
 	 */
 	public void setSemester(SemesterVO semester) {
 		this.semester = semester;
-	}
-
-	/**
-	 * 获取status
-	 * 
-	 * @return status
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-	/**
-	 * 设置status
-	 * 
-	 * @param status
-	 *            status
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	/**
-	 * 获取start
-	 * 
-	 * @return start
-	 */
-	public String getStart() {
-		return start;
-	}
-
-	/**
-	 * 设置start
-	 * 
-	 * @param start
-	 *            start
-	 */
-	public void setStart(String start) {
-		this.start = start;
-	}
-
-	/**
-	 * 获取end
-	 * 
-	 * @return end
-	 */
-	public String getEnd() {
-		return end;
-	}
-
-	/**
-	 * 设置end
-	 * 
-	 * @param end
-	 *            end
-	 */
-	public void setEnd(String end) {
-		this.end = end;
 	}
 
 }

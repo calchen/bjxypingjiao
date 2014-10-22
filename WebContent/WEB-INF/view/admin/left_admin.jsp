@@ -54,59 +54,45 @@
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']=='admin_importstudata.jsp'">
+      <s:if test="#session['uri']=='admin_courseset.jsp'">
         <li class="active">
-          <a href="admin_importstudata">
+          <a href="admin_courseset">
             <i class="icon-white icon-th-list"></i>课程设置
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="admin_importstudata">
+          <a href="admin_courseset">
             <i class="icon-th-list"></i>课程设置
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']==''">
+      <s:if test="#session['uri']=='admin_uploaddata.jsp'">
         <li class="active">
-          <a href="admin_importtchdata">
+          <a href="admin_uploaddata">
             <i class="icon-white icon-upload"></i>数据上传
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="admin_importtchdata">
+          <a href="admin_uploaddata">
             <i class="icon-upload"></i>数据上传
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']==''">
+      <li class="nav-header">评教情况 </li>
+      <s:if test="#session['uri']=='admin_status.jsp'">
         <li class="active">
-          <a href="admin_importcrsdata">
-            <i class="icon-white icon-file"></i>课程数据
-          </a>
-        </li>
-      </s:if>
-      <s:else>
-        <li>
-          <a href="admin_importcrsdata">
-            <i class="icon-file"></i>课程数据
-          </a>
-        </li>
-      </s:else>
-      <li class="nav-header">评教查看 </li>
-      <s:if test="#session['uri']==''">
-        <li class="active">
-          <a href="admin_statuscurrent">
+          <a href="admin_status?page=1">
             <i class="icon-white icon-calendar"></i>评教查看
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="admin_statuscurrent">
+          <a href="admin_status?page=1">
             <i class="icon-calendar"></i>评教查看
           </a>
         </li>
@@ -125,46 +111,32 @@
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']==''">
-        <li class="active">
-          <a href="admin_statustch">
-            <i class="icon-white icon-calendar"></i>评教数据
-          </a>
-        </li>
-      </s:if>
-      <s:else>
-        <li>
-          <a href="admin_statustch">
-            <i class="icon-calendar"></i>评教数据
-          </a>
-        </li>
-      </s:else>
       <li class="nav-header">账号设置</li>
       <s:if test="#session['uri']==''">
         <li class="active">
           <a href="profile">
-            <i class="icon-white icon-user"></i>个人信息
+            <i class="icon-white icon-list-alt"></i>账号管理
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
           <a href="profile">
-            <i class="icon-user"></i>个人信息
+            <i class="icon-list-alt"></i>账号管理
           </a>
         </li>
       </s:else>
       <s:if test="#session['uri']==''">
         <li class="active">
-          <a href="password">
-            <i class="icon-white icon-cog"></i>修改密码
+          <a href="profile">
+            <i class="icon-white icon-user"></i>修改信息
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="password">
-            <i class="icon-cog"></i>修改密码
+          <a href="profile">
+            <i class="icon-user"></i>修改信息
           </a>
         </li>
       </s:else>

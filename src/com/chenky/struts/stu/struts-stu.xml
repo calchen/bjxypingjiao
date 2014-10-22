@@ -10,14 +10,14 @@
 		</action>
 		<action name="stu_profile_setting" class="com.chenky.struts.stu.ProfileAction"
 			method="setting">
-			<result>/WEB-INF/view/stu/stu_profile.jsp</result>
+			<result  type="redirect">/WEB-INF/view/stu/stu_profile.jsp</result>
 		</action>
 		<action name="stu_password" class="com.chenky.struts.stu.PasswordAction">
 			<result>/WEB-INF/view/stu/stu_password.jsp</result>
 		</action>
 		<action name="stu_password_setting" class="com.chenky.struts.stu.PasswordAction"
 			method="setting">
-			<result>/WEB-INF/view/stu/stu_password.jsp</result>
+			<result  type="redirect">/WEB-INF/view/stu/stu_password.jsp</result>
 		</action>
 		<action name="stu_pingjiao" class="com.chenky.struts.stu.PjAction">
 			<result>/WEB-INF/view/stu/stu_pingjiao.jsp</result>

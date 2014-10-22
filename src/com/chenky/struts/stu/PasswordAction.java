@@ -32,8 +32,8 @@ public class PasswordAction extends ActionSupport {
 	}
 
 	public String setting() throws Exception {
-		System.out.println(studentInfo.getPassword());
-		System.out.println(newPassword);
+//		System.out.println(studentInfo.getPassword());
+//		System.out.println(newPassword);
 		return SUCCESS;
 	}
 

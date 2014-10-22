@@ -90,7 +90,9 @@ body {
               </tbody>
             </table>
             <div class="form-control">
-              <button type="submit" class="btn btn-primary">提交</button> <i>以最近一次提交为准</i>
+              <button type="submit" class="btn btn-primary" id="ms" data-toggle="popover" 
+                data-trigger="hover" data-placement="right"
+			    data-content="以最后一次提交为准">提交</button>
             </div>
           </fieldset>
         </form>
@@ -98,5 +100,10 @@ body {
     </div>
   </div>
   <%@include file="../foot.jsp"%>
+  <script type="text/javascript">
+	$(function (){ 
+	  $('#ms').popover();
+	});
+  </script>
 </body>
 </html>

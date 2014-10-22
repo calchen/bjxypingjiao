@@ -16,6 +16,11 @@ public class CourseVO {
 	private String name;
 	// 状态
 	private String status;
+	//ID
+	private String id;
+	public CourseVO() {
+		super();
+	}
 
 	public CourseVO(String grade, String semester, String name) {
 		super();
@@ -23,7 +28,6 @@ public class CourseVO {
 		this.semester = semester;
 		this.name = name;
 	}
-	
 
 	public CourseVO(String grade, String semester, String name, String status) {
 		super();
@@ -33,6 +37,15 @@ public class CourseVO {
 		this.status = status;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return grade + "_" + semester + "_" + name;
+	}
 
 	/**
 	 * 获取grade
