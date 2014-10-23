@@ -97,16 +97,16 @@
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']==''">
+      <s:if test="#session['uri']=='admin_downloaddata.jsp'">
         <li class="active">
-          <a href="admin_statusresult">
+          <a href="admin_downloaddata">
             <i class="icon-white icon-download"></i>数据下载
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="admin_statusresult">
+          <a href="admin_downloaddata">
             <i class="icon-download"></i>数据下载
           </a>
         </li>

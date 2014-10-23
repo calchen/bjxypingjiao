@@ -191,4 +191,13 @@ public class DAO {
 	public static ResultSet getRs() {
 		return rs;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	
+	public String toString() {
+		return "DAO [driverName="+driverName+",dbURL="+dbURL+",dbUserName="+dbUserName+",dbPasswd="+dbPasswd+"]";
+	}
+	
 }

@@ -34,7 +34,7 @@
                     <td>${list.allNum-list.doneNum }</td>
                     <td>
                       <a class="toggle-link" href="#">
-                        <i class="icon-circle-arrow-down"></i>下载
+                        <i class="icon-search"></i>查看
                       </a>
                     </td>
                   </tr>

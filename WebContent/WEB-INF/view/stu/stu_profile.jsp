@@ -16,7 +16,7 @@
         <%@ include  file="../left.jsp"%>
         <div class="span9">
           <h1>编辑个人信息</h1>
-          <form action="stu_profile_setting" class="form-horizontal">
+          <form action="stu_profile_setting" method="post" class="form-horizontal">
             <fieldset>
               <legend>个人信息</legend>
               <div class="control-group">
@@ -59,7 +59,7 @@
               <div class="control-group">
                 <label class="control-label" for="input01">身份证号</label>
                 <div class="controls">
-                  <s:if test="studentInfo['idCardNumber']==null">
+                  <s:if test="studentInfo['idCardNumber']!=''">
                     <input type="text" class="input-xlarge"
                       value="${studentInfo['idCardNumber']}"readonly="readonly"/>
                     <p class="help-block">身份证号可用于重置密码</p>
