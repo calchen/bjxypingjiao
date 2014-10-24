@@ -1,7 +1,5 @@
 package com.chenky.struts;
 
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -28,7 +26,7 @@ public class InitListener implements ServletContextListener {
 		// TODO Auto-generated method stub
 		ServletContext servletContext = servletContextEvent.getServletContext();
 		SystemConfigService scs = new SystemConfigService();
-		servletContext.setAttribute("publicmessage", scs.getPublicMessage());
+		servletContext.setAttribute("PUBLICMESSAGE", scs.getPublicMessage());
 
 	}
 

@@ -18,13 +18,13 @@
             <a href="index">信息公告</a>
           </li>
           <li>
-            <s:if test="#session['login_user_level']==1">
+            <s:if test="#session['USER_LEVEL']==1">
               <a href="stu_profile">账号设置</a>
             </s:if>
-            <s:elseif test="#session['login_user_level']==2">
+            <s:elseif test="#session['USER_LEVEL']==2">
               <a href="tch_profile">账号设置</a>
             </s:elseif>
-            <s:elseif test="#session['login_user_level']==4">
+            <s:elseif test="#session['USER_LEVEL']==4">
               <a href="admin_profile">账号设置</a>
             </s:elseif>
             <s:else>
@@ -38,9 +38,9 @@
         <ul class="nav pull-right">
           <li>
             <a href="login">
-              <s:if test="#session['login_user_name']!=null">
-                ${session.login_user_name}
-                (${session.login_user})
+              <s:if test="#session['USER_NAME']!=null">
+                ${session.USER_NAME}
+                (${session.USER_ID})
               </s:if>
               <s:else>
                                        登录

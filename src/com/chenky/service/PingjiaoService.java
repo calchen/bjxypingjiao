@@ -13,16 +13,23 @@ import com.chenky.vo.PingjiaoResultVO;
  * @author  陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class PingjiaoService {
-	public PingjiaoResultVO getPingjiaoResult() {
-		return null;
-	}
-	public void setPingjiao() {
-		
-	}
-	
-	public ArrayList<CourseVO> getCoursesList(String id) {
+	public PingjiaoResultVO getPingjiaoResult(CourseVO course) {
 		PingjiaoDAO dao = new PingjiaoDAO();
 		
+		return dao.getPingjiaoResult(course);
+	}
+	public void setPingjiao(PingjiaoResultVO result) {
+		PingjiaoDAO dao = new PingjiaoDAO();
+		dao.savePingjiaoRasult(result);
+	}
+	
+	/**
+	 * 获取课程列表
+	 * @param id
+	 * @return
+	 */
+	public ArrayList<CourseVO> getCoursesList(String id) {
+		PingjiaoDAO dao = new PingjiaoDAO();
 		return dao.getCourses(id);
 	}
 }

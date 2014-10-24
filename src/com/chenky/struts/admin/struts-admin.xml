@@ -14,7 +14,7 @@
 			<result name="success">/WEB-INF/view/admin/admin_setting.jsp</result>
 		</action>
 		<action name="admin_settingup" method="setting" class="com.chenky.struts.admin.SettingAction">
-			<result name="success"  type="redirect">/WEB-INF/view/admin/admin_setting.jsp</result>
+			<result name="success" type="redirect">/WEB-INF/view/admin/admin_setting.jsp</result>
 		</action>
 		<action name="admin_courseset" class="com.chenky.struts.admin.CoursesetAction">
 			<result name="success">/WEB-INF/view/admin/admin_courseset.jsp</result>
@@ -32,7 +32,10 @@
 			<result name="success">/WEB-INF/view/admin/admin_status.jsp</result>
 		</action>
 		<action name="admin_statussearch" method="search" class="com.chenky.struts.admin.PjStatus">
-			<result name="success">/WEB-INF/view/admin/admin_status.jsp</result>
+			<result name="success" type="redirect">/WEB-INF/view/admin/admin_status.jsp</result>
+		</action>
+		<action name="admin_downloaddata" class="com.chenky.struts.admin.DownloadAction">
+			<result name="success">/WEB-INF/view/admin/admin_downloaddata.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -19,17 +19,17 @@
           <div class="hero-unit">
             <h2>欢迎使用滨江学院评教系统</h2>
             <p>
-              ${publicmessage }
+              ${PUBLICMESSAGE }
             </p>
           </div>
           <div class="well summary">
             <ul>
               <li>
-                <span class="count">${application.onlineUser}</span> 用户在线
+                <span class="count">${application.ONLINEUSER}</span> 用户在线
               </li>
             </ul>
           </div>
-          <s:if test="#session['login_user_level']==4">
+          <s:if test="#session['USER_LEVEL']==4">
             <a class="toggle-link" href="#messagepublish">
               <i class="icon-plus"></i> 发送信息公告
             </a>

@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.chenky.service.PingjiaoService;
+import com.chenky.vo.CourseVO;
 import com.chenky.vo.PingjiaoResultVO;
 import com.chenky.vo.StudentVO;
 import com.opensymphony.xwork2.ActionContext;
@@ -20,7 +22,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class StupjAction extends ActionSupport {
 
 	private PingjiaoResultVO result;
-
+	private String name;
+	private String type;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -30,17 +33,21 @@ public class StupjAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		List<String> list = new ArrayList<String>();
-		for(int i = 0;i <= 10;i++) {
-			list.add(i+"");
-		}
+		String userId = (String) session.get("USER_ID");
+		
+		String[] ac = ActionContext.getContext().getName().split("_");
+		type = ac[3];
+		result = new PingjiaoService().getPingjiaoResult(new CourseVO(ac[1], ac[2], name, userId));
 
-		result = new PingjiaoResultVO("20142015", "1", "体育", "未评", list);
 		return SUCCESS;
 	}
 
 	public String setting() throws Exception {
-		result.setStatus("已评");
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		String userId = (String) session.get("USER_ID");
+		result.setStatus("1");
+		result.setUserID(userId);
+		new PingjiaoService().setPingjiao(result);
 		return SUCCESS;
 	}
 
@@ -62,5 +69,38 @@ public class StupjAction extends ActionSupport {
 	public void setResult(PingjiaoResultVO result) {
 		this.result = result;
 	}
+
+	/** 
+	 * 获取name 
+	 * @return name 
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/** 
+	 * 设置name 
+	 * @param name name 
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/** 
+	 * 获取type 
+	 * @return type 
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/** 
+	 * 设置type 
+	 * @param type type 
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 
 }

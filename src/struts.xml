@@ -7,7 +7,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.local" value="zh-CN" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
-	<constant name="struts.multipart.maxSize" value="10485760"/>
+	<constant name="struts.multipart.maxSize" value="10485760" />
 
 	<package name="bjxypingjiao" extends="struts-default">
 		<interceptors>
@@ -17,10 +17,10 @@
 				class="com.chenky.struts.LevelCheckInterceptor"></interceptor>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="LoginCheck">
-					<param name="sessionAttribute">login_user</param>
+					<param name="sessionAttribute">USER_ID</param>
 					<param name="result">login</param>
 				</interceptor-ref>
-				<interceptor-ref name="levelCheck"/>
+				<interceptor-ref name="levelCheck" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -32,7 +32,7 @@
 			<result name="login">/WEB-INF/view/login.jsp</result>
 			<result name="index">/WEB-INF/view/index.jsp</result>
 		</global-results>
-		
+
 		<action name="">
 			<result name="success">/WEB-INF/view/index.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -46,6 +46,14 @@
 			<result name="error">/WEB-INF/view/login.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
+		<action name="SecurityCodeImage" class="com.chenky.struts.SecurityCodeImageAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">2048</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
 		<action name="logout" class="com.chenky.struts.LogoutAction">
 			<result name="success" type="redirect">index</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -57,7 +65,6 @@
 			<result>/WEB-INF/view/help.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-
 	</package>
 
 	<include file="com/chenky/struts/admin/struts-admin.xml"></include>

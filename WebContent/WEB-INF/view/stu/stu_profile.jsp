@@ -59,7 +59,7 @@
               <div class="control-group">
                 <label class="control-label" for="input01">身份证号</label>
                 <div class="controls">
-                  <s:if test="studentInfo['idCardNumber']!=''">
+                  <s:if test="studentInfo['idCardNumber']!=''||studentInfo['idCardNumber']!=null">
                     <input type="text" class="input-xlarge"
                       value="${studentInfo['idCardNumber']}"readonly="readonly"/>
                     <p class="help-block">身份证号可用于重置密码</p>

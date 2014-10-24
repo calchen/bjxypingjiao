@@ -31,7 +31,7 @@ public class LevelCheckInterceptor implements Interceptor {
 		String actionNameString = invocation.getInvocationContext().getName();
 		//System.out.println(actionNameString);
 		//获取用户等级
-		String level = (String) session.get("login_user_level");
+		String level = (String) session.get("USER_LEVEL");
 		
 		//过滤需要登陆的界面
 		if(actionNameString != null && level != null) {

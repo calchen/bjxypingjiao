@@ -20,44 +20,44 @@ public class SessionListener implements HttpSessionListener {
 	@Override
 	public void sessionCreated(HttpSessionEvent sessionEvent) {
 		// TODO Auto-generated method stub
-		onlineUserInit(sessionEvent);
+		ONLINEUSERInit(sessionEvent);
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent sessionEvent) {
-		onlineUserSub1(sessionEvent);
+		ONLINEUSERSub1(sessionEvent);
 	}
 
 	/**
 	 * 会话销毁后将application中的在线人数减1
 	 * @param sessionEvent
 	 */
-	private void onlineUserSub1(HttpSessionEvent sessionEvent) {
+	private void ONLINEUSERSub1(HttpSessionEvent sessionEvent) {
 		ServletContext servletContext = sessionEvent.getSession()
 				.getServletContext();
-		Integer onlineUser = (Integer) servletContext
-				.getAttribute("onlineUser");
+		Integer ONLINEUSER = (Integer) servletContext
+				.getAttribute("ONLINEUSER");
 
-		if (onlineUser == null || onlineUser <= 0) {
-			onlineUser = new Integer(1);
+		if (ONLINEUSER == null || ONLINEUSER <= 0) {
+			ONLINEUSER = new Integer(1);
 		}
-		onlineUser--;
-		servletContext.setAttribute("onlineUser", onlineUser);
+		ONLINEUSER--;
+		servletContext.setAttribute("ONLINEUSER", ONLINEUSER);
 	}
 	
 	/**
 	 * 会话创建的时初始化application中的在线人数
 	 * @param sessionEvent
 	 */
-	private void onlineUserInit(HttpSessionEvent sessionEvent) {
+	private void ONLINEUSERInit(HttpSessionEvent sessionEvent) {
 		ServletContext servletContext = sessionEvent.getSession()
 				.getServletContext();
-		Integer onlineUser = (Integer) servletContext
-				.getAttribute("onlineUser");
+		Integer ONLINEUSER = (Integer) servletContext
+				.getAttribute("ONLINEUSER");
 
-		if (onlineUser == null || onlineUser <= 0) {
-			onlineUser = new Integer(0);
-			servletContext.setAttribute("onlineUser", onlineUser);
+		if (ONLINEUSER == null || ONLINEUSER <= 0) {
+			ONLINEUSER = new Integer(0);
+			servletContext.setAttribute("ONLINEUSER", ONLINEUSER);
 		}
 		
 	}

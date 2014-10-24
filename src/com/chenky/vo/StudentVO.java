@@ -23,6 +23,10 @@ public class StudentVO {
 	 */
 	private String name;
 	/**
+	 * 权限
+	 */
+	private String level;
+	/**
 	 * 专业
 	 */
 	private String professionalName;
@@ -33,7 +37,7 @@ public class StudentVO {
 	/**
 	 * 身份证号
 	 */
-	private String idCardNumber;;
+	private String idCardNumber;
 	/**
 	 * 电话
 	 */
@@ -92,24 +96,43 @@ public class StudentVO {
 	 * @param id
 	 * @param password
 	 * @param name
+	 * @param level
 	 * @param professionalName
 	 * @param executiveClass
 	 * @param idCardNumber
 	 * @param telNumber
 	 * @param email
 	 */
-	public StudentVO(String id, String password, String name,
+	public StudentVO(String id, String password, String name, String level,
 			String professionalName, String executiveClass,
 			String idCardNumber, String telNumber, String email) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.name = name;
+		this.level = level;
 		this.professionalName = professionalName;
 		this.executiveClass = executiveClass;
 		this.idCardNumber = idCardNumber;
 		this.telNumber = telNumber;
 		this.email = email;
+	}
+
+	public StudentVO(String id, String password, String name, String level,
+			String professionalName, String executiveClass,
+			String idCardNumber, String telNumber, String email,
+			List<CourseVO> courses) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.level = level;
+		this.professionalName = professionalName;
+		this.executiveClass = executiveClass;
+		this.idCardNumber = idCardNumber;
+		this.telNumber = telNumber;
+		this.email = email;
+		this.courses = courses;
 	}
 
 	/**
@@ -167,6 +190,25 @@ public class StudentVO {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * 获取level
+	 * 
+	 * @return level
+	 */
+	public String getLevel() {
+		return level;
+	}
+
+	/**
+	 * 设置level
+	 * 
+	 * @param level
+	 *            level
+	 */
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	/**

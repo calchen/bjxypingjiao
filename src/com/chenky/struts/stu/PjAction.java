@@ -1,9 +1,13 @@
 package com.chenky.struts.stu;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import com.chenky.service.PingjiaoService;
+import com.chenky.service.ProfileService;
 import com.chenky.vo.CourseVO;
 import com.chenky.vo.StudentVO;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -16,6 +20,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class PjAction extends ActionSupport {
 
 	private StudentVO student;
+	private ArrayList<CourseVO> courses;
 
 	/*
 	 * (non-Javadoc)
@@ -26,14 +31,11 @@ public class PjAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 
-		student = new StudentVO("20112308039", "qwe", "陈恺垣", "计算机科学与技术",
-				"11计科2", "320102199302085016", "15651699051",
-				"674447097@qq.com");
-		ArrayList<CourseVO> courses = new ArrayList<CourseVO>();
-		courses.add(new CourseVO("2014-2015", "1", "体育", "0"));
-		courses.add(new CourseVO("2014-2015", "1", "英语", "0"));
-		courses.add(new CourseVO("2014-2015", "1", "物理实验", "0"));
-		courses.add(new CourseVO("2013-2014", "2", "物理实验", "1"));
+		Map<String, Object> sessionMap = ActionContext.getContext().getSession();
+		
+		
+		courses = new PingjiaoService().getCoursesList((String)sessionMap.get("USER_ID"));
+		student = new StudentVO(); 
 		student.setCourses(courses);
 
 		return SUCCESS;
@@ -56,6 +58,22 @@ public class PjAction extends ActionSupport {
 	 */
 	public void setStudent(StudentVO student) {
 		this.student = student;
+	}
+
+	/** 
+	 * 获取courses 
+	 * @return courses 
+	 */
+	public ArrayList<CourseVO> getCourses() {
+		return courses;
+	}
+
+	/** 
+	 * 设置courses 
+	 * @param courses courses 
+	 */
+	public void setCourses(ArrayList<CourseVO> courses) {
+		this.courses = courses;
 	}
 
 }

@@ -50,16 +50,18 @@ public class ProfileDAO {
 		String sql= "";
 		String[] parameters;
 		if(user.getIdCardNumber() == "") {
-			sql = "update studentInfo set telNumber=?,email=?";
-			parameters = new String[2];
-			parameters[0] = user.getTelNumber();
-			parameters[1] = user.getEmail();
-		}else {
-			sql = "update studentInfo set telNumber=?,email=?,IdCardNumber=?";
+			sql = "update studentInfo set telNumber=?,email=? where id=?";
 			parameters = new String[3];
-			parameters[0] = user.getTelNumber();
-			parameters[1] = user.getEmail();
-			parameters[2] = user.getIdCardNumber();
+			parameters[0] = user.getTelNumber()+"";
+			parameters[1] = user.getEmail()+"";
+			parameters[2] = user.getId();
+		}else {
+			sql = "update studentInfo set telNumber=?,email=?,IdCardNumber=? where id=?";
+			parameters = new String[4];
+			parameters[0] = user.getTelNumber()+"";
+			parameters[1] = user.getEmail()+"";
+			parameters[2] = user.getIdCardNumber()+"";
+			parameters[3] = user.getId();
 		}
 		DAO.executeUpdate(sql, parameters);
 		return true;

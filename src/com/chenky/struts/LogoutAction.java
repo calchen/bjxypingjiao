@@ -22,20 +22,19 @@ public class LogoutAction extends ActionSupport {
 	 */
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		
 		Map<String, Object> session = ActionContext.getContext().getSession();
+		Map<String, Object> application =ActionContext.getContext().getApplication();
+		application.remove(session.get("USER_ID"));
+		session.remove("USER_ID");
+		session.remove("USER_NAME");
+		session.remove("USER_LEVEL");
 		
-		session.remove("login_user");
-		session.remove("login_user_name");
-		session.remove("user_level");
-		Map<String, Object> applicationMap =ActionContext.getContext().getApplication();
-		Integer onlineUser = (Integer) applicationMap.get("onlineUser");
-		if(onlineUser == null || onlineUser <= 0) {
-			onlineUser = new Integer(1);
+		Integer ONLINEUSER = (Integer) application.get("ONLINEUSER");
+		if(ONLINEUSER == null || ONLINEUSER <= 0) {
+			ONLINEUSER = new Integer(1);
 		}
-		onlineUser--;
-		applicationMap.put("onlineUser", onlineUser);
+		ONLINEUSER--;
+		application.put("ONLINEUSER", ONLINEUSER);
 		return SUCCESS;
 	}
 

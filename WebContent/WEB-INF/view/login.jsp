@@ -9,6 +9,7 @@
 <!--<![endif]-->
 <head>
 <%@ include file="head.jsp"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <script src="${pageContext.request.contextPath}/js/sha1.js"/></script>
 </head>
 <body>
@@ -22,12 +23,24 @@
       <input type="password" class="span3" placeholder="密码" name="password" 
       id="password" data-toggle="popover" data-trigger="hover" data-placement="bottom"
         data-content="初始密码为身份证号后6位（x请小写）或者与用户名相同"/>
-
+      <s:if test="logintimes>2">
+        <div>
+          <input type="text" class="span3" id="securityCode" name="securityCode" placeholder="验证码">
+          <img src="SecurityCodeImage" id="Verify"  style="cursor:hand;" alt="看不清，换一张"/>
+          <a href="javascript:onclick=changeImg()" id="changeImg">看不清，换一张</a>
+        </div>
+      </s:if>
+      <br/>
+      <s:if test="error!=null">
+        <div class="alert">
+          ${error }
+        </div>
+      </s:if>
       <label class="checkbox"> 
         <input type="checkbox" name="nextCheck" disabled="disabled"/>下次自动登录
       </label>
       
-      <button class="btn btn-primary" onclick="enCodePWD()" >登录</button>
+      <button class="btn btn-primary" onclick="return lgoin();" >登录</button>
       <button class="btn" data-toggle="modal" data-target="#forgotpassword">忘记密码</button>
       <a href="index">返回</a>
     </form>
@@ -58,11 +71,38 @@
       $('#id').popover();
     });
     //对密码进行加密
-    function enCodePWD(){
-      var password = document.getElementById("password")
+    function lgoin(){
+      var id = document.getElementById("id");
+      if(id.value=='') {
+    	id.focus();
+    	alert('请输入用户名');
+    	return false;
+      }
+      var password = document.getElementById("password");
+      if(password.value=='') {
+    	password.focus();
+    	alert('请输入密码');
+    	return false;
+      }
+      var password = document.getElementById("password");
       password.value = hex_sha1(password.value);
-      //alert(document.getElementById("password").value);
-    }
+      var securityCode = document.getElementById("securityCode");
+      if(securityCode.value=='') {
+    	securityCode.focus();
+    	alert('请输入验证码');
+    	return false;
+      }
+    };
+    $(function () {  
+        //点击图片更换验证码
+        $("#Verify").click(function(){
+            $(this).attr("src","SecurityCodeImage?timestamp="+new Date().getTime());
+        });
+    });
+    function changeImg(){
+		document.getElementById("changeImg").disabled=true;
+		document.getElementById("Verify").src="SecurityCodeImage?timestamp=" + new Date().getTime();
+	}
   </script>
 </body>
 </html>
