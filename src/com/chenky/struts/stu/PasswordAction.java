@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class PasswordAction extends ActionSupport {
 
 	/**

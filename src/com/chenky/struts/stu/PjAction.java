@@ -18,8 +18,14 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class PjAction extends ActionSupport {
-
+	
+	/**
+	 * 学生信息
+	 */
 	private StudentVO student;
+	/**
+	 * 评教课程信息
+	 */
 	private ArrayList<CourseVO> courses;
 
 	/*

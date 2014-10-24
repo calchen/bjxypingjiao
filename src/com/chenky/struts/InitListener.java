@@ -27,6 +27,7 @@ public class InitListener implements ServletContextListener {
 		ServletContext servletContext = servletContextEvent.getServletContext();
 		SystemConfigService scs = new SystemConfigService();
 		servletContext.setAttribute("PUBLICMESSAGE", scs.getPublicMessage());
+		servletContext.setAttribute("PINGJIAOSTATUS", "");
 
 	}
 
