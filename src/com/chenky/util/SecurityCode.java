@@ -28,7 +28,9 @@ public class SecurityCode {
 	 * @return String 验证码
 	 */
 	public static String getSecurityCode() {
-		return getSecurityCode(5, SecurityCodeLevel.Hard, false);
+		//长度在4-6位之间浮动
+		int length = (int)(Math.random()*3)+5;
+		return getSecurityCode(length, SecurityCodeLevel.Hard, false);
 	}
 
 	/**

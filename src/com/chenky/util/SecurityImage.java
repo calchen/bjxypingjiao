@@ -63,8 +63,9 @@ public class SecurityImage {
 		// 绘制噪点
 		Random rand = new Random();
 		// 设置噪点颜色
-		g.setColor(Color.LIGHT_GRAY);
-		for (int i = 0; i < codeLength * 6; i++) {
+		//g.setColor(Color.LIGHT_GRAY);
+		g.setColor(new Color(100, 100, 100));
+		for (int i = 0; i < codeLength * 10; i++) {
 			int x = rand.nextInt(width);
 			int y = rand.nextInt(height);
 			// 绘制1*1大小的矩形
@@ -74,11 +75,12 @@ public class SecurityImage {
 		// 绘制验证码
 		int codeY = height - 10;
 		// 设置字体颜色和样式
-		g.setColor(new Color(19, 148, 246));
+		//g.setColor(new Color(19, 148, 246));
+		g.setColor(new Color(0, 0, 0));
 		g.setFont(new Font("Georgia", Font.BOLD, fSize));
 		for (int i = 0; i < codeLength; i++) {
-			g.drawString(String.valueOf(securityCode.charAt(i)), i * 16 + 5,
-					codeY);
+			//g.drawString(String.valueOf(securityCode.charAt(i)), i * 16 + 5,codeY);
+			g.drawString(String.valueOf(securityCode.charAt(i)), i * 16 + 5,fSize/2+(int)(Math.random()*fSize)+5);
 		}
 		// 关闭资源
 		g.dispose();
