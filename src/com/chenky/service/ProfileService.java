@@ -10,6 +10,11 @@ import com.chenky.vo.StudentVO;
  * @author  陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class ProfileService {
+	/**
+	 * 获取用户信息
+	 * @param id
+	 * @return
+	 */
 	public StudentVO getProfile(String id) {
 		StudentVO studentInfo;
 		ProfileDAO dao = new ProfileDAO();
@@ -29,6 +34,11 @@ public class ProfileService {
 		//System.out.println(studentInfo.getIdCardNumber());
 		return studentInfo;
 	}
+	/**
+	 * 设置用户信息
+	 * @param user
+	 * @return
+	 */
 	public boolean setProfile(StudentVO user) {
 		if(user == null) {
 			return false;
@@ -46,5 +56,15 @@ public class ProfileService {
 		}
 		ProfileDAO dao = new ProfileDAO();
 		return dao.setProfile(user);
+	}
+	/**
+	 * 修改密码
+	 * @param user
+	 * @return
+	 */
+	
+	public boolean setPassword(StudentVO user) {
+		ProfileDAO dao = new ProfileDAO();
+		return dao.setPassword(user);
 	}
 }

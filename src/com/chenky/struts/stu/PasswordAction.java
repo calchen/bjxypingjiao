@@ -1,6 +1,10 @@
 package com.chenky.struts.stu;
 
+import java.util.Map;
+
+import com.chenky.service.ProfileService;
 import com.chenky.vo.StudentVO;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -15,11 +19,15 @@ public class PasswordAction extends ActionSupport {
 	/**
 	 * 学生信息
 	 */
-	private StudentVO studentInfo;
+	private String oldPawword;
 	/**
 	 * 学生新密码
 	 */
 	private String newPassword;
+	/**
+	 * 错误信息
+	 */
+	private String status;
 
 	/*
 	 * (non-Javadoc)
@@ -33,28 +41,50 @@ public class PasswordAction extends ActionSupport {
 	}
 
 	public String setting() throws Exception {
-//		System.out.println(studentInfo.getPassword());
-//		System.out.println(newPassword);
+		//获取session
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		ProfileService service = new ProfileService();
+		String id = (String) session.get("USER_ID");
+		StudentVO studentInfo = service.getProfile(id);
+		if (oldPawword == null || oldPawword.equals("")) {
+			status = "旧密码不能为空";
+			return SUCCESS;
+		}
+		if (newPassword == null || newPassword.equals("")) {
+			status = "新密码不能为空";
+			return SUCCESS;
+		}
+		if (!oldPawword.equals(studentInfo.getPassword())) {
+			status = "密码修改失败，旧密码错误";
+			return SUCCESS;
+		}
+		if(oldPawword.equals(newPassword)) {
+			status = "密码修改失败，新旧密码不能相同";
+			return SUCCESS;
+		}
+		studentInfo.setPassword(newPassword);
+		service.setPassword(studentInfo);
+		status = "密码修改成功";
 		return SUCCESS;
 	}
 
 	/**
-	 * 获取studentInfo
+	 * 获取oldPawword
 	 * 
-	 * @return studentInfo
+	 * @return oldPawword
 	 */
-	public StudentVO getStudentInfo() {
-		return studentInfo;
+	public String getOldPawword() {
+		return oldPawword;
 	}
 
 	/**
-	 * 设置studentInfo
+	 * 设置oldPawword
 	 * 
-	 * @param studentInfo
-	 *            studentInfo
+	 * @param oldPawword
+	 *            oldPawword
 	 */
-	public void setStudentInfo(StudentVO studentInfo) {
-		this.studentInfo = studentInfo;
+	public void setOldPawword(String oldPawword) {
+		this.oldPawword = oldPawword;
 	}
 
 	/**
@@ -74,6 +104,15 @@ public class PasswordAction extends ActionSupport {
 	 */
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
+	}
+
+	/**
+	 * 获取status
+	 * 
+	 * @return status
+	 */
+	public String getStatus() {
+		return status;
 	}
 
 }

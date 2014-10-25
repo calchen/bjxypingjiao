@@ -66,4 +66,10 @@ public class ProfileDAO {
 		DAO.executeUpdate(sql, parameters);
 		return true;
 	}
+	public boolean setPassword(StudentVO user) {
+		String sql = "update studentInfo set password=? where id=?";
+		String[] parameters = {user.getPassword(),user.getId()};
+		DAO.executeUpdate(sql, parameters);
+		return true;
+	}
 }
