@@ -3,7 +3,7 @@ package com.chenky.struts.tch;
 import java.util.Map;
 
 import com.chenky.service.ProfileService;
-import com.chenky.vo.StudentVO;
+import com.chenky.vo.TeacherVO;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,23 +29,25 @@ public class PasswordAction extends ActionSupport {
 	 */
 	private String status;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
-	 */
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		return SUCCESS;
 	}
 
+	/**
+	 * 修改密码
+	 * @return
+	 * @throws Exception
+	 */
 	public String setting() throws Exception {
-		//获取session
+		// 获取session
 		Map<String, Object> session = ActionContext.getContext().getSession();
+		// 获取服务
 		ProfileService service = new ProfileService();
-		String id = (String) session.get("USER_ID");
-		StudentVO studentInfo = service.getStudentProfile(id);
+		// 获取老师信息
+		TeacherVO teacherInfo = service.getTeacherProfile((String) session
+				.get("USER_ID"));
 		if (oldPawword == null || oldPawword.equals("")) {
 			status = "旧密码不能为空";
 			return SUCCESS;
@@ -54,16 +56,21 @@ public class PasswordAction extends ActionSupport {
 			status = "新密码不能为空";
 			return SUCCESS;
 		}
-		if (!oldPawword.equals(studentInfo.getPassword())) {
+		if (!oldPawword.equals(teacherInfo.getPassword())) {
 			status = "密码修改失败，旧密码错误";
 			return SUCCESS;
 		}
-		if(oldPawword.equals(newPassword)) {
+		if (oldPawword.equals(newPassword)) {
 			status = "密码修改失败，新旧密码不能相同";
 			return SUCCESS;
 		}
-		studentInfo.setPassword(newPassword);
-		service.setPassword(studentInfo);
+		// 设置密码
+		teacherInfo.setPassword(newPassword);
+		// 保存学生信息
+		if(!service.setTeacherProfile(teacherInfo)) {
+			status = "密码修改失败";
+			return SUCCESS;
+		}
 		status = "密码修改成功";
 		return SUCCESS;
 	}

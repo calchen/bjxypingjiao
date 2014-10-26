@@ -22,7 +22,7 @@
       <%@ include file="../left.jsp"%>
       <div class="span9">
         <h1>修改密码</h1>
-        <form action="stu_password_setting" id="theForm" method="post" class="form-horizontal">
+        <form action="tch_password_setting" id="theForm" method="post" class="form-horizontal">
           <fieldset>
             <legend>修改密码</legend>
             <div class="control-group">

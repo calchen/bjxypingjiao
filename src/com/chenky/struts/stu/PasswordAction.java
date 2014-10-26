@@ -17,11 +17,11 @@ import com.opensymphony.xwork2.ActionSupport;
 public class PasswordAction extends ActionSupport {
 
 	/**
-	 * 学生信息
+	 * 旧密码
 	 */
 	private String oldPawword;
 	/**
-	 * 学生新密码
+	 * 新密码
 	 */
 	private String newPassword;
 	/**
@@ -29,23 +29,25 @@ public class PasswordAction extends ActionSupport {
 	 */
 	private String status;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
-	 */
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		return SUCCESS;
 	}
-
+	
+	/**
+	 * 修改密码
+	 * @return
+	 * @throws Exception
+	 */
 	public String setting() throws Exception {
-		//获取session
+		// 获取session
 		Map<String, Object> session = ActionContext.getContext().getSession();
+		// 获取服务
 		ProfileService service = new ProfileService();
-		String id = (String) session.get("USER_ID");
-		StudentVO studentInfo = service.getStudentProfile(id);
+		// 获取学生信息
+		StudentVO studentInfo = service.getStudentProfile((String) session
+				.get("USER_ID"));
 		if (oldPawword == null || oldPawword.equals("")) {
 			status = "旧密码不能为空";
 			return SUCCESS;
@@ -58,12 +60,17 @@ public class PasswordAction extends ActionSupport {
 			status = "密码修改失败，旧密码错误";
 			return SUCCESS;
 		}
-		if(oldPawword.equals(newPassword)) {
+		if (oldPawword.equals(newPassword)) {
 			status = "密码修改失败，新旧密码不能相同";
 			return SUCCESS;
 		}
+		// 设置密码
 		studentInfo.setPassword(newPassword);
-		service.setPassword(studentInfo);
+		// 保存学生信息
+		if(!service.setStudentProfile(studentInfo)) {
+			status = "密码修改失败";
+			return SUCCESS;
+		}
 		status = "密码修改成功";
 		return SUCCESS;
 	}

@@ -38,20 +38,6 @@
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']=='tch_result.jsp'">
-        <li class="active">
-          <a href="tch_result">
-            <i class="icon-white icon-list-alt"></i>评教记录
-          </a>
-        </li>
-      </s:if>
-      <s:else>
-        <li>
-          <a href="tch_result">
-            <i class="icon-list-alt"></i>评教记录
-          </a>
-        </li>
-      </s:else>
       <s:if test="#session['uri']=='messages.jsp'">
         <li class="active">
           <a href="messages">

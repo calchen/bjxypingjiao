@@ -7,6 +7,7 @@ import com.chenky.service.PingjiaoService;
 import com.chenky.service.ProfileService;
 import com.chenky.vo.CourseVO;
 import com.chenky.vo.StudentVO;
+import com.chenky.vo.TeacherVO;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,12 +18,13 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class PjAction extends ActionSupport {
-	
+
 	/**
-	 * 学生信息
+	 * 老师信息
 	 */
-	private StudentVO student;
+	private TeacherVO teacher;
 	/**
 	 * 评教课程信息
 	 */
@@ -35,48 +37,49 @@ public class PjAction extends ActionSupport {
 	 */
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-
-		Map<String, Object> sessionMap = ActionContext.getContext().getSession();
-		
-		
-		courses = new PingjiaoService().getCoursesList((String)sessionMap.get("USER_ID"));
-		student = new StudentVO(); 
-		student.setCourses(courses);
+		Map<String, Object> sessionMap = ActionContext.getContext()
+				.getSession();
+		courses = new PingjiaoService()
+				.getTeacherCoursesList((String) sessionMap.get("USER_ID"));
+		teacher = new TeacherVO();
+		teacher.setCourses(courses);
 
 		return SUCCESS;
 	}
 
 	/**
-	 * 获取student
+	 * 获取teacher
 	 * 
-	 * @return student
+	 * @return teacher
 	 */
-	public StudentVO getStudent() {
-		return student;
+	public TeacherVO getTeacher() {
+		return teacher;
 	}
 
 	/**
-	 * 设置student
+	 * 设置teacher
 	 * 
-	 * @param student
-	 *            student
+	 * @param teacher
+	 *            teacher
 	 */
-	public void setStudent(StudentVO student) {
-		this.student = student;
+	public void setTeacher(TeacherVO teacher) {
+		this.teacher = teacher;
 	}
 
-	/** 
-	 * 获取courses 
-	 * @return courses 
+	/**
+	 * 获取courses
+	 * 
+	 * @return courses
 	 */
 	public ArrayList<CourseVO> getCourses() {
 		return courses;
 	}
 
-	/** 
-	 * 设置courses 
-	 * @param courses courses 
+	/**
+	 * 设置courses
+	 * 
+	 * @param courses
+	 *            courses
 	 */
 	public void setCourses(ArrayList<CourseVO> courses) {
 		this.courses = courses;

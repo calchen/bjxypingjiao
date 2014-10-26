@@ -38,6 +38,10 @@ public class PingjiaoResultVO {
 	 * 评教结果
 	 */
 	private List<String> result =new ArrayList<String>();
+	/**
+	 * 评教得分
+	 */
+	private double mark;
 
 	public PingjiaoResultVO() {
 		
@@ -177,6 +181,22 @@ public class PingjiaoResultVO {
 	 */
 	public void setResult(List<String> result) {
 		this.result = result;
+	}
+
+	/** 
+	 * 获取mark 
+	 * @return mark 
+	 */
+	public double getMark() {
+		return mark;
+	}
+
+	/** 
+	 * 设置mark 
+	 * @param mark mark 
+	 */
+	public void setMark(double mark) {
+		this.mark = mark;
 	}
 
 }

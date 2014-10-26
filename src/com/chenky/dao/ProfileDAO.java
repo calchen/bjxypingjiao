@@ -67,7 +67,8 @@ public class ProfileDAO {
 			+ "SET "
 				+ "`password` = ?, "
 				+ "`level` = ? "
-			+ "WHERE `id` = ?;";
+			+ "WHERE "
+				+ "`id` = ?;";
 		String[] parameters = new String[3]; 
 		parameters[0] = user.getPassword();
 		parameters[1] = user.getLevel();
@@ -81,18 +82,6 @@ public class ProfileDAO {
 				+ "SET "
 					+ "`telNumber` = ?, "
 					+ "`email` = ? "
-				+ "WHERE "
-					+ "`id` = ?; ";
-			parameters = new String[3];
-			parameters[0] = user.getTelNumber();
-			parameters[1] = user.getEmail();
-			parameters[2] = user.getId();
-		}else {
-			sql = "UPDATE "
-					+ "`student` "
-				+ "SET "
-					+ "`telNumber` = ?, "
-					+ "`email` = ? "
 					+ "`IdCardNumber` = ?, "
 				+ "WHERE "
 					+ "`id` = ?; ";
@@ -101,21 +90,23 @@ public class ProfileDAO {
 			parameters[1] = user.getEmail()+"";
 			parameters[2] = user.getIdCardNumber()+"";
 			parameters[3] = user.getId();
+		}else {
+			sql = "UPDATE "
+					+ "`student` "
+				+ "SET "
+					+ "`telNumber` = ?, "
+					+ "`email` = ? "
+				+ "WHERE "
+					+ "`id` = ?; ";
+			parameters = new String[3];
+			parameters[0] = user.getTelNumber();
+			parameters[1] = user.getEmail();
+			parameters[2] = user.getId();
 		}
 		DAO.executeUpdate(sql, parameters);
 		return true;
 	}
-	/**
-	 * 修改密码
-	 * @param user
-	 * @return
-	 */
-	public boolean setPassword(StudentVO user) {
-		String sql = "update studentInfo set password=? where id=?";
-		String[] parameters = {user.getPassword(),user.getId()};
-		DAO.executeUpdate(sql, parameters);
-		return true;
-	}
+
 	/**
 	 * 获取老师个人信息
 	 * @param id
@@ -154,6 +145,7 @@ public class ProfileDAO {
 		}
 		return teacher;
 	}
+	
 	/**
 	 * 设置老师个人信息
 	 * @param teacher
@@ -189,7 +181,6 @@ public class ProfileDAO {
 			parameters[1] = teacher.getTelNumber();
 			parameters[2] = teacher.getEmail();
 			parameters[3] = teacher.getId();
-			DAO.executeUpdate(sql, parameters);
 		}else {
 			sql = "UPDATE "
 					+ "`teacher` "
@@ -202,9 +193,8 @@ public class ProfileDAO {
 			parameters[0] = teacher.getTelNumber();
 			parameters[1] = teacher.getEmail();
 			parameters[2] = teacher.getId();
-			DAO.executeUpdate(sql, parameters);
 		}
-		
+		DAO.executeUpdate(sql, parameters);
 		return true;
 	}
 }

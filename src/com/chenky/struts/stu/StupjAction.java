@@ -1,14 +1,10 @@
 package com.chenky.struts.stu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import com.chenky.service.PingjiaoService;
 import com.chenky.vo.CourseVO;
 import com.chenky.vo.PingjiaoResultVO;
-import com.chenky.vo.StudentVO;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -19,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class StupjAction extends ActionSupport {
 
 	private PingjiaoResultVO result;
@@ -37,7 +34,7 @@ public class StupjAction extends ActionSupport {
 		
 		String[] ac = ActionContext.getContext().getName().split("_");
 		type = ac[3];
-		result = new PingjiaoService().getPingjiaoResult(new CourseVO(ac[1], ac[2], name, userId));
+		result = new PingjiaoService().getStudentPjResult(new CourseVO(ac[1], ac[2], name, userId));
 
 		return SUCCESS;
 	}
@@ -47,7 +44,7 @@ public class StupjAction extends ActionSupport {
 		String userId = (String) session.get("USER_ID");
 		result.setStatus("1");
 		result.setUserID(userId);
-		new PingjiaoService().setPingjiao(result);
+		new PingjiaoService().setStudentPjResult(result);
 		return SUCCESS;
 	}
 

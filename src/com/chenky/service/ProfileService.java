@@ -36,26 +36,15 @@ public class ProfileService {
 		}
 		if(IdCardNumberUtil.hasFuzzied(student.getIdCardNumber())) {
 			student.setIdCardNumber("");
-			
 		}
 		if(!IdCardNumberUtil.isLegal(student.getIdCardNumber()) 
-				&& !student.getIdCardNumber().equals("")) {
-			return false;
+				&& !"".equals(student.getIdCardNumber())) {
+			student.setIdCardNumber("");
 		}
 		ProfileDAO dao = new ProfileDAO();
 		return dao.setStudentProfile(student);
 	}
-	/**
-	 * 修改密码
-	 * @param user
-	 * @return
-	 */
-	
-	public boolean setPassword(StudentVO user) {
-		ProfileDAO dao = new ProfileDAO();
-		return dao.setPassword(user);
-	}
-	
+
 	/**
 	 * 获取老师个人信息
 	 * @return
@@ -77,9 +66,11 @@ public class ProfileService {
 		if(teacher == null) {
 			return false;
 		}
-		if(!IdCardNumberUtil.isLegal(teacher.getIdCardNumber()) 
-				&& !teacher.getIdCardNumber().equals("")) {
-			return false;
+		if(IdCardNumberUtil.hasFuzzied(teacher.getIdCardNumber())) {
+			teacher.setIdCardNumber("");
+		}
+		if(!IdCardNumberUtil.isLegal(teacher.getIdCardNumber())) {
+			teacher.setIdCardNumber("");
 		}
 		ProfileDAO dao = new ProfileDAO();
 		return dao.setTeacherProfile(teacher);

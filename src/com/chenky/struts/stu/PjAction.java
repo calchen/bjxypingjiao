@@ -40,7 +40,7 @@ public class PjAction extends ActionSupport {
 		Map<String, Object> sessionMap = ActionContext.getContext().getSession();
 		
 		
-		courses = new PingjiaoService().getCoursesList((String)sessionMap.get("USER_ID"));
+		courses = new PingjiaoService().getStudentCoursesList((String)sessionMap.get("USER_ID"));
 		student = new StudentVO(); 
 		student.setCourses(courses);
 

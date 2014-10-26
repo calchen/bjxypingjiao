@@ -31,31 +31,39 @@ public class SessionCheckInterceptor implements Interceptor {
 		Map<String, Object> session = invocation.getInvocationContext()
 				.getSession();
 
-		if (session.containsKey(sessionAttribute)) {
-			// 若已登录就直接跳转到访问页面
-			String resultCode = invocation.invoke();
-			return resultCode;
-		} else {
+		if (!session.containsKey(sessionAttribute)) {
 			return result;
 		}
-
+		Object object = session.get(sessionAttribute);
+		if (object == null) {
+			return result;
+		}
+		if ("".equals((String) object)) {
+			return result;
+		}
+		// 若已登录就直接跳转到访问页面
+		String resultCode = invocation.invoke();
+		return resultCode;
 	}
 
-	/** 
-	 * 设置sessionAttribute 
-	 * @param sessionAttribute sessionAttribute 
+	/**
+	 * 设置sessionAttribute
+	 * 
+	 * @param sessionAttribute
+	 *            sessionAttribute
 	 */
 	public void setSessionAttribute(String sessionAttribute) {
 		this.sessionAttribute = sessionAttribute;
 	}
 
-	/** 
-	 * 设置result 
-	 * @param result result 
+	/**
+	 * 设置result
+	 * 
+	 * @param result
+	 *            result
 	 */
 	public void setResult(String result) {
 		this.result = result;
 	}
 
-	
 }

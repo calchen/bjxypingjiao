@@ -34,7 +34,7 @@
                     <td>${list.name }</td>
                     <td>
                       <a class="toggle-link" 
-                        href="stupj_${list.grade}_${list.semester}_${list.classStr}?name=${list.name }">
+                        href="tchpj_${list.grade}_${list.semester}?name=${list.name }">
                         <i class="icon-check"></i>评教
                       </a>
                     </td>
