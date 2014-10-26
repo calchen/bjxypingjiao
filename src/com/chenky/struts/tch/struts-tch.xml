@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="tch" extends="bjxypingjiao">
+		<action name="tch_profile" class="com.chenky.struts.tch.ProfileAction">
+			<result>/WEB-INF/view/tch/tch_profile.jsp</result>
+		</action>
+		<action name="tch_profile_setting" class="com.chenky.struts.tch.ProfileAction"
+			method="setting">
+			<result>/WEB-INF/view/tch/tch_profile.jsp</result>
+		</action>
+		<!-- 
+		<action name="tch_password" class="com.chenky.struts.tch.PasswordAction">
+			<result>/WEB-INF/view/tch/tch_password.jsp</result>
+		</action>
+		<action name="tch_password_setting" class="com.chenky.struts.tch.PasswordAction"
+			method="setting">
+			<result>/WEB-INF/view/tch/tch_password.jsp</result>
+		</action>
+		<action name="tch_pingjiao" class="com.chenky.struts.tch.PjAction">
+			<result>/WEB-INF/view/tch/tch_pingjiao.jsp</result>
+		</action>
+		
+		<action name="tchpjsetting_*_*_*" class="com.chenky.struts.tch.tchpjAction"
+			method="setting">
+			<result>/WEB-INF/view/tch/tchpj_{1}_{2}_{3}.jsp</result>
+		</action>
+		<action name="tchpj_*_*_*" class="com.chenky.struts.tch.tchpjAction">
+			<result>/WEB-INF/view/tch/tchpj_{1}_{2}_{3}.jsp</result>
+		</action>
+		 -->
+	</package>
+
+</struts>

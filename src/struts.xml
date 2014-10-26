@@ -69,4 +69,5 @@
 
 	<include file="com/chenky/struts/admin/struts-admin.xml"></include>
 	<include file="com/chenky/struts/stu/struts-stu.xml"></include>
+	<include file="com/chenky/struts/tch/struts-tch.xml"></include>
 </struts>

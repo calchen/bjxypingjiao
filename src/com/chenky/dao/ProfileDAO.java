@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.chenky.vo.StudentVO;
+import com.chenky.vo.TeacherVO;
 
 /**
  * 
@@ -17,46 +18,84 @@ public class ProfileDAO {
 	 * @param id
 	 * @return
 	 */
-	public StudentVO getProfile(String id) {
-		StudentVO studentVO = null;
-		String sql = "select * from studentInfo where id=?";
+	public StudentVO getStudentProfile(String id) {
+		String sql = 
+			"SELECT "
+				+ "`name`, "
+				+ "`password`, "
+				+ "`level`, "
+				+ "`professionalName`, "
+				+ "`executiveClass`, "
+				+ "`IdCardNumber`, "
+				+ "`telNumber`, "
+				+ "`email` "
+			+ "FROM "
+				+ "`studentinfo`"
+			+ "WHERE "
+				+ "`id`=?;";
 		String[] parameters = {id};
 		ResultSet rs = DAO.executeQuery(sql, parameters);
+		StudentVO student = null;
 		try {
 			if(rs.next()) {
-				String idString = rs.getString("id"); 
-				String name= rs.getString("name"); 
-				String password = rs.getString("password");
-				String level = rs.getString("level");
-				String professionalName = rs.getString("professionalName");
-				String executiveClass = rs.getString("executiveClass");
-				String idCardNumber = rs.getString("IdCardNumber");
-				String telNumber = rs.getString("telNumber");
-				String email= rs.getString("email");
-				studentVO = new StudentVO(idString, password, name, level, professionalName, executiveClass, idCardNumber, telNumber, email);
+				student = new StudentVO();
+				student.setId(id);
+				student.setName(rs.getString("name"));
+				student.setPassword(rs.getString("password"));
+				student.setLevel(rs.getString("level"));
+				student.setProfessionalName(rs.getString("professionalName"));
+				student.setExecutiveClass(rs.getString("executiveClass"));
+				student.setIdCardNumber(rs.getString("IdCardNumber"));
+				student.setTelNumber(rs.getString("telNumber"));
+				student.setEmail(rs.getString("email"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return studentVO;
+		return student;
 	}
 	
 	/**
 	 * 设置用户信息
 	 * @param user
 	 */
-	public boolean setProfile(StudentVO user) {
-		String sql= "";
-		String[] parameters;
-		if(user.getIdCardNumber() == "") {
-			sql = "update studentInfo set telNumber=?,email=? where id=?";
+	public boolean setStudentProfile(StudentVO user) {
+		String sql = 
+			"UPDATE "
+				+ "`user` "
+			+ "SET "
+				+ "`password` = ?, "
+				+ "`level` = ? "
+			+ "WHERE `id` = ?;";
+		String[] parameters = new String[3]; 
+		parameters[0] = user.getPassword();
+		parameters[1] = user.getLevel();
+		parameters[2] = user.getId();
+		DAO.executeUpdate(sql, parameters);
+		//身份证号设定后就不能随意修改，因此要对身份证号就行检查
+		if(user.getIdCardNumber() != null 
+				&& !user.getIdCardNumber().equals("")) {
+			sql = "UPDATE "
+					+ "`student` "
+				+ "SET "
+					+ "`telNumber` = ?, "
+					+ "`email` = ? "
+				+ "WHERE "
+					+ "`id` = ?; ";
 			parameters = new String[3];
-			parameters[0] = user.getTelNumber()+"";
-			parameters[1] = user.getEmail()+"";
+			parameters[0] = user.getTelNumber();
+			parameters[1] = user.getEmail();
 			parameters[2] = user.getId();
 		}else {
-			sql = "update studentInfo set telNumber=?,email=?,IdCardNumber=? where id=?";
+			sql = "UPDATE "
+					+ "`student` "
+				+ "SET "
+					+ "`telNumber` = ?, "
+					+ "`email` = ? "
+					+ "`IdCardNumber` = ?, "
+				+ "WHERE "
+					+ "`id` = ?; ";
 			parameters = new String[4];
 			parameters[0] = user.getTelNumber()+"";
 			parameters[1] = user.getEmail()+"";
@@ -66,10 +105,106 @@ public class ProfileDAO {
 		DAO.executeUpdate(sql, parameters);
 		return true;
 	}
+	/**
+	 * 修改密码
+	 * @param user
+	 * @return
+	 */
 	public boolean setPassword(StudentVO user) {
 		String sql = "update studentInfo set password=? where id=?";
 		String[] parameters = {user.getPassword(),user.getId()};
 		DAO.executeUpdate(sql, parameters);
+		return true;
+	}
+	/**
+	 * 获取老师个人信息
+	 * @param id
+	 * @return
+	 */
+	public TeacherVO getTeacherProfile(String id) {
+		String sql = 
+			"SELECT "
+				+ "`name`, "
+				+ "`password`, "
+				+ "`level`, "
+				+ "`IdCardNumber`, "
+				+ "`telNumber`, "
+				+ "`email` "
+			+ "FROM "
+				+ "`teacherinfo` "
+			+ "WHERE "
+				+ "`id` = ?;";
+		String[] parameters = {id};
+		ResultSet rs = DAO.executeQuery(sql, parameters);
+		TeacherVO teacher = null;
+		try {
+			if(rs.next()) {
+				teacher = new TeacherVO();
+				teacher.setId(id);
+				teacher.setName(rs.getString("name"));
+				teacher.setPassword(rs.getString("password"));
+				teacher.setLevel(rs.getString("level"));
+				teacher.setIdCardNumber(rs.getString("IdCardNumber"));
+				teacher.setTelNumber(rs.getString("telNumber"));
+				teacher.setEmail(rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return teacher;
+	}
+	/**
+	 * 设置老师个人信息
+	 * @param teacher
+	 * @return
+	 */
+	public boolean setTeacherProfile(TeacherVO teacher) {
+		String sql = 
+			"UPDATE "
+				+ "`user` "
+			+ "SET "
+				+ "`password` = ?, "
+				+ "`level` = ? "
+			+ "WHERE "
+				+ "`id` = ?;";
+		String[] parameters = new String[3]; 
+		parameters[0] = teacher.getPassword();
+		parameters[1] = teacher.getLevel();
+		parameters[2] = teacher.getId();
+		DAO.executeUpdate(sql, parameters);
+		//身份证号设定后就不能随意修改，因此要对身份证号就行检查
+		if(teacher.getIdCardNumber()!=null 
+				&& !teacher.getIdCardNumber().equals("")) {
+			sql = "UPDATE "
+					+ "`teacher` "
+				+ "SET "
+					+ "`IdCardNumber` = ?, "
+					+ "`telNumber` = ?, "
+					+ "`email` = ? "
+				+ "WHERE "
+					+ "`id` = ?;";
+			parameters = new String[4];
+			parameters[0] = teacher.getIdCardNumber();
+			parameters[1] = teacher.getTelNumber();
+			parameters[2] = teacher.getEmail();
+			parameters[3] = teacher.getId();
+			DAO.executeUpdate(sql, parameters);
+		}else {
+			sql = "UPDATE "
+					+ "`teacher` "
+				+ "SET "
+					+ "`telNumber` = ?, "
+					+ "`email` = ? "
+				+ "WHERE "
+					+ "`id` = ?;";
+			parameters = new String[3];
+			parameters[0] = teacher.getTelNumber();
+			parameters[1] = teacher.getEmail();
+			parameters[2] = teacher.getId();
+			DAO.executeUpdate(sql, parameters);
+		}
+		
 		return true;
 	}
 }

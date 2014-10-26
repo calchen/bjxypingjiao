@@ -1,7 +1,9 @@
 package com.chenky.service;
 
 import com.chenky.dao.ProfileDAO;
+import com.chenky.util.IdCardNumberUtil;
 import com.chenky.vo.StudentVO;
+import com.chenky.vo.TeacherVO;
 
 /**
  * 修改个人信息，包含修改密码
@@ -11,51 +13,37 @@ import com.chenky.vo.StudentVO;
  */
 public class ProfileService {
 	/**
-	 * 获取用户信息
+	 * 获取学生信息
 	 * @param id
 	 * @return
 	 */
-	public StudentVO getProfile(String id) {
-		StudentVO studentInfo;
-		ProfileDAO dao = new ProfileDAO();
-		studentInfo = dao.getProfile(id);
-		if(studentInfo==null) {
-			return null;
+	public StudentVO getStudentProfile(String id) {
+		StudentVO student = null;
+		if (id != null) {
+			ProfileDAO dao = new ProfileDAO();
+			student = dao.getStudentProfile(id);
 		}
-		String idNumber = studentInfo.getIdCardNumber();
-		if(idNumber == null || idNumber.equals("")) {
-			return studentInfo;
-		}
-		if(idNumber.length()!=18) {
-			studentInfo.setIdCardNumber("");
-			return studentInfo;
-		}
-		studentInfo.setIdCardNumber(studentInfo.getIdCardNumber().substring(0, 14)+"****");
-		//System.out.println(studentInfo.getIdCardNumber());
-		return studentInfo;
+		return student;
 	}
 	/**
-	 * 设置用户信息
-	 * @param user
+	 * 设置学生信息
+	 * @param student
 	 * @return
 	 */
-	public boolean setProfile(StudentVO user) {
-		if(user == null) {
+	public boolean setStudentProfile(StudentVO student) {
+		if(student == null) {
 			return false;
 		}
-		String idNum = user.getIdCardNumber();
-		if(idNum == null) {
-			user.setIdCardNumber("");
-			idNum = "";
+		if(IdCardNumberUtil.hasFuzzied(student.getIdCardNumber())) {
+			student.setIdCardNumber("");
+			
 		}
-		if(idNum.length()!=18) {
-			user.setIdCardNumber("");
-		}
-		if(idNum.endsWith("****")) {
-			user.setIdCardNumber("");
+		if(!IdCardNumberUtil.isLegal(student.getIdCardNumber()) 
+				&& !student.getIdCardNumber().equals("")) {
+			return false;
 		}
 		ProfileDAO dao = new ProfileDAO();
-		return dao.setProfile(user);
+		return dao.setStudentProfile(student);
 	}
 	/**
 	 * 修改密码
@@ -66,5 +54,34 @@ public class ProfileService {
 	public boolean setPassword(StudentVO user) {
 		ProfileDAO dao = new ProfileDAO();
 		return dao.setPassword(user);
+	}
+	
+	/**
+	 * 获取老师个人信息
+	 * @return
+	 */
+	public TeacherVO getTeacherProfile(String id) {
+		TeacherVO teacher = null;
+		if(id != null) {
+			ProfileDAO dao = new ProfileDAO();
+			teacher = dao.getTeacherProfile(id);
+		}
+		return teacher;
+	}
+	/**
+	 * 设置老师个人信息
+	 * @param teacher
+	 * @return
+	 */
+	public boolean setTeacherProfile(TeacherVO teacher) {
+		if(teacher == null) {
+			return false;
+		}
+		if(!IdCardNumberUtil.isLegal(teacher.getIdCardNumber()) 
+				&& !teacher.getIdCardNumber().equals("")) {
+			return false;
+		}
+		ProfileDAO dao = new ProfileDAO();
+		return dao.setTeacherProfile(teacher);
 	}
 }

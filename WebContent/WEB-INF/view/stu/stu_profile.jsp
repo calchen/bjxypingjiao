@@ -53,13 +53,12 @@
                 <label class="control-label" for="input01">邮箱</label>
                 <div class="controls">
                   <input type="text" id="email" class="input-xlarge" value="${studentInfo['email']}" name="studentInfo.email"/>
-                  <p class="help-block">邮箱可用于重置密码</p>
                 </div>
               </div>      
               <div class="control-group">
                 <label class="control-label" for="input01">身份证号</label>
                 <div class="controls">
-                  <s:if test="studentInfo['idCardNumber']!=''||studentInfo['idCardNumber']!=null">
+                  <s:if test="studentInfo['idCardNumber']!='' && studentInfo['idCardNumber']!=null">
                     <input type="text" class="input-xlarge"
                       value="${studentInfo['idCardNumber']}"readonly="readonly"/>
                     <p class="help-block">身份证号可用于重置密码</p>
@@ -70,9 +69,20 @@
                     <p class="help-block">身份证号可用于重置密码</p>
                   </s:else>
                 </div>
-              </div>    
+              </div>
+              <s:if test="status!=null">
+                <div class="control-group">
+                  <label class="control-label" for="input01"></label>
+                  <div class="span3">
+                    <div class="alert">
+                      ${status }
+                  </div>
+                  </div>
+                </div>
+              </s:if>
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary" id="check">保存</button> <button class="btn">取消</button>
+                <button type="submit" class="btn btn-primary" onclick="return check();">保存</button> 
+                <button class="btn">取消</button>
               </div>
             </fieldset>
           </form>
@@ -81,36 +91,33 @@
     </div>
     <%@include file="../foot.jsp"%>
     <script type="text/javascript">
-      window.onload = function(){
-        var btn = document.getElementById("check");
-        var email = document.getElementById("email");
+      function check(){
         var phone = document.getElementById("phone");
+        var email = document.getElementById("email");
         var id = document.getElementById("id");
-        function isEmail(strEmail) { 
-        	var reg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-        	if(strEmail==''){
-            	;
-            }else if(!reg.test(strEmail))
-            	alert("邮箱不正确！");
+        var reg = /^1\d{10}$/;
+        if(phone.value==''){
+          ;
+        }else if(!reg.test(phone.value)) {
+        	phone.focus();
+        	alert("电话不正确！");
+          return false;
         }
-        function isPhone(strPhone) { 
-        	var reg = /^1\d{10}$/;
-        	if(strPhone==''){
-            	;
-            }else if(!reg.test(strPhone))
-            	alert("电话不正确！");
+        reg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        if(email.value==''){
+          ;
+        }else if(!reg.test(email.value)){
+          email.focus();
+          alert("邮箱不正确！");
+          return false;
         }
-        function isId(strId) { 
-            var reg = /^\d{18}|\d{15}$/;
-            if(strId==''){
-            	;
-            }else if(!reg.test(strId))
-            	alert("身份证号不正确！");
-        }
-        btn.onclick = function(){
-            isEmail(email.value);
-            isPhone(phone.value);
-            isId(id.value);
+        reg = /^\d{18}|\d{15}$/;
+        if(id.value==''){
+          ;
+        }else if(!reg.test(id.value)){
+        	id.focus();
+          alert("身份证号不正确！");
+          return false;
         }
     }
 </script>

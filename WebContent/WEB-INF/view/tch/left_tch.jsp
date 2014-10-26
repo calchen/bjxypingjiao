@@ -24,30 +24,30 @@
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']=='stu_pingjiao.jsp'">
+      <s:if test="#session['uri']=='tch_pingjiao.jsp'">
         <li class="active">
-          <a href="stu_pingjiao">
+          <a href="tch_pingjiao">
             <i class="icon-white icon-check"></i>网上评教
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="stu_pingjiao">
+          <a href="tch_pingjiao">
             <i class="icon-check"></i>网上评教
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']=='stu_result.jsp'">
+      <s:if test="#session['uri']=='tch_result.jsp'">
         <li class="active">
-          <a href="stu_result">
+          <a href="tch_result">
             <i class="icon-white icon-list-alt"></i>评教记录
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="stu_result">
+          <a href="tch_result">
             <i class="icon-list-alt"></i>评教记录
           </a>
         </li>
@@ -67,30 +67,30 @@
         </li>
       </s:else>
       <li class="nav-header">账号设置</li>
-      <s:if test="#session['uri']=='stu_profile.jsp'">
+      <s:if test="#session['uri']=='tch_profile.jsp'">
         <li class="active">
-          <a href="stu_profile">
+          <a href="tch_profile">
             <i class="icon-white icon-user"></i>个人信息
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="stu_profile">
+          <a href="tch_profile">
             <i class="icon-user"></i>个人信息
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']=='stu_password.jsp'">
+      <s:if test="#session['uri']=='tch_password.jsp'">
         <li class="active">
-          <a href="stu_password">
+          <a href="tch_password">
             <i class="icon-white icon-cog"></i>修改密码
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="stu_password">
+          <a href="tch_password">
             <i class="icon-cog"></i>修改密码
           </a>
         </li>

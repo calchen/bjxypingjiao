@@ -1,4 +1,4 @@
-package com.chenky.struts.stu;
+package com.chenky.struts.tch;
 
 import java.util.Map;
 

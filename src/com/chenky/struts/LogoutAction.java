@@ -24,17 +24,20 @@ public class LogoutAction extends ActionSupport {
 	public String execute() throws Exception {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		Map<String, Object> application =ActionContext.getContext().getApplication();
-		application.remove(session.get("USER_ID"));
-		session.remove("USER_ID");
-		session.remove("USER_NAME");
-		session.remove("USER_LEVEL");
-		
-		Integer ONLINEUSER = (Integer) application.get("ONLINEUSER");
-		if(ONLINEUSER == null || ONLINEUSER <= 0) {
-			ONLINEUSER = new Integer(1);
+		String id = (String) session.get("USER_ID");
+		if(id != null) {
+			application.remove(session.get("USER_ID"));
+			session.remove("USER_ID");
+			session.remove("USER_NAME");
+			session.remove("USER_LEVEL");
+			
+			Integer ONLINEUSER = (Integer) application.get("ONLINEUSER");
+			if(ONLINEUSER == null || ONLINEUSER <= 0) {
+				ONLINEUSER = new Integer(1);
+			}
+			ONLINEUSER--;
+			application.put("ONLINEUSER", ONLINEUSER);
 		}
-		ONLINEUSER--;
-		application.put("ONLINEUSER", ONLINEUSER);
 		return SUCCESS;
 	}
 
