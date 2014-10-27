@@ -56,7 +56,7 @@
             aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">忘记密码</h4>
         </div>
-        <div class="modal-body">默认密码为身份证后6位，x请小写。<br/>学生账户请点击这里进行密码重置。<br />教师、管理员账户请联系教务处重置密码。</div>
+        <div class="modal-body">默认密码为身份证后6位，x请小写。<br/>学生账户请<a href="forgotpassword">点击这里</a>进行密码重置。<br />教师、管理员账户请联系教务处重置密码。</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭
           </button>

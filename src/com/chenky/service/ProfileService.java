@@ -75,4 +75,25 @@ public class ProfileService {
 		ProfileDAO dao = new ProfileDAO();
 		return dao.setTeacherProfile(teacher);
 	}
+	
+	/**
+	 * 用于重置密码
+	 * @param newPassword 
+	 * @param idcardNum 
+	 * @param id 
+	 */
+	public boolean resetPassword(String id, String idcardNum, String newPassword) {
+		ProfileDAO dao = new ProfileDAO();
+		String idcard = dao.getidcardNum(id);
+		if(idcard == null || "".equals(idcard)) {
+			return false;
+		}
+		if(!idcard.equals(idcardNum)) {
+			return false;
+		}
+		if(!dao.setPassword(id, newPassword)) {
+			return false;
+		}
+		return true;
+	}
 }

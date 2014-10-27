@@ -65,6 +65,15 @@
 			<result>/WEB-INF/view/help.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
+		<action name="forgotpassword">
+			<result>/WEB-INF/view/forgotPassword.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="findpassword" class="com.chenky.struts.ForgotPasswordAction" method="setting">
+			<result>/WEB-INF/view/forgotPassword.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
 	</package>
 
 	<include file="com/chenky/struts/admin/struts-admin.xml"></include>

@@ -39,7 +39,7 @@ public class SettingAction extends ActionSupport {
 	/**
 	 * 评教状态
 	 */
-	private String status = "end";
+	private String status = "going";
 
 	/**
 	 * 开始时间
@@ -65,8 +65,8 @@ public class SettingAction extends ActionSupport {
 		semesterList.add(new SemesterVO("第1学期"));
 		semesterList.add(new SemesterVO("第2学期"));
 		semester.setValue("第1学期");
-		start = "2014-10-20 08:00";
-		end = "2014-15-20 08:00";
+		start = "2014-10-27 08:00";
+		end = "2014-11-09 23:00";
 		return SUCCESS;
 	}
 

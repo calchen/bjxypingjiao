@@ -49,7 +49,7 @@
                   <label class="control-label" for="input01">当前状态</label>
                   <div class="controls">
                     <input type="text" readonly="readonly"
-                      value="评教结束" />
+                      value="评教进行" />
                   </div>
                   <br />
                   <label class="control-label" for="input01">修改状态</label>

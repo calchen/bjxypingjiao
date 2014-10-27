@@ -2,6 +2,7 @@ package com.chenky.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import com.chenky.vo.StudentVO;
 import com.chenky.vo.TeacherVO;
@@ -81,8 +82,8 @@ public class ProfileDAO {
 					+ "`student` "
 				+ "SET "
 					+ "`telNumber` = ?, "
-					+ "`email` = ? "
-					+ "`IdCardNumber` = ?, "
+					+ "`email` = ? ,"
+					+ "`IdCardNumber` = ? "
 				+ "WHERE "
 					+ "`id` = ?; ";
 			parameters = new String[4];
@@ -103,6 +104,7 @@ public class ProfileDAO {
 			parameters[1] = user.getEmail();
 			parameters[2] = user.getId();
 		}
+		System.out.println(Arrays.toString(parameters));
 		DAO.executeUpdate(sql, parameters);
 		return true;
 	}
@@ -194,6 +196,43 @@ public class ProfileDAO {
 			parameters[1] = teacher.getEmail();
 			parameters[2] = teacher.getId();
 		}
+		DAO.executeUpdate(sql, parameters);
+		return true;
+	}
+	
+	/**
+	 * 获取用户身份证号,当前只能获取学生的身份证号
+	 */
+	public String getidcardNum(String id) {
+		String sql = 
+				"SELECT "
+				+ "`IdCardNumber` "
+			+ "FROM "
+				+ "`student` "
+			+ "WHERE "
+				+ "`id` = ?;";
+		String[] parameters = {id};
+		String idcardNum = null;
+		ResultSet rs = DAO.executeQuery(sql, parameters);
+		try {
+			if(rs.next()) {
+				idcardNum = rs.getString("IdCardNumber");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return idcardNum;
+	}
+	public boolean setPassword(String id,String password) {
+		String sql = 
+			"UPDATE "
+				+ "`user` "
+			+ "SET "
+				+ "`password` = ? "
+			+ "WHERE "
+				+ "`id` = ?;";
+		String[] parameters = {password,id};
 		DAO.executeUpdate(sql, parameters);
 		return true;
 	}

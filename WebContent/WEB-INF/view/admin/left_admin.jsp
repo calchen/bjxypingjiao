@@ -97,7 +97,7 @@
           </a>
         </li>
       </s:else>
-      <s:if test="#session['uri']=='admin_downloaddata.jsp'">
+      <s:if test="#session['uri']=='gjv'">
         <li class="active">
           <a href="admin_downloaddata">
             <i class="icon-white icon-download"></i>数据下载
@@ -106,7 +106,7 @@
       </s:if>
       <s:else>
         <li>
-          <a href="admin_downloaddata">
+          <a href="">
             <i class="icon-download"></i>数据下载
           </a>
         </li>
