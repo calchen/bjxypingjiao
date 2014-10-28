@@ -27,7 +27,9 @@ public class InitListener implements ServletContextListener {
 		ServletContext servletContext = servletContextEvent.getServletContext();
 		SystemConfigService scs = new SystemConfigService();
 		servletContext.setAttribute("PUBLICMESSAGE", scs.getPublicMessage());
-		servletContext.setAttribute("PINGJIAOSTATUS", "");
+		servletContext.setAttribute("PINGJIAOSTATUS", "1");
+		servletContext.setAttribute("STRAT_DATETIME", "2014-10-27 08:00");
+		servletContext.setAttribute("END_DATETIME", "2014-10-27 08:00");
 
 	}
 

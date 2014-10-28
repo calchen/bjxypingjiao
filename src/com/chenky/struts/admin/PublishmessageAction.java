@@ -1,15 +1,8 @@
 package com.chenky.struts.admin;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.util.Map;
-import java.util.Properties;
 
-import com.chenky.dao.DAO;
 import com.chenky.service.SystemConfigService;
-import com.chenky.test.Demo;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -19,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class PublishmessageAction extends ActionSupport {
 
 	/**
