@@ -12,6 +12,13 @@ import com.chenky.vo.UserVO;
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class LoginDAO {
+	/**
+	 * 用于检查用户登录是否合法，如果不合法就返回null，如果合法就返回该用户的信息
+	 * 
+	 * @param user
+	 *            包含用户ID和password
+	 * @return null或用户基本信息
+	 */
 	public UserVO check(UserVO user) {
 		String id = user.getId();
 		String password = user.getPassword();
