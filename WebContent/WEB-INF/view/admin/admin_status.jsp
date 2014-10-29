@@ -21,6 +21,9 @@
               <thead>
                 <tr>
                   <th>行政班</th>
+                  <th>学年</th>
+                  <th>学期</th>
+                  <th>课程</th>
                   <th>已评</th>
                   <th>未评</th>
                   <th>操作</th>
@@ -29,11 +32,14 @@
               <tbody>
                 <s:iterator var="list" value="statusList">
                   <tr>
-                    <td>${list.name }</td>
-                    <td>${list.doneNum }</td>
-                    <td>${list.allNum-list.doneNum }</td>
+                    <td>${list.executiveClass }</td>
+                    <td>${list.grade }</td>
+                    <td>${list.semester }</td>
+                    <td>${list.course }</td>
+                    <td>${list.havePj }</td>
+                    <td>${list.haventPj }</td>
                     <td>
-                      <a class="toggle-link" href="#">
+                      <a class="toggle-link" href="admin_status?page=1&executiveClass=${list.executiveClass }&grade=${list.grade }&semester=${list.semester }&course=${list.course}">
                         <i class="icon-search"></i>查看
                       </a>
                     </td>

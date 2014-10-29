@@ -2,21 +2,19 @@ package com.chenky.struts.admin;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.chenky.vo.ClassVO;
+import com.chenky.vo.PingjiaoStatusVo;
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath.Step;
 
 /**
- * 
+ * 管理员界面评教查看Action
  * <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class PjStatus extends ActionSupport {
 
 	/**
@@ -30,11 +28,11 @@ public class PjStatus extends ActionSupport {
 	/**
 	 * 前页
 	 */
-	private int pre;
+	private int pre = 1;
 	/**
 	 * 后页
 	 */
-	private int next;
+	private int next = 6;
 	/**
 	 * 步长
 	 */
@@ -42,7 +40,7 @@ public class PjStatus extends ActionSupport {
 	/**
 	 * 状态列表
 	 */
-	private List<ClassVO> statusList = new ArrayList<ClassVO>();
+	private List<PingjiaoStatusVo> statusList = new ArrayList<PingjiaoStatusVo>();
 	/**
 	 * 年级列表
 	 */
@@ -61,17 +59,18 @@ public class PjStatus extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		createGradeList();
-		statusList.add(new ClassVO("11计科1", 35, 24));
-		statusList.add(new ClassVO("11计科2", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-		statusList.add(new ClassVO("11计科3", 35, 24));
-
+		PingjiaoStatusVo vo = new PingjiaoStatusVo();
+		vo.setExecutiveClass("总计");
+		vo.setGrade("2014-2015");
+		vo.setSemester("1");
+		vo.setCourse("CE1");
+		vo.setHavePj(0);
+		vo.setHaventPj(2372);
+		
+		statusList.add(vo);
+		statusList.add(vo);
+		statusList.add(vo);
+		
 		pageList.add("1");
 		pageList.add("2");
 		pageList.add("3");
@@ -99,7 +98,7 @@ public class PjStatus extends ActionSupport {
 			}
 		}
 	}
-	
+
 	public String search() {
 		return SUCCESS;
 	}
@@ -204,7 +203,7 @@ public class PjStatus extends ActionSupport {
 	 * 
 	 * @return statusList
 	 */
-	public List<ClassVO> getStatusList() {
+	public List<PingjiaoStatusVo> getStatusList() {
 		return statusList;
 	}
 
@@ -214,7 +213,7 @@ public class PjStatus extends ActionSupport {
 	 * @param statusList
 	 *            statusList
 	 */
-	public void setStatusList(List<ClassVO> statusList) {
+	public void setStatusList(List<PingjiaoStatusVo> statusList) {
 		this.statusList = statusList;
 	}
 
@@ -237,21 +236,23 @@ public class PjStatus extends ActionSupport {
 		this.gradeList = gradeList;
 	}
 
-	/** 
-	 * 获取grade 
-	 * @return grade 
+	/**
+	 * 获取grade
+	 * 
+	 * @return grade
 	 */
 	public String getGrade() {
 		return grade;
 	}
 
-	/** 
-	 * 设置grade 
-	 * @param grade grade 
+	/**
+	 * 设置grade
+	 * 
+	 * @param grade
+	 *            grade
 	 */
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
-	
 }
