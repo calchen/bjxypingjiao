@@ -85,7 +85,7 @@
     	var passwd1 = document.getElementById("password1");
         var passwd2 = document.getElementById("password2");
         var check = document.getElementById("check");
-        var reg = /^\d{18}|\d{15}$/;
+        var reg = /(^\d{15}$)|(^\d{17}([0-9]|X|x)$)/;
         if(id.value=='') {
         	id.focus();
         	alert("用户名不能为空！");

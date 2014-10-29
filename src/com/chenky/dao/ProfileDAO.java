@@ -216,7 +216,7 @@ public class ProfileDAO {
 		ResultSet rs = DAO.executeQuery(sql, parameters);
 		try {
 			if(rs.next()) {
-				idcardNum = rs.getString("IdCardNumber");
+				idcardNum = rs.getString("IdCardNumber").toLowerCase();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

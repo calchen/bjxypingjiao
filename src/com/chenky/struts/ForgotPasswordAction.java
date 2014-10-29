@@ -119,7 +119,11 @@ public class ForgotPasswordAction extends ActionSupport {
 	 *            idcardNum
 	 */
 	public void setIdcardNum(String idcardNum) {
-		this.idcardNum = idcardNum;
+		if (idcardNum == null) {
+			this.idcardNum = idcardNum;
+		} else {
+			this.idcardNum = idcardNum.toLowerCase();
+		}
 	}
 
 	/**

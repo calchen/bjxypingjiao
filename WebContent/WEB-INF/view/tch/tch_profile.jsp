@@ -98,7 +98,7 @@
             	alert("电话不正确！");
         }
         function isId(strId) { 
-            var reg = /^\d{18}|\d{15}$/;
+            var reg = /(^\d{15}$)|(^\d{17}([0-9]|X|x)$)/;
             if(strId==''){
             	;
             }else if(!reg.test(strId))

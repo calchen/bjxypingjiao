@@ -111,7 +111,7 @@
           alert("邮箱不正确！");
           return false;
         }
-        reg = /^\d{18}|\d{15}$/;
+        reg = /(^\d{15}$)|(^\d{17}([0-9]|X|x)$)/;
         if(id.value==''){
           ;
         }else if(!reg.test(id.value)){

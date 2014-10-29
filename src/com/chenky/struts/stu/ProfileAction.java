@@ -5,7 +5,6 @@ import java.util.Map;
 import com.chenky.service.ProfileService;
 import com.chenky.util.IdCardNumberUtil;
 import com.chenky.vo.StudentVO;
-import com.chenky.vo.TeacherVO;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
