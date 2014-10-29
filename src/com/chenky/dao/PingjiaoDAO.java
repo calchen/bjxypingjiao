@@ -3,28 +3,40 @@ package com.chenky.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.chenky.vo.CourseVO;
 import com.chenky.vo.PingjiaoResultVO;
 
 /**
- * 
- * <br />
+ * 评教相关的DAO操作 <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class PingjiaoDAO {
 	/**
-	 * 获取学生评教课程
+	 * 获取学生评教课程，若获取不到会返回null
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 学生学号
+	 * @return 学生需要评教的课程信息
 	 */
 	public ArrayList<CourseVO> getStudentCourses(String id) {
-		String sql = "select course_grade,course_semester,course_name,stustatus,type from class,course where student_id=? and course_grade=grade and course_semester=semester and course_name=name;";
+		String sql = 
+			"select "
+				+ "course_grade,"
+				+ "course_semester,"
+				+ "course_name,"
+				+ "stustatus,"
+				+ "type "
+			+ "from "
+				+ "class,"
+				+ "course "
+			+ "where "
+				+ "student_id=? and "
+				+ "course_grade=grade and "
+				+ "course_semester=semester and "
+				+ "course_name=name;";
 		String[] parameters = { id };
 
 		ArrayList<CourseVO> list = new ArrayList<CourseVO>();
@@ -55,13 +67,23 @@ public class PingjiaoDAO {
 	}
 
 	/**
-	 * 获取评教结果
+	 * 获取学生评教结果，若获取不到会返回null
 	 * 
-	 * @param course
-	 * @return
+	 * @param course 课程信息
+	 * @return 学生给某个课程评教结果
 	 */
 	public PingjiaoResultVO getStudentPjResult(CourseVO course) {
-		String sql = "select stustatus,tchresult from class where course_grade=? and course_semester=? and course_name=? and student_id=?;";
+		String sql = 
+			"select "
+				+ "stustatus,"
+				+ "tchresult "
+			+ "from "
+				+ "class "
+			+ "where "
+				+ "course_grade=? and "
+				+ "course_semester=? and "
+				+ "course_name=? and "
+				+ "student_id=?;";
 		String[] parameters = { course.getGrade(), course.getSemester(),
 				course.getName(), course.getId() };
 		PingjiaoResultVO pjResult = new PingjiaoResultVO();
@@ -104,10 +126,24 @@ public class PingjiaoDAO {
 	}
 
 	/**
-	 * 保存评教结果
+	 * 保存学生评教结果
+	 * 
+	 * @param pjr
+	 *            学生某个课程的评教结果
 	 */
 	public void saveStudentPjRasult(PingjiaoResultVO pjr) {
-		String sql = "update class set tchresult=?,tchFraction=?,stustatus=? where course_grade=? and course_semester=? and course_name=? and student_id=?;";
+		String sql = 
+			"update "
+				+ "class "
+			+ "set "
+				+ "tchresult=?,"
+				+ "tchFraction=?,"
+				+ "stustatus=? "
+			+ "where "
+				+ "course_grade=? and "
+				+ "course_semester=? and "
+				+ "course_name=? and "
+				+ "student_id=?;";
 		Object[] parameters = { "", pjr.getMark(), pjr.getStatus(),
 				pjr.getGrade(), pjr.getSemester(), pjr.getCourse(),
 				pjr.getUserID() };
@@ -125,18 +161,29 @@ public class PingjiaoDAO {
 	}
 
 	/**
-	 * 获取老师评教课程
+	 * 获取老师评教课程，若获取不到会返回null
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 老师工资号
+	 * @return 老师需评教课程
 	 */
 	public ArrayList<CourseVO> getTeacherCourses(String id) {
-		String sql = "SELECT "
-				+ "course_grade, course_semester, course_name, tchstatus, type, class "
-				+ "FROM " + "class, course " + "WHERE " + "teacher_id = ? "
-				+ "AND course_grade = grade "
-				+ "AND course_semester = semester " + "AND course_name = name "
-				+ "GROUP BY class;";
+		String sql = 
+			"SELECT "
+				+ "course_grade, "
+				+ "course_semester, "
+				+ "course_name, "
+				+ "tchstatus, "
+				+ "type, "
+				+ "class "
+			+ "FROM "
+				+ "class, "
+				+ "course "
+			+ "WHERE "
+				+ "teacher_id = ? AND "
+				+ "course_grade = grade AND "
+				+ "course_semester = semester AND "
+				+ "course_name = name "
+			+ "GROUP BY class;";
 		String[] parameters = { id };
 
 		ArrayList<CourseVO> list = new ArrayList<CourseVO>();
@@ -168,13 +215,24 @@ public class PingjiaoDAO {
 	}
 
 	/**
-	 * 获取评教结果
+	 * 获取老师评教结果，若获取不到会返回null
 	 * 
-	 * @param course
-	 * @return
+	 * @param course 课程信息
+	 * @return 老师给某个班的评教结果
 	 */
 	public PingjiaoResultVO getTeacherPjResult(CourseVO course) {
-		String sql = "select tchstatus,sturesult from class where course_grade=? and course_semester=? and course_name=? and class=? and teacher_id=?;";
+		String sql = 
+			"select "
+				+ "tchstatus,"
+				+ "sturesult "
+			+ "from "
+				+ "class "
+			+ "where "
+				+ "course_grade=? and "
+				+ "course_semester=? and "
+				+ "course_name=? and "
+				+ "class=? and "
+				+ "teacher_id=?;";
 		String[] parameters = { course.getGrade(), course.getSemester(),
 				course.getName().split(" ")[0], course.getName().split(" ")[1],
 				course.getId() };
@@ -218,10 +276,24 @@ public class PingjiaoDAO {
 	}
 
 	/**
-	 * 保存评教结果
+	 * 保存老师评教结果
+	 * 
+	 * @param pjr 老师某个班评教的结果
 	 */
 	public void saveTeacherPjRasult(PingjiaoResultVO pjr) {
-		String sql = "update class set sturesult=?,stuFraction=?,tchstatus=? where course_grade=? and course_semester=? and course_name=? and class=? and teacher_id=?;";
+		String sql = 
+			"update "
+				+ "class "
+			+ "set "
+				+ "sturesult=?,"
+				+ "stuFraction=?,"
+				+ "tchstatus=? "
+			+ "where "
+				+ "course_grade=? and "
+				+ "course_semester=? and "
+				+ "course_name=? and "
+				+ "class=? and "
+				+ "teacher_id=?;";
 		Object[] parameters = { "", pjr.getMark(), pjr.getStatus(),
 				pjr.getGrade(), pjr.getSemester(),
 				pjr.getCourse().split(" ")[0], pjr.getCourse().split(" ")[1],

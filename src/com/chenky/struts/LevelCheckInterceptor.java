@@ -11,10 +11,11 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class LevelCheckInterceptor implements Interceptor {
 
 	private String result = "index";
-	
+
 	@Override
 	public void destroy() {
 	}
@@ -27,24 +28,24 @@ public class LevelCheckInterceptor implements Interceptor {
 	public String intercept(ActionInvocation invocation) throws Exception {
 		Map<String, Object> session = invocation.getInvocationContext()
 				.getSession();
-		//获取action
+		// 获取action
 		String actionNameString = invocation.getInvocationContext().getName();
-		//System.out.println(actionNameString);
-		//获取用户等级
+		// System.out.println(actionNameString);
+		// 获取用户等级
 		String level = (String) session.get("USER_LEVEL");
-		
-		//过滤需要登陆的界面
-		if(actionNameString != null && level != null) {
+
+		// 过滤需要登陆的界面
+		if (actionNameString != null && level != null) {
 			int levelint = Integer.parseInt(level);
-			if(actionNameString.startsWith("admin_") && levelint != 4) {
+			if (actionNameString.startsWith("admin_") && levelint != 4) {
 				// 用户权限为4才能访问admin_开头的action
 				return result;
 			}
-			if(actionNameString.startsWith("tch_") && levelint != 2) {
+			if (actionNameString.startsWith("tch_") && levelint != 2) {
 				// 用户权限为2才能访问tch_开头的action
 				return result;
 			}
-			if(actionNameString.startsWith("stu_") && levelint != 1) {
+			if (actionNameString.startsWith("stu_") && levelint != 1) {
 				// 用户权限为1才能访问stu_开头的action
 				return result;
 			}

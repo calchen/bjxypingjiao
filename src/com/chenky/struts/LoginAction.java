@@ -8,8 +8,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 
- * <br />
+ * 登录界面的Action <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
@@ -41,11 +40,6 @@ public class LoginAction extends ActionSupport {
 	 */
 	private Integer logintimes;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
-	 */
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub

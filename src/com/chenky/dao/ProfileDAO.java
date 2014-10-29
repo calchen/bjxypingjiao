@@ -8,16 +8,18 @@ import com.chenky.vo.StudentVO;
 import com.chenky.vo.TeacherVO;
 
 /**
- * 
+ * 个人信息相关的DAO操作
  * <br />
  * @version 1.0 <br />
  * @author  陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class ProfileDAO {
 	/**
-	 * 获取用户信息
+	 * 获取学生个人信息，若没能获取到则返回null
+	 * 
 	 * @param id
-	 * @return
+	 *            学号
+	 * @return 学生个人信息或者null
 	 */
 	public StudentVO getStudentProfile(String id) {
 		String sql = 
@@ -58,8 +60,9 @@ public class ProfileDAO {
 	}
 	
 	/**
-	 * 设置用户信息
-	 * @param user
+	 * 设置学生个人信息
+	 * 
+	 * @param user 学生个人信息
 	 */
 	public boolean setStudentProfile(StudentVO user) {
 		String sql = 
@@ -110,9 +113,11 @@ public class ProfileDAO {
 	}
 
 	/**
-	 * 获取老师个人信息
+	 * 获取老师个人信息，若没能获取到则返回null
+	 * 
 	 * @param id
-	 * @return
+	 *            工资号
+	 * @return 老师个人信息或者null
 	 */
 	public TeacherVO getTeacherProfile(String id) {
 		String sql = 
@@ -150,8 +155,10 @@ public class ProfileDAO {
 	
 	/**
 	 * 设置老师个人信息
+	 * 
 	 * @param teacher
-	 * @return
+	 *            老师个人信息
+	 * @return 是否设置成功
 	 */
 	public boolean setTeacherProfile(TeacherVO teacher) {
 		String sql = 
@@ -202,6 +209,10 @@ public class ProfileDAO {
 	
 	/**
 	 * 获取用户身份证号,当前只能获取学生的身份证号
+	 * 
+	 * @param id
+	 *            用户名（学号或工资号）
+	 * @return 用户的身份证号
 	 */
 	public String getidcardNum(String id) {
 		String sql = 
@@ -224,6 +235,16 @@ public class ProfileDAO {
 		}
 		return idcardNum;
 	}
+	
+	/**
+	 * 设置用户密码
+	 * 
+	 * @param id
+	 *            用户名（学号或工资号）
+	 * @param password
+	 *            用户的新密码
+	 * @return 是否设置成功
+	 */
 	public boolean setPassword(String id,String password) {
 		String sql = 
 			"UPDATE "

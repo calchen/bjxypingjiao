@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Random;
+
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -63,7 +64,7 @@ public class SecurityImage {
 		// 绘制噪点
 		Random rand = new Random();
 		// 设置噪点颜色
-		//g.setColor(Color.LIGHT_GRAY);
+		// g.setColor(Color.LIGHT_GRAY);
 		g.setColor(new Color(100, 100, 100));
 		for (int i = 0; i < codeLength * 10; i++) {
 			int x = rand.nextInt(width);
@@ -72,15 +73,14 @@ public class SecurityImage {
 			g.drawRect(x, y, 1, 1);
 		}
 
-		// 绘制验证码
-		int codeY = height - 10;
 		// 设置字体颜色和样式
-		//g.setColor(new Color(19, 148, 246));
+		// g.setColor(new Color(19, 148, 246));
 		g.setColor(new Color(0, 0, 0));
 		g.setFont(new Font("Georgia", Font.BOLD, fSize));
 		for (int i = 0; i < codeLength; i++) {
-			//g.drawString(String.valueOf(securityCode.charAt(i)), i * 16 + 5,codeY);
-			g.drawString(String.valueOf(securityCode.charAt(i)), i * 16 + 5,fSize/2+(int)(Math.random()*fSize)+5);
+			// 每个字符的水平位置是固定的，垂直的位置是随机的
+			g.drawString(String.valueOf(securityCode.charAt(i)), i * 16 + 5,
+					fSize / 2 + (int) (Math.random() * fSize) + 5);
 		}
 		// 关闭资源
 		g.dispose();
