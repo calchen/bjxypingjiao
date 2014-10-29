@@ -10,8 +10,7 @@ import java.util.Arrays;
  *         http://www.cnblogs.com/dongliyang/archive/2012/08/24/2654431.html
  *         感谢作者
  * 
- * 对功能进行部分修改
- * 修改者：chenkaiyuan 2014.10.23
+ *         对功能进行部分修改 修改者：chenkaiyuan 2014.10.23
  */
 public class SecurityCode {
 
@@ -28,8 +27,8 @@ public class SecurityCode {
 	 * @return String 验证码
 	 */
 	public static String getSecurityCode() {
-		//长度在4-6位之间浮动
-		int length = (int)(Math.random()*3)+5;
+		// 长度在4-6位之间浮动，选择困难等级
+		int length = (int) (Math.random() * 3) + 5;
 		return getSecurityCode(length, SecurityCodeLevel.Hard, false);
 	}
 
@@ -51,17 +50,17 @@ public class SecurityCode {
 		int len = length;
 
 		// 字符集合(除去易混淆的数字0、数字1、字母l、字母o、字母O)
-		char[] codes = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b',
-				'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'p',
-				'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
-				'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-				'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		char[] codes = { '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c',
+				'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'p', 'q',
+				'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C',
+				'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P',
+				'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
 		// 根据不同的难度截取字符数组
 		if (level == SecurityCodeLevel.Simple) {
-			codes = Arrays.copyOfRange(codes, 0, 9);
+			codes = Arrays.copyOfRange(codes, 0, 7);
 		} else if (level == SecurityCodeLevel.Medium) {
-			codes = Arrays.copyOfRange(codes, 0, 33);
+			codes = Arrays.copyOfRange(codes, 0, 31);
 		}
 
 		// 字符集合长度
