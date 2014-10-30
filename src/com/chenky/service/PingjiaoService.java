@@ -105,4 +105,69 @@ public class PingjiaoService {
 		PingjiaoDAO dao = new PingjiaoDAO();
 		return dao.getTeacherCourses(id);
 	}
+
+	/**
+	 * 获取已有专业列表
+	 * 
+	 * @param grade
+	 *            学年，如2014-2015
+	 * @param semester
+	 *            学期，如1
+	 * @return 专业列表
+	 */
+	public List<String> getProfessionalNameList(String grade, String semester) {
+		return getList(grade, semester, "professionalName");
+	}
+
+	/**
+	 * 获取已有行政班列表
+	 * 
+	 * @param grade
+	 *            学年，如2014-2015
+	 * @param semester
+	 *            学期，如1
+	 * @return 行政班列表
+	 */
+	public List<String> getExecutiveClassList(String grade, String semester) {
+		return getList(grade, semester, "executiveClass");
+	}
+
+	/**
+	 * 获取已有课程列表
+	 * 
+	 * @param grade
+	 *            学年，如2014-2015
+	 * @param semester
+	 *            学期，如1
+	 * @return 课程列表
+	 */
+	public List<String> getCourseList(String grade, String semester) {
+		return getList(grade, semester, "course_name");
+	}
+
+	/**
+	 * 获取已有listName列表
+	 * 
+	 * @param grade
+	 *            学年，如2014-2015
+	 * @param semester
+	 *            学期，如1
+	 * @param listName
+	 *            列表名，如课程列表（course_name）
+	 * @return listName表
+	 */
+	private List<String> getList(String grade, String semester, String listName) {
+		PingjiaoDAO dao = new PingjiaoDAO();
+		List<String> list = dao.getList(grade, semester, listName);
+		List<String> reallist = new ArrayList<String>();
+		reallist.add("全部");
+		if (list != null) {
+			for (String i : list) {
+				reallist.add(i);
+			}
+		}
+		return reallist;
+	}
+	
+	public List<P>
 }

@@ -59,12 +59,24 @@
             <a class="toggle-link" href="#new-file">
               <i class="icon-plus"></i>查询
             </a>
-            <form action="admin_statussearch" enctype="multipart/form-data" id="new-file" class="form-horizontal hidden">
+            <form action="admin_statussearch?page=1" method="post" enctype="multipart/form-data" id="new-file" class="form-horizontal hidden">
               <fieldset>
                 <div class="control-group">
-                  <label class="control-label" for="textarea">年级</label>
+                  <label class="control-label" for="textarea">专业</label>
                   <div class="controls">
-                    <s:select list="gradeList"/>
+                    <s:select list="professionalNameList" name="professionalName"/>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="textarea">行政班</label>
+                  <div class="controls">
+                    <s:select list="executiveClassList" name="executiveClass"/>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="textarea">课程</label>
+                  <div class="controls">
+                    <s:select list="courseList" name="course"/>
                   </div>
                 </div>
                 <div class="form-actions">

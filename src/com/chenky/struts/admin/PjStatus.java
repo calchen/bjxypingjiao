@@ -1,15 +1,16 @@
 package com.chenky.struts.admin;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
+import com.chenky.service.PingjiaoService;
 import com.chenky.vo.PingjiaoStatusVo;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 管理员界面评教查看Action
- * <br />
+ * 管理员界面评教查看Action <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
@@ -41,24 +42,47 @@ public class PjStatus extends ActionSupport {
 	 * 状态列表
 	 */
 	private List<PingjiaoStatusVo> statusList = new ArrayList<PingjiaoStatusVo>();
-	/**
-	 * 年级列表
-	 */
-	private List<String> gradeList = new ArrayList<String>();
-	/**
-	 * 当前年级
-	 */
-	private String grade;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	/**
+	 * 行政班列表
 	 */
+	private List<String> professionalNameList = new ArrayList<String>();
+	/**
+	 * 行政班
+	 */
+	private String professionalName;
+	/**
+	 * 行政班列表
+	 */
+	private List<String> executiveClassList = new ArrayList<String>();
+	/**
+	 * 行政班
+	 */
+	private String executiveClass;
+	/**
+	 * 课程列表
+	 */
+	private List<String> courseList = new ArrayList<String>();
+	/**
+	 * 课程
+	 */
+	private String course;
+
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		createGradeList();
+		PingjiaoService service = new PingjiaoService();
+		Map<String, Object> application = ActionContext.getContext()
+				.getApplication();
+		professionalNameList = service.getProfessionalNameList(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"));
+		executiveClassList = service.getExecutiveClassList(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"));
+		courseList = service.getCourseList(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"));
+		
 		PingjiaoStatusVo vo = new PingjiaoStatusVo();
 		vo.setExecutiveClass("总计");
 		vo.setGrade("2014-2015");
@@ -66,11 +90,11 @@ public class PjStatus extends ActionSupport {
 		vo.setCourse("CE1");
 		vo.setHavePj(0);
 		vo.setHaventPj(2372);
-		
+
 		statusList.add(vo);
 		statusList.add(vo);
 		statusList.add(vo);
-		
+
 		pageList.add("1");
 		pageList.add("2");
 		pageList.add("3");
@@ -78,25 +102,8 @@ public class PjStatus extends ActionSupport {
 		pageList.add("5");
 		pre = 1;
 		next = 6;
-		return SUCCESS;
-	}
 
-	private void createGradeList() {
-		if (gradeList == null) {
-			gradeList = new ArrayList<String>();
-		}
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH) + 1;
-		if (month <= 8) {
-			for (int i = 1; i <= 6; i++) {
-				gradeList.add(year - i + "级");
-			}
-		} else {
-			for (int i = 0; i < 6; i++) {
-				gradeList.add(year - i + "级");
-			}
-		}
+		return SUCCESS;
 	}
 
 	public String search() {
@@ -218,41 +225,117 @@ public class PjStatus extends ActionSupport {
 	}
 
 	/**
-	 * 获取gradeList
+	 * 获取professionalNameList
 	 * 
-	 * @return gradeList
+	 * @return professionalNameList
 	 */
-	public List<String> getGradeList() {
-		return gradeList;
+	public List<String> getProfessionalNameList() {
+		return professionalNameList;
 	}
 
 	/**
-	 * 设置gradeList
+	 * 设置professionalNameList
 	 * 
-	 * @param gradeList
-	 *            gradeList
+	 * @param professionalNameList
+	 *            professionalNameList
 	 */
-	public void setGradeList(List<String> gradeList) {
-		this.gradeList = gradeList;
+	public void setProfessionalNameList(List<String> professionalNameList) {
+		this.professionalNameList = professionalNameList;
 	}
 
 	/**
-	 * 获取grade
+	 * 获取professionalName
 	 * 
-	 * @return grade
+	 * @return professionalName
 	 */
-	public String getGrade() {
-		return grade;
+	public String getProfessionalName() {
+		return professionalName;
 	}
 
 	/**
-	 * 设置grade
+	 * 设置professionalName
 	 * 
-	 * @param grade
-	 *            grade
+	 * @param professionalName
+	 *            professionalName
 	 */
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public void setProfessionalName(String professionalName) {
+		this.professionalName = professionalName;
+	}
+
+	/**
+	 * 获取executiveClassList
+	 * 
+	 * @return executiveClassList
+	 */
+	public List<String> getExecutiveClassList() {
+		return executiveClassList;
+	}
+
+	/**
+	 * 设置executiveClassList
+	 * 
+	 * @param executiveClassList
+	 *            executiveClassList
+	 */
+	public void setExecutiveClassList(List<String> executiveClassList) {
+		this.executiveClassList = executiveClassList;
+	}
+
+	/**
+	 * 获取executiveClass
+	 * 
+	 * @return executiveClass
+	 */
+	public String getExecutiveClass() {
+		return executiveClass;
+	}
+
+	/**
+	 * 设置executiveClass
+	 * 
+	 * @param executiveClass
+	 *            executiveClass
+	 */
+	public void setExecutiveClass(String executiveClass) {
+		this.executiveClass = executiveClass;
+	}
+
+	/**
+	 * 获取courseList
+	 * 
+	 * @return courseList
+	 */
+	public List<String> getCourseList() {
+		return courseList;
+	}
+
+	/**
+	 * 设置courseList
+	 * 
+	 * @param courseList
+	 *            courseList
+	 */
+	public void setCourseList(List<String> courseList) {
+		this.courseList = courseList;
+	}
+
+	/**
+	 * 获取course
+	 * 
+	 * @return course
+	 */
+	public String getCourse() {
+		return course;
+	}
+
+	/**
+	 * 设置course
+	 * 
+	 * @param course
+	 *            course
+	 */
+	public void setCourse(String course) {
+		this.course = course;
 	}
 
 }

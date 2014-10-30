@@ -36,7 +36,7 @@ public class InitListener implements ServletContextListener {
 		// 当前学年
 		servletContext.setAttribute("CURRENT_GRADE", "2014-2015");
 		// 当前学期
-		servletContext.setAttribute("CURRENT_SEMESTER", "第一学期");
+		servletContext.setAttribute("CURRENT_SEMESTER", "1");
 
 	}
 

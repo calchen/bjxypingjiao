@@ -310,4 +310,44 @@ public class PingjiaoDAO {
 		DAO.executeUpdate(sql, parameters);
 
 	}
+
+	/**
+	 * 获取已有listName列表，若获取不到则返回null
+	 * 
+	 * @param grade
+	 *            学年，如2014-2015
+	 * @param semester
+	 *            学期，如1
+	 * @param listName
+	 *            列表名，如课程列表（course_name）
+	 * @return listName表或null
+	 */
+	public List<String> getList(String grade,String semester,String listName) {
+		String sql = 
+				"SELECT "
+					+ listName
+				+ " FROM "
+					+ "`studentclassinfo` "
+				+ "WHERE "
+					+ "`course_grade`=? AND "
+					+ "`course_semester`=? "
+					+ "GROUP BY " + listName
+					+ " ORDER BY " + listName ;
+		String[] parameters = { grade, semester };
+		ResultSet rs = DAO.executeQuery(sql, parameters);
+		List<String> list = null;
+		try {
+			while(rs.next()) {
+				if(list == null) {
+					list = new ArrayList<String>();
+				}
+				String name = rs.getString(listName);
+				list.add(name);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
