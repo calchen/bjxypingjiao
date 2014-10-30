@@ -33,6 +33,10 @@ public class InitListener implements ServletContextListener {
 		servletContext.setAttribute("STRAT_DATETIME", "2014-10-27 08:00");
 		// 评教结束时间
 		servletContext.setAttribute("END_DATETIME", "2014-10-27 08:00");
+		// 当前学年
+		servletContext.setAttribute("CURRENT_GRADE", "2014-2015");
+		// 当前学期
+		servletContext.setAttribute("CURRENT_SEMESTER", "第一学期");
 
 	}
 
