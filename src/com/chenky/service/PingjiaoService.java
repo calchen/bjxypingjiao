@@ -8,8 +8,7 @@ import com.chenky.vo.CourseVO;
 import com.chenky.vo.PingjiaoResultVO;
 
 /**
- * 
- * <br />
+ * 评教相关服务 <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
@@ -19,26 +18,30 @@ public class PingjiaoService {
 	 * 获取学生评教结果
 	 * 
 	 * @param course
-	 * @return
+	 *            课程信息
+	 * @return 学生评教结果或null
 	 */
 	public PingjiaoResultVO getStudentPjResult(CourseVO course) {
 		PingjiaoDAO dao = new PingjiaoDAO();
-
 		return dao.getStudentPjResult(course);
 	}
 
 	/**
-	 * 保存评教数据
+	 * 保存学生评教数据
 	 * 
 	 * @param result
+	 *            学生评价结果
 	 */
 	public void setStudentPjResult(PingjiaoResultVO result) {
 		PingjiaoDAO dao = new PingjiaoDAO();
 		List<String> list = result.getResult();
-		int mark = 0;
+		// 学生打分分数的权值
+		double[] weight = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+		double mark = 0;
+		// 根据权值计算学生给老师打分的总值
 		if (list != null) {
-			for (String i : list) {
-				mark += Integer.parseInt(i);
+			for (int i = 0; i < list.size(); i++) {
+				mark += (Integer.parseInt(list.get(i)) * weight[i]);
 			}
 		}
 		result.setMark(mark);
@@ -46,10 +49,11 @@ public class PingjiaoService {
 	}
 
 	/**
-	 * 获取老师课程列表
+	 * 获取学生课程列表，若获取不到则返回null
 	 * 
 	 * @param id
-	 * @return
+	 *            学生学号
+	 * @return 学生需评教的课程信息或null
 	 */
 	public ArrayList<CourseVO> getStudentCoursesList(String id) {
 		PingjiaoDAO dao = new PingjiaoDAO();
@@ -60,27 +64,30 @@ public class PingjiaoService {
 	 * 获取老师评教结果
 	 * 
 	 * @param course
-	 * @return
+	 *            课程信息
+	 * @return 老师评教结果或null
 	 */
 	public PingjiaoResultVO getTeacherPjResult(CourseVO course) {
 		PingjiaoDAO dao = new PingjiaoDAO();
-
 		return dao.getTeacherPjResult(course);
 	}
 
 	/**
-	 * 保存评教数据
+	 * 保存老师评教数据
 	 * 
 	 * @param result
+	 *            老师评教结果
 	 */
 	public void setTeacherPjResult(PingjiaoResultVO result) {
 		PingjiaoDAO dao = new PingjiaoDAO();
 		List<String> list = result.getResult();
+		// 老师打分分数的权值
 		double[] weight = { 0.1, 0.15, 0.3, 0.25, 0.2 };
 		double mark = 0;
+		// 根据权值计算老师给学生打分的总值
 		if (list != null) {
-			for (int i = 0;i < list.size();i++) {
-				mark += (Integer.parseInt(list.get(i))*weight[i]);
+			for (int i = 0; i < list.size(); i++) {
+				mark += (Integer.parseInt(list.get(i)) * weight[i]);
 			}
 		}
 		result.setMark(mark);
@@ -88,10 +95,11 @@ public class PingjiaoService {
 	}
 
 	/**
-	 * 获取学生课程列表
+	 * 获取老师课程列表
 	 * 
 	 * @param id
-	 * @return
+	 *            老师工资号
+	 * @return 老师课程列表或null
 	 */
 	public ArrayList<CourseVO> getTeacherCoursesList(String id) {
 		PingjiaoDAO dao = new PingjiaoDAO();

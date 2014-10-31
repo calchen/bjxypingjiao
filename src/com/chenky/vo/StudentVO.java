@@ -265,7 +265,11 @@ public class StudentVO {
 	 *            idCardNumber
 	 */
 	public void setIdCardNumber(String idCardNumber) {
-		this.idCardNumber = idCardNumber;
+		if (idCardNumber == null) {
+			this.idCardNumber = idCardNumber;
+		} else {
+			this.idCardNumber = idCardNumber.toLowerCase();
+		}
 	}
 
 	/**
@@ -274,7 +278,7 @@ public class StudentVO {
 	 * @return telNumber
 	 */
 	public String getTelNumber() {
-		return telNumber;
+		return telNumber.toLowerCase();
 	}
 
 	/**

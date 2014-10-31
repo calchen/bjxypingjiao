@@ -3,16 +3,20 @@ package com.chenky.util;
 import java.security.MessageDigest;
 
 /**
- * 
- * <br />
+ * sha1加密工具类 <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
 public class Sha1Util {
 
+	/**
+	 * 采用的加密算法
+	 */
 	private static final String ALGORITHM = "SHA1";
-
+	/**
+	 * 所有十六进制小写字母
+	 */
 	private static final char[] HEX_DIGITS = { '0', '1', '2', '3', '4', '5',
 			'6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
@@ -27,6 +31,7 @@ public class Sha1Util {
 			str = "";
 		}
 		try {
+			// 根据常量ALGORITHM判断使用什么加密方式，这里默认为sha1
 			MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM);
 			messageDigest.update(str.getBytes());
 			return getFormattedText(messageDigest.digest());
@@ -37,7 +42,7 @@ public class Sha1Util {
 	}
 
 	/**
-	 * Takes the raw bytes from the digest and formats them correct.
+	 * 将密文转换成十六进制形式
 	 *
 	 * @param bytes
 	 *            the raw bytes from the digest.

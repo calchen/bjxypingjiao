@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 学生修改密码的Action <br />
+ * 用户重置修改密码的Action <br />
  * 
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
@@ -57,7 +57,7 @@ public class ForgotPasswordAction extends ActionSupport {
 			status = "用户名不能为空";
 			return SUCCESS;
 		}
-		if(idcardNum == null || "".equals(idcardNum)){
+		if (idcardNum == null || "".equals(idcardNum)) {
 			status = "身份证号不能为空";
 			return SUCCESS;
 		}
@@ -73,9 +73,9 @@ public class ForgotPasswordAction extends ActionSupport {
 			status = "验证码错误";
 			return ERROR;
 		}
-		
+
 		// 检查用户信息，如果正确就保存新密码
-		if (!service.resetPassword(id,idcardNum,newPassword)) {
+		if (!service.resetPassword(id, idcardNum, newPassword)) {
 			status = "密码修改失败,用户名或身份证号错误";
 			return SUCCESS;
 		}
@@ -119,7 +119,11 @@ public class ForgotPasswordAction extends ActionSupport {
 	 *            idcardNum
 	 */
 	public void setIdcardNum(String idcardNum) {
-		this.idcardNum = idcardNum;
+		if (idcardNum == null) {
+			this.idcardNum = idcardNum;
+		} else {
+			this.idcardNum = idcardNum.toLowerCase();
+		}
 	}
 
 	/**

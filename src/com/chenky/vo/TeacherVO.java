@@ -156,7 +156,11 @@ public class TeacherVO {
 	 *            idCardNumber
 	 */
 	public void setIdCardNumber(String idCardNumber) {
-		this.idCardNumber = idCardNumber;
+		if (idCardNumber == null) {
+			this.idCardNumber = idCardNumber;
+		} else {
+			this.idCardNumber = idCardNumber.toLowerCase();
+		}
 	}
 
 	/**
