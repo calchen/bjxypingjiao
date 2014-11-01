@@ -69,8 +69,9 @@ public class teacherExcel{
 				
 				// 获取老师工资号
 				String passName = passCell.getStringCellValue();	
-			    			
-				uvo.setPassword(passName);
+				Sha1Util sh =new Sha1Util();
+				String passWord =sh.hex_sha1(passName);			
+				uvo.setPassword(passWord);
 				
 				
 				// 获取老师管理权限等级
