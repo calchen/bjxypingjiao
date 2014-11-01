@@ -6,7 +6,7 @@ package com.chenky.vo;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
-public class PingjiaoStatusVo {
+public class PingjiaoStatusVO {
 	/**
 	 * 学生学号
 	 */
@@ -67,7 +67,7 @@ public class PingjiaoStatusVo {
 	/**
 	 * 
 	 */
-	public PingjiaoStatusVo() {
+	public PingjiaoStatusVO() {
 		super();
 	}
 
@@ -80,7 +80,7 @@ public class PingjiaoStatusVo {
 	 * @param course_name
 	 * @param className
 	 */
-	public PingjiaoStatusVo(String student_id, String teacher_id,
+	public PingjiaoStatusVO(String student_id, String teacher_id,
 			String course_grade, String course_semester, String course_name,
 			String className) {
 		super();
