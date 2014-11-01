@@ -6,7 +6,7 @@ import java.util.List;
  * @周山胜
  */
 public interface ExportExcel {
-	/* 解析学生信息的表格，导出成功，若失败，则返回
+	/**解析学生信息的表格，导出成功，若失败，则返回
 	 * 
 	 */
 	public boolean stuExportExcel();
