@@ -39,6 +39,10 @@ public class PjStatus extends ActionSupport {
 	 */
 	private int Step = 5;
 	/**
+	 * 第一行第一列的那个格子的值
+	 */
+	private String firstTitle;
+	/**
 	 * 状态列表
 	 */
 	private List<PingjiaoStatusVo> statusList = new ArrayList<PingjiaoStatusVo>();
@@ -82,7 +86,7 @@ public class PjStatus extends ActionSupport {
 		courseList = service.getCourseList(
 				(String) application.get("CURRENT_GRADE"),
 				(String) application.get("CURRENT_SEMESTER"));
-		
+		firstTitle = "";
 		PingjiaoStatusVo vo = new PingjiaoStatusVo();
 		vo.setExecutiveClass("总计");
 		vo.setGrade("2014-2015");
@@ -203,6 +207,25 @@ public class PjStatus extends ActionSupport {
 	 */
 	public void setStep(int step) {
 		Step = step;
+	}
+
+	/**
+	 * 获取firstTitle
+	 * 
+	 * @return firstTitle
+	 */
+	public String getFirstTitle() {
+		return firstTitle;
+	}
+
+	/**
+	 * 设置firstTitle
+	 * 
+	 * @param firstTitle
+	 *            firstTitle
+	 */
+	public void setFirstTitle(String firstTitle) {
+		this.firstTitle = firstTitle;
 	}
 
 	/**

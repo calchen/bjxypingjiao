@@ -6,6 +6,7 @@ import java.util.List;
 import com.chenky.dao.PingjiaoDAO;
 import com.chenky.vo.CourseVO;
 import com.chenky.vo.PingjiaoResultVO;
+import com.chenky.vo.PingjiaoStatusVo;
 
 /**
  * 评教相关服务 <br />
@@ -169,5 +170,8 @@ public class PingjiaoService {
 		return reallist;
 	}
 	
-	public List<P>
+	public List<PingjiaoStatusVo> getPingjiaoStatus(int page) {
+		return null;
+	}
+	
 }

@@ -20,7 +20,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>行政班</th>
+                  <th>${firstTitle }</th>
                   <th>学年</th>
                   <th>学期</th>
                   <th>课程</th>
