@@ -3,11 +3,9 @@ package com.chenky.struts.admin;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.chenky.vo.GradeVO;
-import com.chenky.vo.PingjiaoStatusVo;
 import com.chenky.vo.SemesterVO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -18,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0 <br />
  * @author 陈恺垣 chenkaiyuan1993@gmail.com
  */
+@SuppressWarnings("serial")
 public class SettingAction extends ActionSupport {
 
 	/**
