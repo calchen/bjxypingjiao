@@ -33,13 +33,13 @@
                 <s:iterator var="list" value="statusList">
                   <tr>
                     <td>${list.executiveClass }</td>
-                    <td>${list.grade }</td>
-                    <td>${list.semester }</td>
-                    <td>${list.course }</td>
+                    <td>${list.course_grade }</td>
+                    <td>${list.course_semester }</td>
+                    <td>${list.course_name }</td>
                     <td>${list.havePj }</td>
                     <td>${list.haventPj }</td>
                     <td>
-                      <a class="toggle-link" href="admin_status?page=1&executiveClass=${list.executiveClass }&grade=${list.grade }&semester=${list.semester }&course=${list.course}">
+                      <a class="toggle-link" href="admin_status?page=1&executiveClass=${list.executiveClass }&grade=${list.course_grade }&semester=${list.course_semester }&course=${list.course_name}">
                         <i class="icon-search"></i>查看
                       </a>
                     </td>

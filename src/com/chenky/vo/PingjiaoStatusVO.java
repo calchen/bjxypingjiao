@@ -63,6 +63,14 @@ public class PingjiaoStatusVO {
 	 * 行政班
 	 */
 	private String executiveClass;
+	/**
+	 * 已经评教
+	 */
+	public int havePj;
+	/**
+	 * 还未评教
+	 */
+	public int haventPj;
 
 	/**
 	 * 
@@ -356,6 +364,44 @@ public class PingjiaoStatusVO {
 	 */
 	public void setExecutiveClass(String executiveClass) {
 		this.executiveClass = executiveClass;
+	}
+
+	/**
+	 * 获取havePj
+	 * 
+	 * @return havePj
+	 */
+	public int getHavePj() {
+		return havePj;
+	}
+
+	/**
+	 * 设置havePj
+	 * 
+	 * @param havePj
+	 *            havePj
+	 */
+	public void setHavePj(int havePj) {
+		this.havePj = havePj;
+	}
+
+	/**
+	 * 获取haventPj
+	 * 
+	 * @return haventPj
+	 */
+	public int getHaventPj() {
+		return haventPj;
+	}
+
+	/**
+	 * 设置haventPj
+	 * 
+	 * @param haventPj
+	 *            haventPj
+	 */
+	public void setHaventPj(int haventPj) {
+		this.haventPj = haventPj;
 	}
 
 }

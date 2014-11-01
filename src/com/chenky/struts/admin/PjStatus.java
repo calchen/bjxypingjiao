@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.chenky.service.PingjiaoService;
-import com.chenky.vo.PingjiaoStatusVo;
+import com.chenky.vo.PingjiaoStatusVO;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -45,7 +45,7 @@ public class PjStatus extends ActionSupport {
 	/**
 	 * 状态列表
 	 */
-	private List<PingjiaoStatusVo> statusList = new ArrayList<PingjiaoStatusVo>();
+	private List<PingjiaoStatusVO> statusList = new ArrayList<PingjiaoStatusVO>();
 
 	/**
 	 * 行政班列表
@@ -87,13 +87,13 @@ public class PjStatus extends ActionSupport {
 				(String) application.get("CURRENT_GRADE"),
 				(String) application.get("CURRENT_SEMESTER"));
 		firstTitle = "";
-		PingjiaoStatusVo vo = new PingjiaoStatusVo();
+		PingjiaoStatusVO vo = new PingjiaoStatusVO();
 		vo.setExecutiveClass("总计");
-		vo.setGrade("2014-2015");
-		vo.setSemester("1");
-		vo.setCourse("CE1");
-		vo.setHavePj(0);
-		vo.setHaventPj(2372);
+		vo.setCourse_grade("2014-2015");
+		vo.setCourse_semester("1");
+		vo.setCourse_name("CE1");
+		vo.setHaventPj(4523);
+		vo.setHavePj(123);
 
 		statusList.add(vo);
 		statusList.add(vo);
@@ -233,7 +233,7 @@ public class PjStatus extends ActionSupport {
 	 * 
 	 * @return statusList
 	 */
-	public List<PingjiaoStatusVo> getStatusList() {
+	public List<PingjiaoStatusVO> getStatusList() {
 		return statusList;
 	}
 
@@ -243,7 +243,7 @@ public class PjStatus extends ActionSupport {
 	 * @param statusList
 	 *            statusList
 	 */
-	public void setStatusList(List<PingjiaoStatusVo> statusList) {
+	public void setStatusList(List<PingjiaoStatusVO> statusList) {
 		this.statusList = statusList;
 	}
 
