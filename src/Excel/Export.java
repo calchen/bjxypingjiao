@@ -1,21 +1,21 @@
 package Excel;
 
 import java.util.*;
-import java.util.Map.Entry;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import com.chenky.util.Sha1Util;
+import com.chenky.vo.PingjiaoStatusVO;
 import com.chenky.vo.StudentVO;
 import com.chenky.vo.UserVO;
-
+/**解析Excel表格
+ * @周山胜
+ */
 class Exportimp  {
 	
 	public boolean stuExportExcel(File file) {
@@ -43,7 +43,7 @@ class Exportimp  {
 				
 				HSSFRow row = sheet.getRow(rowIndex);
 				int CellIndex;
-		
+		        //遍历第0行，返回与之符合的所在列
 				for(CellIndex=0;CellIndex<row.getLastCellNum();CellIndex++){
 					HSSFCell s = row.getCell(CellIndex);
 					String t=s.getStringCellValue();
@@ -68,10 +68,15 @@ class Exportimp  {
 				StudentVO svo = new StudentVO();
 				UserVO uvo = new UserVO();
 				HSSFRow row = sheet.getRow(rowIndex);
+				//学生学号单元格
 				HSSFCell idCell = row.getCell(idCellIndex);
+				//学生姓名单元格
 				HSSFCell nameCell = row.getCell(nameCellIndex);
+				//专业单元格
 				HSSFCell proCell = row.getCell(proCellIndex);
+				//行政班单元格
 				HSSFCell exeCell = row.getCell(exeCellIndex);
+				//身份证单元格
 				HSSFCell cerCell = row.getCell(cerCellIndex);
 				
 				// 获取学生学号
@@ -113,8 +118,8 @@ class Exportimp  {
 				
 				// 将svo中的信息放在list中
 				list.add(svo);
+				//将uvo中的信息放入list1中
 				list1.add(uvo);
-
 			}
 			
 			
@@ -131,17 +136,18 @@ class Exportimp  {
 
 
 
-	public boolean yingyuExportExcel(File file) {
-		try {
-			
+	public boolean yingyuExportExcel(File file,String semester,String grade,String course) {
+		try {		
 			InputStream input=new FileInputStream("D:\\评测信息\\2014-2015-1英语CE3分班明细（请按学号筛选到本人） (自动保存的).xls");
 			POIFSFileSystem fs = new POIFSFileSystem(input);
 			HSSFWorkbook wb = new HSSFWorkbook(fs);
 			HSSFSheet sheet = wb.getSheetAt(0);
 			
+			
 			// 建立动态数组 存储信息
 			HashMap<String,UserVO> map = new HashMap<>();
 			HashMap<String,UserVO> map1 = new HashMap<>();
+			List <PingjiaoStatusVO> lt=new ArrayList<>();
 			// 获得最后一行
 			int MaxRow = sheet.getLastRowNum();
 			// 开始位置
@@ -149,14 +155,11 @@ class Exportimp  {
 			int xuehaoCellIndex=0;
 			int idCellIndex = 0;
 			int nameCellIndex =0 ;
-			int passCellIndex = 0;
-			int fenbanCellIndex=0;			
-			// 遍历每一行中的元素
+			int fenbanCellIndex=0;			// 遍历每一行中的元素
 			for (int rowIndex = 0; rowIndex <=0; rowIndex++) {				
 							
 				HSSFRow row = sheet.getRow(rowIndex);
 				int CellIndex;
-				    //按照单元格索引，返回与要求相同的下标；
 					for(CellIndex=0;CellIndex<row.getLastCellNum();CellIndex++){
 					HSSFCell s = row.getCell(CellIndex);
 					String t=s.getStringCellValue();
@@ -169,20 +172,40 @@ class Exportimp  {
 					}else if(t.equals("工资号")){
 	    			    idCellIndex=CellIndex;			
 					}
-							
+						
 				}
 			}	
-			List <UserVO> list=new ArrayList<>();
+			
 			// 遍历每一行中的元素
 			for (int rowIndex = dataRowIndex; rowIndex <= MaxRow; rowIndex++) {				
 				// 新建uvo，存储单行单元格中的信息			
 				UserVO uvo = new UserVO();
 				//新建uvo1，存储teacher id；
 				UserVO uvo1 = new UserVO();
+				//新建pvo，存储class单行的信息
+				PingjiaoStatusVO pvo = new PingjiaoStatusVO();
+				
 				HSSFRow row = sheet.getRow(rowIndex);
+				//学生学号单元格
+				HSSFCell xuehaoCell = row.getCell(xuehaoCellIndex);
+				//工资号单元格
 				HSSFCell idCell = row.getCell(idCellIndex);
+				//教师姓名单元格
 				HSSFCell nameCell = row.getCell(nameCellIndex);
-				HSSFCell passCell = row.getCell(passCellIndex);			
+				//英语分班单元格
+				HSSFCell fenbanCell = row.getCell(fenbanCellIndex);
+				
+				
+				//获取学生学号
+				String xuehao = xuehaoCell.getStringCellValue();
+				//设置学生学号
+				pvo.setStudent_id(xuehao);
+				
+				//获取英语分班
+				String fenban = fenbanCell.getStringCellValue();
+				//设置英语分班
+				pvo.setClassName(fenban);
+				
 				// 获取老师工资号
 				String idID = idCell.getStringCellValue();
 				if(idID==""){
@@ -207,29 +230,41 @@ class Exportimp  {
 				String passWord =sh.hex_sha1(passName);
 				///设置老师密码
 				uvo.setPassword(passWord);
+				//设置老师工资号
+				pvo.setTeacher_id(passName);
 				
 				
 				// 获取老师管理权限等级
 				String level="2";			
 				// 设置老师管理权限等级
 				uvo.setLevel(level);
+				
+				pvo.setCourse_grade(grade);
+				pvo.setCourse_name(course);
+				pvo.setCourse_semester(semester);
+				
 		
+				//将教师user信息存放在map中
 				map.put(key,uvo);
+				//将teacher_id存放在map1中
 				map1.put(key, uvo1);
+				//将class中的信息存放在lt中
+				lt.add(pvo);
 			}
-			
-			
+			dbdao db=new dbdao();		  
+			db.classTable(lt)	;
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+
 
 		return true;
 
 	}
 
 	public boolean yingyuExportExcel(String filePathList) {
-		return yingyuExportExcel(new File(filePathList));
+		return yingyuExportExcel(new File(filePathList), filePathList, filePathList, filePathList);
 
 	}
 
