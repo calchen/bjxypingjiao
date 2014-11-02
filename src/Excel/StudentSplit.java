@@ -1,4 +1,4 @@
-package demo;
+package Excel;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import com.chenky.util.Sha1Util;
 import com.chenky.vo.StudentVO;
 import com.chenky.vo.UserVO;
 import com.chenky.util.*;
-public class Split {
+public class StudentSplit {
 	public static void main(String[] args) {
 		try {
 			
@@ -38,7 +38,7 @@ public class Split {
 			int cerCellIndex = 0;
 			
 			// 遍历每一行中的元素
-			for (int rowIndex =0 ; rowIndex <=0; rowIndex++) {				
+			for (int rowIndex = 0; rowIndex <=0; rowIndex++) {				
 				
 				HSSFRow row = sheet.getRow(rowIndex);
 				int CellIndex;
@@ -77,11 +77,13 @@ public class Split {
 				String idID = idCell.getStringCellValue();
 				// 设置学生学号
 				svo.setId(idID);
-				uvo.setId(idID);			
+				uvo.setId(idID);
+				
 				// 获取学生姓名
 				String nameName = nameCell.getStringCellValue();
 				// 设置学生姓名
-				uvo.setName(nameName);		
+				uvo.setName(nameName);
+				
 				// 获取学生专业
 				String proName = proCell.getStringCellValue();
 				// 设置学生专业
@@ -90,7 +92,8 @@ public class Split {
 				// 获取学生行政班
 				String exeName = exeCell.getStringCellValue();
 				// 设置学生行政班				
-				svo.setExecutiveClass(exeName);		
+				svo.setExecutiveClass(exeName);
+				
 				// 获取学生身份证
 				String cerid = cerCell.getStringCellValue();				
 				String passName =cerid.substring(12).toLowerCase();
@@ -108,7 +111,6 @@ public class Split {
 
 				
 				// 将svo中的信息放在list中
-				
 				list.add(svo);
 				list1.add(uvo);
 

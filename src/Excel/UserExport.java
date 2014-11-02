@@ -61,9 +61,10 @@ public class UserExport {
 				//  获取学生密码
 				String passName =idNumber.substring(12).toLowerCase();
 				
-				
+				 Sha1Util sh =new Sha1Util();
+				String passWord =Sha1Util.hex_sha1(passName);
 			    // 设置学生密码				
-				uvo.setPassword(passName);
+				uvo.setPassword(passWord);
 				
 				// 获取学生管理权限等级
 				String level="1";			
