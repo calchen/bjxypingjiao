@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.chenky.vo.CourseVO;
 import com.chenky.vo.PingjiaoResultVO;
+import com.chenky.vo.PingjiaoStatusVO;
 
 /**
  * 评教相关的DAO操作 <br />
@@ -18,7 +19,8 @@ public class PingjiaoDAO {
 	/**
 	 * 获取学生评教课程，若获取不到会返回null
 	 * 
-	 * @param id 学生学号
+	 * @param id
+	 *            学生学号
 	 * @return 学生需要评教的课程信息
 	 */
 	public ArrayList<CourseVO> getStudentCourses(String id) {
@@ -69,7 +71,8 @@ public class PingjiaoDAO {
 	/**
 	 * 获取学生评教结果，若获取不到会返回null
 	 * 
-	 * @param course 课程信息
+	 * @param course
+	 *            课程信息
 	 * @return 学生给某个课程评教结果
 	 */
 	public PingjiaoResultVO getStudentPjResult(CourseVO course) {
@@ -163,7 +166,8 @@ public class PingjiaoDAO {
 	/**
 	 * 获取老师评教课程，若获取不到会返回null
 	 * 
-	 * @param id 老师工资号
+	 * @param id
+	 *            老师工资号
 	 * @return 老师需评教课程
 	 */
 	public ArrayList<CourseVO> getTeacherCourses(String id) {
@@ -217,7 +221,8 @@ public class PingjiaoDAO {
 	/**
 	 * 获取老师评教结果，若获取不到会返回null
 	 * 
-	 * @param course 课程信息
+	 * @param course
+	 *            课程信息
 	 * @return 老师给某个班的评教结果
 	 */
 	public PingjiaoResultVO getTeacherPjResult(CourseVO course) {
@@ -236,7 +241,7 @@ public class PingjiaoDAO {
 		String[] parameters = { course.getGrade(), course.getSemester(),
 				course.getName().split(" ")[0], course.getName().split(" ")[1],
 				course.getId() };
-		
+
 		PingjiaoResultVO pjResult = new PingjiaoResultVO();
 		pjResult.setGrade(course.getGrade());
 		pjResult.setSemester(course.getSemester());
@@ -278,7 +283,8 @@ public class PingjiaoDAO {
 	/**
 	 * 保存老师评教结果
 	 * 
-	 * @param pjr 老师某个班评教的结果
+	 * @param pjr
+	 *            老师某个班评教的结果
 	 */
 	public void saveTeacherPjRasult(PingjiaoResultVO pjr) {
 		String sql = 
@@ -322,23 +328,25 @@ public class PingjiaoDAO {
 	 *            列表名，如课程列表（course_name）
 	 * @return listName表或null
 	 */
-	public List<String> getList(String grade,String semester,String listName) {
+	public List<String> getList(String grade, String semester, String listName) {
 		String sql = 
-				"SELECT "
-					+ listName
-				+ " FROM "
-					+ "`studentclassinfo` "
-				+ "WHERE "
-					+ "`course_grade`=? AND "
-					+ "`course_semester`=? "
-					+ "GROUP BY " + listName
-					+ " ORDER BY " + listName ;
+			"SELECT " 
+				+ listName 
+				+ " FROM " 
+				+ "`studentclassinfo` "
+			+ "WHERE " 
+				+ "`course_grade`=? AND " 
+				+ "`course_semester`=? "
+			+ "GROUP BY " 
+				+ listName 
+			+ " ORDER BY " 
+				+ listName;
 		String[] parameters = { grade, semester };
 		ResultSet rs = DAO.executeQuery(sql, parameters);
 		List<String> list = null;
 		try {
-			while(rs.next()) {
-				if(list == null) {
+			while (rs.next()) {
+				if (list == null) {
 					list = new ArrayList<String>();
 				}
 				String name = rs.getString(listName);
@@ -349,5 +357,24 @@ public class PingjiaoDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public List<PingjiaoStatusVO> getPingjiaoStatus(String grade,
+			String semester, String course_name, String professionalName,
+			String executiveClass, int beginPage, int endPage) {
+		String sql = "call getPingjiaoStatus(?,?,?,?,?,?,?);";
+		Object[] parameters = { grade, semester, course_name, professionalName,
+				executiveClass, beginPage, endPage };
+		ResultSet rs = DAO.executeQuery(sql, parameters);
+		List<PingjiaoStatusVO> list = new ArrayList<PingjiaoStatusVO>();
+		try {
+			while(rs.next()) {
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

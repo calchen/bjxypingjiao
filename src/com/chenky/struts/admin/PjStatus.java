@@ -21,7 +21,7 @@ public class PjStatus extends ActionSupport {
 	/**
 	 * 当前页面
 	 */
-	private String page;
+	private int page;
 	/**
 	 * 分页列表
 	 */
@@ -77,15 +77,8 @@ public class PjStatus extends ActionSupport {
 		PingjiaoService service = new PingjiaoService();
 		Map<String, Object> application = ActionContext.getContext()
 				.getApplication();
-		professionalNameList = service.getProfessionalNameList(
-				(String) application.get("CURRENT_GRADE"),
-				(String) application.get("CURRENT_SEMESTER"));
-		executiveClassList = service.getExecutiveClassList(
-				(String) application.get("CURRENT_GRADE"),
-				(String) application.get("CURRENT_SEMESTER"));
-		courseList = service.getCourseList(
-				(String) application.get("CURRENT_GRADE"),
-				(String) application.get("CURRENT_SEMESTER"));
+		getSearchList(service, application);
+		// 设置表格第一行第一列的文本
 		firstTitle = "";
 		PingjiaoStatusVO vo = new PingjiaoStatusVO();
 		vo.setExecutiveClass("总计");
@@ -94,18 +87,14 @@ public class PjStatus extends ActionSupport {
 		vo.setCourse_name("CE1");
 		vo.setHaventPj(4523);
 		vo.setHavePj(123);
-
-		statusList.add(vo);
-		statusList.add(vo);
-		statusList.add(vo);
+		statusList = service.getPingjiaoStatus(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"), "总计", "全部", "全部",
+				0, 50);
 
 		pageList.add("1");
-		pageList.add("2");
-		pageList.add("3");
-		pageList.add("4");
-		pageList.add("5");
 		pre = 1;
-		next = 6;
+		next = 1;
 
 		return SUCCESS;
 	}
@@ -115,11 +104,30 @@ public class PjStatus extends ActionSupport {
 	}
 
 	/**
+	 * 获取搜索选项的类表
+	 * 
+	 * @param service
+	 * @param application
+	 */
+	private void getSearchList(PingjiaoService service,
+			Map<String, Object> application) {
+		professionalNameList = service.getProfessionalNameList(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"));
+		executiveClassList = service.getExecutiveClassList(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"));
+		courseList = service.getCourseList(
+				(String) application.get("CURRENT_GRADE"),
+				(String) application.get("CURRENT_SEMESTER"));
+	}
+
+	/**
 	 * 获取page
 	 * 
 	 * @return page
 	 */
-	public String getPage() {
+	public int getPage() {
 		return page;
 	}
 
@@ -129,7 +137,7 @@ public class PjStatus extends ActionSupport {
 	 * @param page
 	 *            page
 	 */
-	public void setPage(String page) {
+	public void setPage(int page) {
 		this.page = page;
 	}
 

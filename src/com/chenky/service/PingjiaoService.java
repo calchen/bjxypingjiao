@@ -169,9 +169,24 @@ public class PingjiaoService {
 		}
 		return reallist;
 	}
-	
-	public List<PingjiaoStatusVO> getPingjiaoStatus(int page) {
-		return null;
+
+	public List<PingjiaoStatusVO> getPingjiaoStatus(String grade,
+			String semester, String course_name, String professionalName,
+			String executiveClass, int beginPage, int endPage) {
+		PingjiaoDAO dao = new PingjiaoDAO();
+		if (course_name != null && course_name.equals("总计")) {
+			course_name = "all";
+		} else if (course_name != null && course_name.equals("全部")) {
+			course_name = "%";
+		}
+		if (professionalName != null && professionalName.equals("全部")) {
+			professionalName = "%";
+		}
+		if (executiveClass != null && executiveClass.equals("全部")) {
+			executiveClass = "%";
+		}
+		return dao.getPingjiaoStatus(grade, semester, course_name,
+				professionalName, executiveClass, beginPage, endPage);
 	}
-	
+
 }
