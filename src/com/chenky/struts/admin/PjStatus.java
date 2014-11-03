@@ -25,7 +25,7 @@ public class PjStatus extends ActionSupport {
 	/**
 	 * 分页列表
 	 */
-	private List<String> pageList = new ArrayList<String>();
+	private List<Integer> pageList = new ArrayList<Integer>();
 	/**
 	 * 前页
 	 */
@@ -33,11 +33,15 @@ public class PjStatus extends ActionSupport {
 	/**
 	 * 后页
 	 */
-	private int next = 6;
+	private int next = 1;
 	/**
 	 * 步长
 	 */
-	private int Step = 5;
+	private int step = 5;
+	/**
+	 * 行数
+	 */
+	private int lineNum = 10;
 	/**
 	 * 第一行第一列的那个格子的值
 	 */
@@ -80,26 +84,49 @@ public class PjStatus extends ActionSupport {
 		getSearchList(service, application);
 		// 设置表格第一行第一列的文本
 		firstTitle = "";
-		PingjiaoStatusVO vo = new PingjiaoStatusVO();
-		vo.setExecutiveClass("总计");
-		vo.setCourse_grade("2014-2015");
-		vo.setCourse_semester("1");
-		vo.setCourse_name("CE1");
-		vo.setHaventPj(4523);
-		vo.setHavePj(123);
-		statusList = service.getPingjiaoStatus(
-				(String) application.get("CURRENT_GRADE"),
-				(String) application.get("CURRENT_SEMESTER"), "总计", "全部", "全部",
-				0, 50);
 
-		pageList.add("1");
-		pre = 1;
-		next = 1;
+		if (course == null && professionalName == null
+				&& executiveClass == null) {
+			statusList = service.getPingjiaoStatus(
+					(String) application.get("CURRENT_GRADE"),
+					(String) application.get("CURRENT_SEMESTER"), "总计", "全部",
+					"全部", 0, 10);
+			this.course = "总计";
+			this.professionalName = "全部";
+			this.executiveClass = "全部";
+			pageList.add(1);
+			pre = 1;
+			next = 1;
+		} else {
+			// 总页数
+			int totalLines = service.getPingjiaoStatusTotalPages(
+					(String) application.get("CURRENT_GRADE"),
+					(String) application.get("CURRENT_SEMESTER"), course,
+					professionalName, executiveClass);
+			statusList = service.getPingjiaoStatus(
+					(String) application.get("CURRENT_GRADE"),
+					(String) application.get("CURRENT_SEMESTER"), course,
+					professionalName, executiveClass, (page - 1) * lineNum,
+					page * lineNum);
+			// 最小分页下标
+			int left = (page - 1) / step * step;
+			// 最大分页下标
+			int right = (page - 1) / step * step + step;
+			// 最大页数
+			int max = (int) Math.ceil((totalLines * 1.0) / lineNum);
+			for (int i = left; i < right && i < max; i++) {
+				pageList.add(i + 1);
+			}
+			firstTitle = "行政班";
+			pre = left > 0 ? left : 1;
+			next = right + 1 > max ? max : right + 1;
+		}
 
 		return SUCCESS;
 	}
 
 	public String search() {
+
 		return SUCCESS;
 	}
 
@@ -146,7 +173,7 @@ public class PjStatus extends ActionSupport {
 	 * 
 	 * @return pageList
 	 */
-	public List<String> getPageList() {
+	public List<Integer> getPageList() {
 		return pageList;
 	}
 
@@ -156,7 +183,7 @@ public class PjStatus extends ActionSupport {
 	 * @param pageList
 	 *            pageList
 	 */
-	public void setPageList(List<String> pageList) {
+	public void setPageList(List<Integer> pageList) {
 		this.pageList = pageList;
 	}
 
@@ -204,7 +231,7 @@ public class PjStatus extends ActionSupport {
 	 * @return step
 	 */
 	public int getStep() {
-		return Step;
+		return step;
 	}
 
 	/**
@@ -214,7 +241,7 @@ public class PjStatus extends ActionSupport {
 	 *            step
 	 */
 	public void setStep(int step) {
-		Step = step;
+		this.step = step;
 	}
 
 	/**

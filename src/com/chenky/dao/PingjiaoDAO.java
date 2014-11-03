@@ -359,6 +359,25 @@ public class PingjiaoDAO {
 		return list;
 	}
 
+	/**
+	 * 获取评价状况列表，若获取不到则返回null
+	 * 
+	 * @param grade
+	 *            学年
+	 * @param semester
+	 *            学期
+	 * @param course_name
+	 *            课程名
+	 * @param professionalName
+	 *            专业名
+	 * @param executiveClass
+	 *            行政班
+	 * @param beginPage
+	 *            分页，开始行
+	 * @param endPage
+	 *            分页，结束行
+	 * @return 评价状况列表
+	 */
 	public List<PingjiaoStatusVO> getPingjiaoStatus(String grade,
 			String semester, String course_name, String professionalName,
 			String executiveClass, int beginPage, int endPage) {
@@ -369,12 +388,19 @@ public class PingjiaoDAO {
 		List<PingjiaoStatusVO> list = new ArrayList<PingjiaoStatusVO>();
 		try {
 			while(rs.next()) {
-				
+				PingjiaoStatusVO vo = new PingjiaoStatusVO();
+				vo.setExecutiveClass(rs.getString("executiveClass"));
+				vo.setCourse_grade(rs.getString("grade"));
+				vo.setCourse_semester(rs.getString("semester"));
+				vo.setCourse_name(rs.getString("course"));
+				vo.setHavePj(rs.getInt("havePj"));
+				vo.setHaventPj(rs.getInt("haventPj"));
+				list.add(vo);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
 }
