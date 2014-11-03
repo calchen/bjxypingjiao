@@ -22,8 +22,8 @@ public class UserExport {
 		
 		Exportimp e=new Exportimp();
 		File file=new File("zss");
-		e.yingyuExportExcel(file,"1","2014","CE2");
-		
+		//e.yingyuExportExcel(file,"1","2014—1","CE3");
+		e.stuExportExcel(new File(""));
 
 	}
 }

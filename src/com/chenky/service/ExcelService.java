@@ -1,4 +1,4 @@
-package Excel;
+package com.chenky.service;
 
 import java.util.*;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.io.InputStream;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
+import com.chenky.dao.ExcelDao;
 import com.chenky.util.Sha1Util;
 import com.chenky.vo.PingjiaoStatusVO;
 import com.chenky.vo.StudentVO;
@@ -19,7 +20,7 @@ import com.chenky.vo.UserVO;
  * 
  * @周山胜
  */
-class Exportimp {
+public class ExcelService {
 
 	/**
 	 * 解析student表格
@@ -128,8 +129,8 @@ class Exportimp {
 				list1.add(uvo);
 			}
 
-			new dbdao().stuUserdb(list1);
-			new dbdao().stuTable(list);
+			new ExcelDao().stuUserdb(list1);
+			new ExcelDao().stuTable(list);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -207,7 +208,7 @@ class Exportimp {
 				HSSFCell idCell = row.getCell(idCellIndex);
 				// 教师姓名单元格
 				HSSFCell nameCell = row.getCell(nameCellIndex);
-				// 英语分班单元格
+				// 分班单元格
 				HSSFCell fenbanCell = row.getCell(fenbanCellIndex);
 
 				// 获取学生学号
@@ -215,9 +216,9 @@ class Exportimp {
 				// 设置学生学号
 				pvo.setStudent_id(xuehao);
 
-				// 获取英语分班
+				// 获取分班
 				String fenban = fenbanCell.getStringCellValue();
-				// 设置英语分班
+				// 设置分班
 				pvo.setClassName(fenban);
 
 				// 获取老师工资号
@@ -263,9 +264,9 @@ class Exportimp {
 				// 将class中的信息存放在lt中
 				lt.add(pvo);
 			}
-			new dbdao().teacherUser(map);
-			new dbdao().teacheridTable(map1);
-			new dbdao().classTable(lt);
+			new ExcelDao().teacherUser(map);
+			new ExcelDao().teacheridTable(map1);
+			new ExcelDao().classTable(lt);
 		
 		} catch (IOException ex) {
 			ex.printStackTrace();

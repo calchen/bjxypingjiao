@@ -17,17 +17,7 @@ public interface ExportExcel {
 	
 	public boolean tiyuExportExcel();
 	public boolean tiyuExportExcel(File filepath);
-	/** 解析物理分班信息的表格，导出成功，若失败，则返回
-	 * 
-	 */
-	
-	public boolean wuliExportExcel();
-	public boolean wuliExportExcel(File filepath);
-	/** 解析英语分班信息的表格，导出成功，若失败，则返回
-	 * 
-	 */
-	
-	public boolean yingyuExportExcel();
-	public boolean yingyuExportExcel(File filepath);
+
+
 
 }
