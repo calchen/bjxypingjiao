@@ -34,5 +34,8 @@
 		<action name="admin_downloaddata" class="com.chenky.struts.admin.DownloadAction">
 			<result name="success">/WEB-INF/view/admin/admin_downloaddata.jsp</result>
 		</action>
+		<action name="admin_profile" class="com.chenky.struts.admin.ProfileAction">
+			<result name="success">/WEB-INF/view/admin/admin_profile.jsp</result>
+		</action>
 	</package>
 </struts>

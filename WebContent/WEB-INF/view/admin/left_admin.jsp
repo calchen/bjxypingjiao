@@ -112,31 +112,17 @@
         </li>
       </s:else>
       <li class="nav-header">账号设置</li>
-      <s:if test="#session['uri']==''">
+      <s:if test="#session['uri']=='admin_profile.jsp'">
         <li class="active">
-          <a href="profile">
-            <i class="icon-white icon-list-alt"></i>账号管理
+          <a href="admin_profile?operation=0">
+            <i class="icon-white icon-user"></i>账号管理
           </a>
         </li>
       </s:if>
       <s:else>
         <li>
-          <a href="profile">
-            <i class="icon-list-alt"></i>账号管理
-          </a>
-        </li>
-      </s:else>
-      <s:if test="#session['uri']==''">
-        <li class="active">
-          <a href="profile">
-            <i class="icon-white icon-user"></i>修改信息
-          </a>
-        </li>
-      </s:if>
-      <s:else>
-        <li>
-          <a href="profile">
-            <i class="icon-user"></i>修改信息
+          <a href="admin_profile?operation=0">
+            <i class="icon-user"></i>账号管理
           </a>
         </li>
       </s:else>

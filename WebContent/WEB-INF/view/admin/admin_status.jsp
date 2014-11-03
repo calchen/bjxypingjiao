@@ -57,7 +57,6 @@
 				  <s:else>
 				    <li><a href="admin_status?page=${list }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}">${list }</a> </li>
 				  </s:else>
-					
 				</s:iterator>
                 <li><a href="admin_status?page=${next }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}">»</a> </li>
               </ul>
