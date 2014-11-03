@@ -125,11 +125,6 @@ public class PjStatus extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String search() {
-
-		return SUCCESS;
-	}
-
 	/**
 	 * 获取搜索选项的类表
 	 * 
