@@ -51,7 +51,13 @@
               <ul>
                 <li><a href="admin_status?page=${pre }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}">«</a> </li>
 				<s:iterator var="list" value="pageList">
-					<li><a href="admin_status?page=${list }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}">${list }</a> </li>
+				  <s:if test="page==#list	">
+				    <li><a href="admin_status?page=${list }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}"><u><b>${list }</b></u></a> </li>
+				  </s:if>
+				  <s:else>
+				    <li><a href="admin_status?page=${list }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}">${list }</a> </li>
+				  </s:else>
+					
 				</s:iterator>
                 <li><a href="admin_status?page=${next }&professionalName=${professionalName}&executiveClass=${executiveClass}&course=${course}">»</a> </li>
               </ul>
