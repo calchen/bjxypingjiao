@@ -16,7 +16,7 @@ import com.chenky.vo.UserVO;
  * 
  */
 public class ExcelDao {
-	
+
 	/**
 	 * 将学生User信息存入数据库中
 	 * 
@@ -41,7 +41,6 @@ public class ExcelDao {
 
 	}
 
-	
 	/**
 	 * 将student信息存入数据中
 	 * 
@@ -64,7 +63,6 @@ public class ExcelDao {
 		return true;
 
 	}
-
 
 	/**
 	 * 将teacher_id信息存入数据库中
@@ -89,7 +87,6 @@ public class ExcelDao {
 
 	}
 
-
 	/**
 	 * 将teacherUser信息存入数据库中
 	 * 
@@ -107,12 +104,12 @@ public class ExcelDao {
 			try {
 				DAO.executeUpdate(sql, parameters);
 			} catch (Exception e) {
-			}		}
+			}
+		}
 
 		return true;
 
 	}
-
 
 	/**
 	 * 将class信息存入数据库中

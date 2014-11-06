@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
 
 import com.chenky.dao.ExcelDao;
 import com.chenky.util.Sha1Util;
@@ -112,8 +113,7 @@ public class ExcelService {
 				// 获取学生身份证
 				String cerid = cerCell.getStringCellValue();
 				String passName = cerid.substring(12).toLowerCase();
-				Sha1Util sh = new Sha1Util();
-				String passWord = sh.hex_sha1(passName);
+				String passWord = Sha1Util.hex_sha1(passName);
 				// 设置学生身份证
 				svo.setIdCardNumber(cerid);
 				uvo.setPassword(passWord);
@@ -136,24 +136,29 @@ public class ExcelService {
 		}
 		return true;
 	}
+
 	/**
 	 * 解析student表格
 	 * 
-	 * @param filePathList
+	 * @param filePath
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean stuExportExcel(String filePathList) {
-		return stuExportExcel(new File(filePathList));
-
+	public boolean stuExportExcel(String filePath) {
+		if (filePath == null) {
+			return false;
+		}
+		return stuExportExcel(new File(filePath));
 	}
 
 	/**
 	 * 解析表格
 	 * 
-	 * @param file ，semester，grade, course
+	 * @param file
+	 *            ，semester，grade, course
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean yingyuExportExcel(File file, String semester, String grade,String course) {
+	public boolean yingyuExportExcel(File file, String semester, String grade,
+			String course) {
 		try {
 			InputStream input = new FileInputStream(file);
 			POIFSFileSystem fs = new POIFSFileSystem(input);
@@ -234,15 +239,14 @@ public class ExcelService {
 
 				// 获取老师姓名
 				String nameName = nameCell.getStringCellValue();
-				row.getCell(8).setCellType(nameCell.CELL_TYPE_STRING);
+				row.getCell(8).setCellType(Cell.CELL_TYPE_STRING);
 				// 设置老师姓名
 				uvo.setName(nameName);
 
 				// 获取老师工资号
 				String passName = idCell.getStringCellValue();
 				// 用哈希加密给老师工资号加密
-				Sha1Util sh = new Sha1Util();
-				String passWord = sh.hex_sha1(passName);
+				String passWord = Sha1Util.hex_sha1(passName);
 				// /设置老师密码
 				uvo.setPassword(passWord);
 				// 设置老师工资号
@@ -267,7 +271,7 @@ public class ExcelService {
 			new ExcelDao().teacherUser(map);
 			new ExcelDao().teacheridTable(map1);
 			new ExcelDao().classTable(lt);
-		
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -279,12 +283,17 @@ public class ExcelService {
 	/**
 	 * 解析表格
 	 * 
-	 * @param filepath ，semester，grade, course
+	 * @param filepath
+	 *            ，semester，grade, course
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean yingyuExportExcel(String filePath, String semester, String grade,String course) {
+	public boolean yingyuExportExcel(String filePath, String semester,
+			String grade, String course) {
+		// 处理文件路径为null
+		if (filePath == null) {
+			return false;
+		}
 		return yingyuExportExcel(new File(filePath), semester, grade, course);
-
 	}
 
 }
