@@ -63,7 +63,7 @@ public class DAO {
 	 * 
 	 * @return 连接
 	 */
-	private static Connection getConnection() {
+	protected static Connection getConnection() {
 		try {
 			// 得到链接
 			ct = DriverManager.getConnection(dbURL, dbUserName, dbPasswd);
