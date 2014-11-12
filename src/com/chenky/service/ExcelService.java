@@ -20,6 +20,7 @@ import com.chenky.vo.UserVO;
  * 解析Excel表格
  * 
  * @周山胜
+ * @
  */
 public class ExcelService {
 
@@ -29,9 +30,9 @@ public class ExcelService {
 	 * @param file
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean stuExportExcel(File file) {
+	public boolean stuExcelImport(File file) {
+		boolean result = false;
 		try {
-
 			InputStream input = new FileInputStream(file);
 			POIFSFileSystem fs = new POIFSFileSystem(input);
 			HSSFWorkbook wb = new HSSFWorkbook(fs);
@@ -128,13 +129,16 @@ public class ExcelService {
 				// 将uvo中的信息放入list1中
 				list1.add(uvo);
 			}
-
-			new ExcelDao().stuUserdb(list1);
-			new ExcelDao().stuTable(list);
+			
+			result = new ExcelDao().stuUserdb(list1);
+			
+			if(result) {
+				result = new ExcelDao().stuTable(list);
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		return true;
+		return result;
 	}
 
 	/**
@@ -143,21 +147,21 @@ public class ExcelService {
 	 * @param filePath
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean stuExportExcel(String filePath) {
+	public boolean stuExcelImport(String filePath) {
 		if (filePath == null) {
 			return false;
 		}
-		return stuExportExcel(new File(filePath));
+		return stuExcelImport(new File(filePath));
 	}
 
 	/**
-	 * 解析表格
+	 * 解析分班表格
 	 * 
 	 * @param file
 	 *            ，semester，grade, course
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean yingyuExportExcel(File file, String semester, String grade,
+	public boolean classExcelImport(File file, String semester, String grade,
 			String course) {
 		try {
 			InputStream input = new FileInputStream(file);
@@ -281,19 +285,20 @@ public class ExcelService {
 	}
 
 	/**
-	 * 解析表格
+	 * 解析分班表格
 	 * 
 	 * @param filepath
 	 *            ，semester，grade, course
 	 * @return 若成功解析，则返回true；否则返回false
 	 */
-	public boolean yingyuExportExcel(String filePath, String semester,
+	public boolean classExcelImport(String filePath, String semester,
 			String grade, String course) {
 		// 处理文件路径为null
 		if (filePath == null) {
 			return false;
 		}
-		return yingyuExportExcel(new File(filePath), semester, grade, course);
+		return classExcelImport(new File(filePath), semester, grade, course);
 	}
 
+	
 }
